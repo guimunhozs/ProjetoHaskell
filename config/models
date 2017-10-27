@@ -1,0 +1,28 @@
+-- foundation colcoar chave de acesso
+
+
+User json
+    ident Text
+    password Text Maybe
+    UniqueUser ident
+    deriving Typeable
+
+Estado json
+    nome Text
+    sigla Text
+    
+Cidade json
+    nome Text
+    estadoId EstadoId
+    
+Cliente json
+    nome Text
+    rg Text
+    cpf Text
+    logradouro Text
+    bairro Text
+    cep Int
+    telefone Text
+    email Text
+    cidadeId CidadeId 
+    estadoId EstadoId

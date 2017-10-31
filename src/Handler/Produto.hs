@@ -20,3 +20,8 @@ getProdutoR :: Handler TypedContent
 getProdutoR = do
     produtos <- (runDB $ selectList [] [])::Handler [Entity Produto]
     sendStatusJSON created201 $ object["produtos".= produtos]
+    
+getProdutoIdR :: ProdutoId -> Handler TypedContent
+getProdutoIdR produtoId = do
+    produto <- runDB $ get404 produtoId
+    sendStatusJSON created201 $ object["produto".= produto]

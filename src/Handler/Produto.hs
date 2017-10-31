@@ -15,3 +15,8 @@ postProdutoR = do
     produto <- (requireJsonBody :: Handler Produto)
     produtoId <- runDB $ insert produto
     sendStatusJSON created201 $ object["produtoId".= produtoId]
+    
+getProdutoR :: Handler TypedContent
+getProdutoR = do
+    produtos <- (runDB $ selectList [] [])::Handler [Entity Produto]
+    sendStatusJSON created201 $ object["produtos".= produtos]

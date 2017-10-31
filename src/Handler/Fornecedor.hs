@@ -15,3 +15,9 @@ postFornecedorR = do
     fornecedor <- (requireJsonBody :: Handler Fornecedor)
     fornecedorId <- runDB $ insert fornecedor
     sendStatusJSON created201 $ object["fornecedorId".= fornecedorId]
+
+getFornecedorR :: Handler TypedContent
+getFornecedorR = do
+    fornecedores <- (runDB $ selectList [] [])::Handler [Entity Fornecedor]
+    sendStatusJSON created201 $ object["fornecedores".= fornecedores]
+    

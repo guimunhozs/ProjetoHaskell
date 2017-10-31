@@ -21,3 +21,8 @@ getFornecedorR = do
     fornecedores <- (runDB $ selectList [] [])::Handler [Entity Fornecedor]
     sendStatusJSON created201 $ object["fornecedores".= fornecedores]
     
+getFornecedorIdR :: FornecedorId -> Handler TypedContent
+getFornecedorIdR fornecedorId = do
+    fornecedor <- runDB $ get404 fornecedorId
+    sendStatusJSON created201 $ object["fornecedor".= fornecedor]
+

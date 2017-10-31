@@ -10,3 +10,12 @@
 
 /estado EstadoR GET POST
 /estado/#EstadoId EstadoIdR DELETE GET PUT
+
+/cidade CidadeR GET POST
+/cidade/#CidadeId CidadeIdR DELETE PUT
+
+/fornecedor FornecedorR GET POST
+/fornecedor/#FornecedorId FornecedorIdR DELETE GET PUT
+
+/produto ProdutoR GET POST
+/produto/#ProdutoId ProdutoIdR DELETE GET PUT

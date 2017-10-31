@@ -25,3 +25,17 @@ getEstadoIdR :: EstadoId -> Handler TypedContent
 getEstadoIdR estadoId = do
     estado <- runDB $ get404 estadoId
     sendStatusJSON created201 $ object["estado".= estado]
+
+-- verificar
+deleteEstadoIdR :: EstadoId -> Handler Value
+deleteEstadoIdR estadoId = do
+    _ <- runDB $ get404 estadoId
+    runDB $ delete estadoId
+    sendStatusJSON noContent204 (object["resp".=("Deleted" ++ show (fromSqlKey estadoId))])
+    
+putEstadoIdR :: EstadoId -> Handler Value
+putEstadoIdR estadoId = do
+    _ <- runDB $ get404 estadoId
+    novoEstado <- requireJsonBody :: Handler Estado
+    runDB $ replace estadoId novoEstado
+    sendStatusJSON noContent204 (object ["resp" .= ("UPDATED " ++ show (fromSqlKey estadoId))])

@@ -26,3 +26,16 @@ getFornecedorIdR fornecedorId = do
     fornecedor <- runDB $ get404 fornecedorId
     sendStatusJSON created201 $ object["fornecedor".= fornecedor]
 
+-- verificar
+deleteFornecedorIdR :: FornecedorId -> Handler Value
+deleteFornecedorIdR fornecedorId = do
+    _ <- runDB $ get404 fornecedorId
+    runDB $ delete fornecedorId
+    sendStatusJSON noContent204 (object["resp".=("Deleted" ++ show (fromSqlKey fornecedorId))])
+    
+putFornecedorIdR :: FornecedorId -> Handler Value
+putFornecedorIdR fornecedorId = do
+    _ <- runDB $ get404 fornecedorId
+    novoFornecedor <- requireJsonBody :: Handler Fornecedor
+    runDB $ replace fornecedorId novoFornecedor
+    sendStatusJSON noContent204 (object ["resp" .= ("UPDATED " ++ show (fromSqlKey fornecedorId))])

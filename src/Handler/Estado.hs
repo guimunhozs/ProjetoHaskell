@@ -26,7 +26,7 @@ getEstadoIdR estadoId = do
     estado <- runDB $ get404 estadoId
     sendStatusJSON created201 $ object["estado".= estado]
 
--- verificar
+-- verificar -------------------------------------------------------------------
 deleteEstadoIdR :: EstadoId -> Handler Value
 deleteEstadoIdR estadoId = do
     _ <- runDB $ get404 estadoId

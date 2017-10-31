@@ -25,3 +25,17 @@ getProdutoIdR :: ProdutoId -> Handler TypedContent
 getProdutoIdR produtoId = do
     produto <- runDB $ get404 produtoId
     sendStatusJSON created201 $ object["produto".= produto]
+
+-- verificar
+deleteProdutoIdR :: ProdutoId -> Handler Value
+deleteProdutoIdR produtoId = do
+    _ <- runDB $ get404 produtoId
+    runDB $ delete produtoId
+    sendStatusJSON noContent204 (object["resp".=("Deleted" ++ show (fromSqlKey produtoId))])
+    
+putProdutoIdR :: ProdutoId -> Handler Value
+putProdutoIdR produtoId = do
+    _ <- runDB $ get404 produtoId
+    novoProduto <- requireJsonBody :: Handler Produto
+    runDB $ replace produtoId novoProduto
+    sendStatusJSON noContent204 (object ["resp" .= ("UPDATED " ++ show (fromSqlKey produtoId))])

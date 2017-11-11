@@ -21,20 +21,23 @@ getServicoR = do
     servicos <- (runDB $ selectList [] [])::Handler [Entity Servico]
     sendStatusJSON created201 $ object["servicos".= servicos]
     
-pathServicoIdQtR :: ServicoId -> Int -> Handler Value
-pathServicoIdQtR sid status = do 
+pathServicoIdStatusR :: ServicoId -> Int -> Handler Value
+pathServicoIdStatusR sid status = do 
     _ <- runDB $ get404 sid
     runDB $ update sid [ServicoStatus =. status]
     sendStatusJSON noContent204 (object ["resp" .= (fromSqlKey sid)])
     
 putServicoIdR :: ServicoId -> Handler Value
-putServicoIdR ServicoId = do
-    _ <- runDB $ get404 ServicoId
+putServicoIdR servicoId = do
+    _ <- runDB $ get404 servicoId
     novoServico <- requireJsonBody :: Handler Servico
-    runDB $ replace ServicoId novoServico
-    sendStatusJSON noContent204 (object ["resp" .= ("UPDATED " ++ show (fromSqlKey ServicoId))])
+    runDB $ replace servicoId novoServico
+    sendStatusJSON noContent204 (object ["resp" .= ("UPDATED " ++ show (fromSqlKey servicoId))])
     
 getServicoIdR :: ServicoId -> Handler TypedContent
-getServicoIdR ServicoId = do
-    Servico <- runDB $ get404 ServicoId
-    sendStatusJSON created201 $ object["Servico".= Servico]
+getServicoIdR servicoId = do
+    servico <- runDB $ get404 servicoId
+    sendStatusJSON created201 $ object["servico".= servico]
+    
+    
+--https://www.stackage.org/haddock/lts-9.12/yesod-core-1.4.37/Yesod-Core-Handler.html#v:lookupSession

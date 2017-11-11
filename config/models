@@ -97,6 +97,7 @@ Servico json
     equipamentoId EquipamentoId 
     
 Andamento json
+    numero Int
     servicoId ServicoId
     nome Text
     dateAndamento Day

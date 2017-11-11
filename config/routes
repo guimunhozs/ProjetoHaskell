@@ -29,3 +29,5 @@
 /servico                                     ServicoR                   GET POST
 /servico/#ServicoId                          ServicoIdR                 GET PUT
 /servico/#ServicoId/Status/#Int              ServicoIdStatusR           PATH
+
+/empresa                                     EmpresaR                   GET

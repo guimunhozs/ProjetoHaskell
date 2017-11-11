@@ -160,8 +160,10 @@ instance Yesod App where
     isAuthorized EquipamentoR _ = return Authorized
     isAuthorized (ProdutoIdQtR _ _) _ = return Authorized
     isAuthorized (EquipamentoIdR _) _ = return Authorized
+    isAuthorized EmpresaR _ = return Authorized
     isAuthorized ProfileR _ = isAuthenticated
 
+    
     -- This function creates static content files in the static folder
     -- and names them based on a hash of their content. This allows
     -- expiration dates to be set far in the future without worry of
@@ -206,6 +208,7 @@ instance YesodPersist App where
 instance YesodPersistRunner App where
     getDBRunner = defaultGetDBRunner appConnPool
 
+--mudar UserId
 instance YesodAuth App where
     type AuthId App = UserId
 

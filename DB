@@ -1,7 +1,7 @@
-psql -h ec2-107-22-187-21.compute-1.amazonaws.com -U cqfofntprpmnkr -d df7l6qg1m3d3pb
+psql -h ec2-184-72-223-199.compute-1.amazonaws.com -U zynbjdulkejgzc -d dd38nlpb8toste
 
 
-d7b57467d00eb16cab05a51d951fb9cd6e0fa745d817ce19527af555f78bf886
+6d867c2771669e88b96f6da5d91427f7b848c3213a8fccc73d
 
 
 - subsite

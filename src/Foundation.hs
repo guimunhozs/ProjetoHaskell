@@ -148,7 +148,18 @@ instance Yesod App where
     isAuthorized RobotsR _ = return Authorized
     isAuthorized (StaticR _) _ = return Authorized
     isAuthorized EstadoR _ = return Authorized
-
+    isAuthorized (EstadoIdR _) _ = return Authorized
+    isAuthorized CidadeR _ = return Authorized
+    isAuthorized (CidadeIdR _) _ = return Authorized
+    -- isAuthorized CidadeEstadoIdR _ = return Authorized
+    isAuthorized (CidadeEstadoIdR _) _ = return Authorized
+    isAuthorized FornecedorR _ = return Authorized
+    isAuthorized (FornecedorIdR _) _ = return Authorized
+    isAuthorized ProdutoR _ = return Authorized
+    isAuthorized (ProdutoIdR _) _ = return Authorized
+    isAuthorized EquipamentoR _ = return Authorized
+    isAuthorized (ProdutoIdQtR _ _) _ = return Authorized
+    isAuthorized (EquipamentoIdR _) _ = return Authorized
     isAuthorized ProfileR _ = isAuthenticated
 
     -- This function creates static content files in the static folder

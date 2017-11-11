@@ -24,5 +24,117 @@ Cliente json
     cep Int
     telefone Text
     email Text
+    excluido Bool
     cidadeId CidadeId 
     estadoId EstadoId
+
+Fornecedor json
+    nome Text
+    logradouro Text
+    cep Text
+    cnpj Text
+    contato Text
+    telefone Text
+    email Text
+    bairro Text
+    excluido Bool
+    complemento Text
+    cidadeId CidadeId 
+    estadoId EstadoId
+    
+Conta json
+    historico Text
+    codigo Text
+    dataEmissao Day Maybe
+    dataVencimento Day Maybe
+    valor Double
+    icPagarReceber Bool
+    icPago Bool 
+    clienteId ClienteId Maybe
+    fornecedorId FornecedorId Maybe
+    
+Produto json
+    nome Text
+    quantidade Int
+    quantidadeMin Int Maybe
+    valorCusto Double
+    valorVenda Double
+    marca Text
+    excluido Bool
+    fornecedorId FornecedorId 
+
+Equipamento json
+    nome Text
+    voltagem Text
+    patrimonio Text
+    marca Text
+    excluido Bool
+    clienteId ClienteId
+    
+Funcionario json
+    nome Text
+    cpf Text
+    rg Text
+    dataNascimento Text
+    email Text
+    telefone Text
+    logradouro Text
+    bairro Text
+    cep Text
+    senha Text
+    nivel Int
+    excluido Bool
+
+Servico json
+    nome Text
+    diagnosticoCliente Text
+    diagnosticoTecnico Text Maybe
+    observacaoEntrada Text
+    dataInicial Day
+    dataFinal Day Maybe
+    status Int
+    valor Double Maybe
+    equipamentoId EquipamentoId 
+    
+Andamento json
+    servicoId ServicoId
+    nome Text
+    dateAndamento Day
+    descricao Text
+    status Text
+    valor Double
+    funcionarioId FuncionarioId
+
+Venda json
+    dataVencimento Day
+    dataEmissao Day
+    valor Double
+    concluida Bool
+    clienteId ClienteId
+    funcionarioId FuncionarioId
+    
+ItemVenda json
+    valorItem Double
+    quantidade Int
+    produtoId ProdutoId
+    vendaId VendaId
+
+Empresa json
+    nome Text
+    nomeFantasia Text
+    cnpj Text
+    logradouro Text
+    bairro Text
+    cep Text
+    telefone Text
+    email Text
+    cidadeId CidadeId 
+    estadoId EstadoId
+
+DadosBancarios json
+    nome Text
+    agencia Text
+    contaCorrente Text
+    nossoNumero Text
+    cedente Text
+    

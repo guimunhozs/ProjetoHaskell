@@ -23,6 +23,8 @@ ip-from-header: "_env:IP_FROM_HEADER:false"
 # NB: If you need a numeric value (e.g. 123) to parse as a String, wrap it in single quotes (e.g. "_env:PGPASS:'123'")
 # See https://github.com/yesodweb/yesod/wiki/Configuration#parsing-numeric-values-as-strings
 
+#psql -h ec2-107-22-187-21.compute-1.amazonaws.com -U cqfofntprpmnkr -d df7l6qg1m3d3pb
+
 database:
   user:     "_env:PGUSER:cqfofntprpmnkr"
   password: "_env:PGPASS:d7b57467d00eb16cab05a51d951fb9cd6e0fa745d817ce19527af555f78bf886"

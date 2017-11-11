@@ -1,21 +1,31 @@
-/static StaticR Static appStatic
-/auth   AuthR   Auth   getAuth
+/                                            HomeR                      GET POST
 
-/favicon.ico FaviconR GET
-/robots.txt RobotsR GET
+/static                                      StaticR                    Static appStatic
+/auth                                        AuthR                      Auth   getAuth
 
-/ HomeR GET POST
+/favicon.ico                                 FaviconR                   GET
+/robots.txt                                  RobotsR                    GET
 
-/profile ProfileR GET
+/profile                                     ProfileR                   GET
 
-/estado EstadoR GET POST
-/estado/#EstadoId EstadoIdR DELETE GET PUT
+/estado                                      EstadoR                    GET POST
+/estado/#EstadoId                            EstadoIdR                  DELETE GET PUT
 
-/cidade CidadeR GET POST
-/cidade/#CidadeId CidadeIdR DELETE PUT
+/cidade                                      CidadeR                    GET POST
+/cidade/#CidadeId                            CidadeIdR                  DELETE PUT
 
-/fornecedor FornecedorR GET POST
-/fornecedor/#FornecedorId FornecedorIdR DELETE GET PUT
+/cidade/estado/#EstadoId                     CidadeEstadoIdR            GET
 
-/produto ProdutoR GET POST
-/produto/#ProdutoId ProdutoIdR DELETE GET PUT
+/fornecedor                                  FornecedorR                GET POST
+/fornecedor/#FornecedorId                    FornecedorIdR              DELETE GET PUT
+
+/produto                                     ProdutoR                   GET POST
+/produto/#ProdutoId                          ProdutoIdR                 DELETE GET PUT
+/produto/#ProdutoId/Quantidade/#Int          ProdutoIdQtR               PATH
+
+/equipamento                                 EquipamentoR               GET POST
+/equipamento/#EquipamentoId                  EquipamentoIdR             DELETE GET PUT
+
+/servico                                     ServicoR                   GET POST
+/servico/#ServicoId                          ServicoIdR                 GET PUT
+/servico/#ServicoId/Status/#Int              ServicoIdStatusR           PATH

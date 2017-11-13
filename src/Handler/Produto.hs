@@ -17,9 +17,12 @@ postProdutoR = do
     sendStatusJSON created201 $ object["produtoId".= produtoId]
     
 getProdutoR :: Handler TypedContent
-getProdutoR = do
-    produtos <- (runDB $ selectList [] [])::Handler [Entity Produto]
-    sendStatusJSON created201 $ object["produtos".= produtos]
+getProdutoR = do 
+    result <- runDB $ do
+        prods <- selectList [] []
+        forns <- mapM (get . produtoFornecedorId . entityVal) prods
+        return . zip prods $ catMaybes forns
+    sendStatusJSON ok200 $ object ["result" .= result]
     
 getProdutoIdR :: ProdutoId -> Handler TypedContent
 getProdutoIdR produtoId = do

@@ -25,8 +25,13 @@ getFornecedorR = do
     
 getFornecedorIdR :: FornecedorId -> Handler TypedContent
 getFornecedorIdR fornecedorId = do
-    fornecedor <- runDB $ get404 fornecedorId
-    sendStatusJSON created201 $ object["fornecedor".= fornecedor]
+    -- fornecedor <- runDB $ get404 fornecedorId
+    -- sendStatusJSON created201 $ object["fornecedor".= fornecedor]
+    runDB $ do
+        forn <- get404 fornecedorId
+        cidade <- get404 $ fornecedorCidadeId forn
+        estado <- get404 $ fornecedorEstadoId forn
+        sendStatusJSON ok200 $ object ["Fornecedor" .= forn, "Cidade" .= cidade, "Estado" .= estado]
 
 -- verificar lsof -i:8080
 deleteFornecedorIdR :: FornecedorId -> Handler Value

@@ -9,7 +9,7 @@ module Handler.Produto where
 import Import
 import Network.HTTP.Types.Status
 import Database.Persist.Postgresql
--- curl -X POST -v https://haskalpha-romefeller.c9users.io/produto -d '{"nome":"Fonte de notebook","quantidade":5, "quantidadeMin":1, "valorCusto": 10.50, "valorVenda":22.50,"marca": "DELL", "fornecedorId": 1}'
+-- curl -X POST -v https://haskalpha-romefeller.c9users.io/produto -d '{"nome":"Fonte de Desktop","quantidade":5, "quantidadeMin":1, "valorCusto": 10.50, "valorVenda":22.50,"marca": "Corser","excluido":false, "fornecedorId": 2}'
 postProdutoR :: Handler TypedContent
 postProdutoR = do
     produto <- (requireJsonBody :: Handler Produto)
@@ -23,8 +23,11 @@ getProdutoR = do
     
 getProdutoIdR :: ProdutoId -> Handler TypedContent
 getProdutoIdR produtoId = do
-    produto <- runDB $ get404 produtoId
-    sendStatusJSON created201 $ object["produto".= produto]
+    runDB $ do
+        prod <- get404 produtoId
+        forn <- get404 $ produtoFornecedorId prod
+        sendStatusJSON ok200 $ object ["produto" .= prod, "fornecedor" .= forn]
+
 
 -- verificar
 deleteProdutoIdR :: ProdutoId -> Handler Value
@@ -47,3 +50,4 @@ pathProdutoIdQtR pid qt = do
     _ <- runDB $ get404 pid
     runDB $ update pid [ProdutoQuantidade =. qt]
     sendStatusJSON noContent204 (object ["resp" .= (fromSqlKey pid)])
+    

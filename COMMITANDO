@@ -1,0 +1,6 @@
+git config --global user.email luisgustabo@uol.com.br
+git status - mostra o que est]a diferentes
+git diff -- mostra mudanças
+git add Nomedoarquivo -- (caminho) -- /src/Handler/Arquivo.hs
+git commit -m "Mensagem aqui"
+git push origin master

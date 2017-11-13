@@ -1,0 +1,41 @@
+Faltando no Trabalho
+	Backend
+	Handler Cliente GUSTAVO
+		GET, PUT, POST, DELETE
+		inner join de cliente ao listar cliente
+		inner join com cidade e estado
+	Handler Equipamento Guilherme
+		Inner Join com clientes ao listar nos dois gets
+	Handler Dados Bancários GUSTAVO
+		GET, PUT, POST, DELETE
+	Handler Empresa GUSTAVO
+		PUT
+	Handler Servicos GUILHERME
+		join com cliente, equipamento, andamento, funcionario
+	Handler Andamento GUILHERME
+		get, put, post, delete
+		join com funcionario
+	Handler	Venda
+		get put post delete
+		join cliente funcionario itensvenda produto
+	Handler itensVenda
+		get put post delete
+		join com produto
+	Handler Funcionario GUSTAVO
+		get put, post, delete
+	Handler Fornecedor GUILHERME
+		join cidade estado
+	Handler Produto GUILHERME
+		join fornecedor
+	Handler Contas GUSTAVO
+		get post put delete
+		join cliente e fornecedor
+
+	Home com notificacoes
+	controlar estoque minimo
+
+frontend
+	todas aas requisições
+	validações
+	formulários
+		

@@ -4,7 +4,7 @@
 {-# LANGUAGE MultiParamTypeClasses #-}
 {-# LANGUAGE TypeFamilies #-}
 
--- curl -X POST -v https://haskalpha-romefeller.c9users.io/cidade -d '{"nome":"Rio de Janeiro", "estadoId": 2}'
+-- curl -X POST -v https://haskalpha-romefeller.c9users.io/cidade -d '{"nome":"São Paulo", "estadoId": 1}'
 module Handler.Cidade where
     
 import Import

@@ -20,18 +20,20 @@ postFornecedorR = do
 
 getFornecedorR :: Handler TypedContent
 getFornecedorR = do
-    fornecedores <- (runDB $ selectList [] [])::Handler [Entity Fornecedor]
-    sendStatusJSON created201 $ object["fornecedores".= fornecedores]
+    result <- runDB $ do
+        forns <- selectList [] []
+        cidade <- mapM (get . fornecedorCidadeId . entityVal) forns
+        estado <- mapM (get . fornecedorEstadoId . entityVal) forns
+        return $ zip3 forns (catMaybes cidade)  (catMaybes estado) 
+    sendStatusJSON ok200 $ object ["result" .= result]
     
 getFornecedorIdR :: FornecedorId -> Handler TypedContent
 getFornecedorIdR fornecedorId = do
-    -- fornecedor <- runDB $ get404 fornecedorId
-    -- sendStatusJSON created201 $ object["fornecedor".= fornecedor]
     runDB $ do
-        forn <- get404 fornecedorId
-        cidade <- get404 $ fornecedorCidadeId forn
-        estado <- get404 $ fornecedorEstadoId forn
-        sendStatusJSON ok200 $ object ["Fornecedor" .= forn, "Cidade" .= cidade, "Estado" .= estado]
+        forns <- get404 fornecedorId
+        cidade <- get404 $ fornecedorCidadeId forns
+        estado <- get404 $ fornecedorEstadoId forns
+        sendStatusJSON ok200 $ object ["Fornecedor" .= forns, "Cidade" .= cidade, "Estado" .= estado]
 
 -- verificar lsof -i:8080
 deleteFornecedorIdR :: FornecedorId -> Handler Value

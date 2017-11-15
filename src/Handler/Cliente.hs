@@ -29,3 +29,11 @@ deleteClienteIdR clienteId = do
     _ <- runDB $ get404 clienteId
     runDB $ delete clienteId
     sendStatusJSON noContent204 (object["resp" .= ("Deleted" ++ show (fromSqlKey clienteId))])
+
+
+putClienteIdR :: ClienteId -> Handler Value
+putClienteIdR clienteId = do 
+    _ <- get404 clienteId
+    novoCliente <- requireJsonBody :: Handler Cliente
+    runDB $ replace clienteId novoCliente
+    sendStatusJSON noContent204 (object ["resp" .= ("UPDATED " ++ show (fromSqlKey empresaId))])

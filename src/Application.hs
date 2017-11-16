@@ -50,6 +50,8 @@ import Handler.Produto
 import Handler.Equipamento
 import Handler.Servico
 import Handler.Empresa
+import Handler.Cliente
+import Network.Wai.Middleware.Cors (CorsResourcePolicy(..), cors)
 
 -- This line actually creates our YesodDispatch instance. It is the second half
 -- of the call to mkYesodData which occurs in Foundation.hs. Please see the
@@ -147,6 +149,23 @@ getAppSettings = loadYamlSettings [configSettingsYml] [] useEnv
 develMain :: IO ()
 develMain = develMainHelper getApplicationDev
 
+
+cors1 :: Middleware
+cors1 = cors $ const (Just resourcePolicy)   
+
+resourcePolicy :: CorsResourcePolicy                                       
+resourcePolicy =
+    CorsResourcePolicy
+        { corsOrigins = Nothing
+        , corsMethods = ["GET", "POST", "PUT", "DELETE", "HEAD", "OPTION", "PATCH"]
+        , corsRequestHeaders = ["Content-Type"] -- adds "Content-Type" to defaults
+        , corsExposedHeaders = Nothing
+        , corsMaxAge = Nothing
+        , corsVaryOrigin = False
+        , corsRequireOrigin = False
+        , corsIgnoreFailures = False
+        }
+
 -- | The @main@ function for an executable running this site.
 appMain :: IO ()
 appMain = do
@@ -165,7 +184,7 @@ appMain = do
     app <- makeApplication foundation
 
     -- Run the application with Warp
-    runSettings (warpSettings foundation) app
+    runSettings (warpSettings foundation) $ cors1 app
 
 
 --------------------------------------------------------------

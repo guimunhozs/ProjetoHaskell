@@ -17,7 +17,7 @@
 /cidade/estado/#EstadoId                     CidadeEstadoIdR            GET
 
 /fornecedor                                  FornecedorR                GET POST
-/fornecedor/#FornecedorId                    FornecedorIdR              DELETE GET PUT
+/fornecedor/#FornecedorId                    FornecedorIdR              DELETE GET PUT PATCH
 
 /produto                                     ProdutoR                   GET POST
 /produto/#ProdutoId                          ProdutoIdR                 DELETE GET PUT
@@ -31,3 +31,7 @@
 /servico/#ServicoId/Status/#Int              ServicoIdStatusR           PATH
 
 /empresa                                     EmpresaR                   GET 
+/empresa/#EmpresaId                          EmpresaIdR                 PUT
+
+/cliente                                     ClienteR                   GET POST
+/cliente/#ClienteId                          ClienteIdR                 DELETE PUT PATCH

@@ -21,7 +21,7 @@ Cliente json
     cpf Text
     logradouro Text
     bairro Text
-    cep Int
+    cep Text
     telefone Text
     email Text
     excluido Bool

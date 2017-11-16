@@ -46,6 +46,7 @@ dependencies:
 - time
 - case-insensitive
 - wai
+- wai-cors >= 0.2.5
 
 # The library contains all of our application code. The executable
 # defined below is just a thin wrapper.

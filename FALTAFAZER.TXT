@@ -8,8 +8,8 @@ Faltando no Trabalho
 		Inner Join com clientes ao listar nos dois gets
 	Handler Dados Bancários GUSTAVO
 		GET, PUT, POST, DELETE
-	Handler Empresa GUSTAVO
-		PUT
+	x Handler Empresa GUSTAVO
+		x PUT
 	Handler Servicos GUILHERME
 		join com cliente, equipamento, andamento, funcionario
 	Handler Andamento GUILHERME
@@ -23,12 +23,12 @@ Faltando no Trabalho
 		join com produto
 	Handler Funcionario GUSTAVO
 		get put, post, delete
-	Handler Fornecedor GUILHERME
+ X	Handler Fornecedor GUILHERME
 		join cidade estado
-	Handler Produto GUILHERME
+ X  Handler Produto GUILHERME
 		join fornecedor
 	Handler Contas GUSTAVO
-		get post put delete
+		x get x post put delete
 		join cliente e fornecedor
 
 	Home com notificacoes
@@ -39,3 +39,12 @@ frontend
 	validações
 	formulários
 		
+		
+	Fornecedor:
+		listagem:
+		  X	listar,
+		  X	excluir,
+		  X	alterar
+		editar:
+			mostrar dados,
+			salvar

@@ -21,7 +21,7 @@ postFornecedorR = do
 getFornecedorR :: Handler TypedContent
 getFornecedorR = do
     result <- runDB $ do
-        forns <- selectList [] []
+        forns <- selectList [FornecedorExcluido ==. False] []
         cidade <- mapM (get . fornecedorCidadeId . entityVal) forns
         estado <- mapM (get . fornecedorEstadoId . entityVal) forns
         return $ zip3 forns (catMaybes cidade)  (catMaybes estado) 
@@ -48,3 +48,10 @@ putFornecedorIdR fornecedorId = do
     novoFornecedor <- requireJsonBody :: Handler Fornecedor
     runDB $ replace fornecedorId novoFornecedor
     sendStatusJSON noContent204 (object ["resp" .= ("UPDATED " ++ show (fromSqlKey fornecedorId))])
+
+
+patchFornecedorIdR :: FornecedorId -> Handler Value
+patchFornecedorIdR pid = do 
+    _ <- runDB $ get404 pid
+    runDB $ update pid [FornecedorExcluido =. True]
+    sendStatusJSON noContent204 (object ["resp" .= (fromSqlKey pid)])

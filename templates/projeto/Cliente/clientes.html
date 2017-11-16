@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>AdminLTE 2 | Data Tables</title>
+  <!-- Tell the browser to be responsive to screen width -->
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+  <!-- Bootstrap 3.3.7 -->
+  <link rel="stylesheet" href="../../bower_components/bootstrap/dist/css/bootstrap.min.css">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="../../bower_components/font-awesome/css/font-awesome.min.css">
+  <!-- Ionicons -->
+  <link rel="stylesheet" href="../../bower_components/Ionicons/css/ionicons.min.css">
+  <!-- DataTables -->
+  <link rel="stylesheet" href="../../bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="../../dist/css/AdminLTE.min.css">
+  <!-- AdminLTE Skins. Choose a skin from the css/skins
+       folder instead of downloading all of them to reduce the load. -->
+  <link rel="stylesheet" href="../../dist/css/skins/_all-skins.min.css">
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+  <![endif]-->
+
+  <!-- Google Font -->
+  <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+<style type="text/css">
+.newLogout{
+    padding: 10px;
+    text-align: center;
+}
+
+.btnX{
+    font-size: 20px;
+    color: #dd4c3a;
+}
+
+.btnE{
+    font-size: 20px;
+    color: #f49c12;
+}
+th, td, table {
+  text-align:center;
+}
+</style>
+</head>
+<body class="hold-transition skin-blue sidebar-mini">
+<div class="wrapper">
+
+  <header class="main-header">
+
+    <!-- Logo -->
+    <a href="index2.html" class="logo">
+      <!-- logo for regular state and mobile devices -->
+      <span class="logo-lg">Guilherme</span>
+    </a>
+
+    <!-- Header Navbar -->
+    <nav class="navbar navbar-static-top" role="navigation">
+      <!-- Sidebar toggle button-->
+      <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+        <span class="sr-only">Toggle navigation</span>
+      </a>
+      <!-- Navbar Right Menu -->
+      <div class="navbar-custom-menu">
+        <ul class="nav navbar-nav">
+          <!-- User Account Menu -->
+          <li class="dropdown user user-menu">
+            <!-- Menu Toggle Button -->
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              <i class="fa fa-gears"></i>
+            </a>
+            <ul class="dropdown-menu">
+              <!-- The user image in the menu -->
+              <li class="newLogout">
+                <p>
+                  Guilherme
+                </p>
+              </li>              
+              <!-- Menu Footer-->
+              <li class="user-footer">
+                <div class="pull-left">
+                  <a href="#" class="btn btn-default btn-flat">Profile</a>
+                </div>
+                <div class="pull-right">
+                  <a href="#" class="btn btn-default btn-flat">Sign out</a>
+                </div>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+  <!-- Left side column. contains the logo and sidebar -->
+  <aside class="main-sidebar">
+
+    <!-- sidebar: style can be found in sidebar.less -->
+    <section class="sidebar">
+      <ul class="sidebar-menu" data-widget="tree">
+        <li class="treeview">
+          <a href="#"><i class="fa fa-id-card-o"></i> <span>Clientes</span>
+            <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+              </span>
+          </a>
+          <ul class="treeview-menu active menu-open">
+            <li><a href="../Cliente/adicionarCliente.html">Adicionar Clientes</a></li>
+            <li class="active"><a href="#">Listar Clientes</a></li>
+          </ul>
+        </li><!-- Cliente -->
+        <li class="treeview">
+          <a href="#"><i class="fa fa-usd"></i> <span>Contas</span>
+            <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+              </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="../Conta/adicionarConta.html">Adicionar Contas</a></li>
+            <li><a href="../Conta/contasPagar.html">Listar Contas a Pagar</a></li>
+            <li><a href="../Conta/contasReceber.html">Listar Contas a Receber</a></li>
+          </ul>
+        </li><!-- Contas -->
+        <li class="treeview">
+          <a href="#"><i class="fa fa-cubes"></i> <span>Estoque</span>
+            <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+              </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="../Estoque/adicionarProduto.html">Adicionar Produto</a></li>
+            <li><a href="../Estoque/produtos.html">Listar Produto</a></li>
+          </ul>
+        </li><!-- Estoque -->
+        <li class="treeview">
+          <a href="#"><i class="fa fa-handshake-o"></i> <span>Fornecedores</span>
+            <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+              </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="../Fornecedor/adicionarFornecedor.html">Adicionar Fornecedores</a></li>
+            <li><a href="../Fornecedor/fornecedores.html">Listar Fornecedores</a></li>
+          </ul>
+        </li><!-- Fornecedores -->
+        <li class="treeview">
+          <a href="#"><i class="fa fa-child"></i> <span>Funcionarios</span>
+            <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+              </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="../Funcionario/adicionarFuncionario.html">Adicionar Funcionarios</a></li>
+            <li><a href="../Funcionario/funcionarios.html">Listar Funcionarios</a></li>
+          </ul>
+        </li><!-- Funcionarios -->
+        <li class="treeview">
+          <a href="#"><i class="fa fa-wrench"></i> <span>Serviços</span>
+            <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+              </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="../Servico/adicionarServico.html">Adicionar Serviço</a></li>
+            <li><a href="../Servico/adicionarAndamento.html">Adicionar Andamento</a></li>
+            <li><a href="../Equipamento/adicionarEquipamento.html">Adicionar Equipamento</a></li>
+            <li><a href="../Servico/servicos.html">Listar Serviço</a></li>
+            <li><a href="../Equipamento/equipamentos.html">Listar Equipamento</a></li>
+          </ul>
+        </li><!-- Serviço -->
+        <li class="treeview">
+          <a href="#"><i class="fa fa-shopping-cart"></i> <span>Vendas</span>
+            <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+              </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="../Vendas/adicionarVenda.html">Adicionar Venda</a></li>
+            <li><a href="../Vendas/vendas.html">Listar Venda</a></li>
+          </ul>
+        </li><!-- Venda -->
+        <li><a href="../Empresa/empresa.html"><i class="fa fa-info"></i><span>Dados da Empresa</span></a></li><!-- Estoque -->
+      </ul>
+      <!-- /.sidebar-menu -->
+    </section>
+    <!-- /.sidebar -->
+  </aside>
+
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <h1>
+        Clientes
+        <!-- <small>advanced tables</small> -->
+      </h1>
+      <!-- <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a href="#">Tables</a></li>
+        <li class="active">Data tables</li>
+      </ol> -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="box">
+            <!-- <div class="box-header">
+              <h3 class="box-title">Data Table With Full Features</h3>
+            </div> -->
+            <!-- /.box-header -->
+            <div class="box-body">
+              <table id="example1" class="table table-bordered table-striped">
+                <thead>
+                <tr>
+                  <th class="col-md-1">Código</th>
+                  <th class="col-md-3">Nome</th>
+                  <th class="col-md-1">CPF</th>
+                  <th class="col-md-1">RG</th>
+                  <th class="col-md-1">Telefone</th>
+                  <th class="col-md-1">Ações</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                  <td>1</td>
+                  <td>Murilo Joaquim Pinto</td>
+                  <td>777.747.744-75</td>
+                  <td>40.876.340-1</td>
+                  <td>(21) 2872-1729</td>
+                  <td><div class="organiza"><i class="fa fa-window-close btnX"></i> <i class="fa fa-pencil-square btnE"></i></div></td>
+                </tr>
+                <tr>
+                  <td>2</td>
+                  <td>Giovanna Bárbara Barbosa</td>
+                  <td>781.599.060-64</td>
+                  <td>50.893.620-2</td>
+                  <td>(62) 3798-9001</td>
+                  <td><div class="organiza"><i class="fa fa-window-close btnX"></i> <i class="fa fa-pencil-square btnE"></i></div></td>
+                </tr>
+                </tbody>
+                <tfoot>
+                <tr>
+                  <th class="col-md-1">Código</th>
+                  <th class="col-md-3">Nome</th>
+                  <th class="col-md-1">CPF</th>
+                  <th class="col-md-1">RG</th>
+                  <th class="col-md-1">Telefone</th>
+                  <th class="col-md-1">Ações</th>
+                </tr>
+                </tfoot>
+              </table>
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+  <footer class="main-footer">
+    <div class="pull-right hidden-xs">
+      <b>Version</b> 2.4.0
+    </div>
+    <strong>Copyright &copy; 2014-2016 <a href="https://adminlte.io">Almsaeed Studio</a>.</strong> All rights
+    reserved.
+  </footer>
+</div>
+<!-- ./wrapper -->
+
+<!-- jQuery 3 -->
+<script src="../../bower_components/jquery/dist/jquery.min.js"></script>
+<!-- Bootstrap 3.3.7 -->
+<script src="../../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<!-- DataTables -->
+<script src="../../bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
+<script src="../../bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+<!-- SlimScroll -->
+<script src="../../bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+<!-- FastClick -->
+<script src="../../bower_components/fastclick/lib/fastclick.js"></script>
+<!-- AdminLTE App -->
+<script src="../../dist/js/adminlte.min.js"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="../../dist/js/demo.js"></script>
+<!-- page script -->
+<script>
+  $(function () {
+    $('#example1').DataTable()
+  })
+</script>
+</body>
+</html>

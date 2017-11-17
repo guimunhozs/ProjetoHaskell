@@ -1,9 +1,9 @@
 Faltando no Trabalho
 	Backend
-	Handler Cliente GUSTAVO
-		GET, PUT, POST, DELETE
-		inner join de cliente ao listar cliente
-		inner join com cidade e estado
+	xHandler Cliente GUSTAVO
+		xGET, xPUT, xPOST, xDELETE
+		xinner join de cliente ao listar cliente
+		xinner join com cidade e estado
 	Handler Equipamento Guilherme
 		Inner Join com clientes ao listar nos dois gets
 	Handler Dados Bancários GUSTAVO

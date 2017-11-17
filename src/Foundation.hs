@@ -161,7 +161,11 @@ instance Yesod App where
     isAuthorized (ProdutoIdQtR _ _) _ = return Authorized
     isAuthorized (EquipamentoIdR _) _ = return Authorized
     isAuthorized EmpresaR _ = return Authorized
+    isAuthorized (EmpresaIdR _) _ = return Authorized
+    isAuthorized ClienteR _ = return Authorized
+    isAuthorized (ClienteIdR _) _ = return Authorized
     isAuthorized ProfileR _ = isAuthenticated
+    
 
     
     -- This function creates static content files in the static folder

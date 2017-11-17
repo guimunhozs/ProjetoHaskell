@@ -30,7 +30,6 @@ deleteClienteIdR clienteId = do
     runDB $ delete clienteId
     sendStatusJSON noContent204 (object["resp" .= ("Deleted" ++ show (fromSqlKey clienteId))])
 
-
 putClienteIdR :: ClienteId -> Handler Value
 putClienteIdR clienteId = do 
     _ <- runDB $ get404 clienteId
@@ -43,3 +42,11 @@ patchClienteIdR clienteId = do
     _ <- runDB $ get404 clienteId
     runDB $ update clienteId [ClienteExcluido =. True]
     sendStatusJSON noContent204 (object ["resp" .= (fromSqlKey clienteId)])
+    
+getClienteIdR :: ClienteId -> Handler TypedContent
+getClienteIdR clienteId = do
+    runDB $ do 
+        cliente <- get404 clienteId
+        cidade <- get404 $ clienteCidadeId cliente
+        estado <- get404 $ clienteEstadoId cliente
+        sendStatusJSON ok200 $ object ["Cliente" .= cliente, "Cidade" .= cidade, "Estado" .= estado]

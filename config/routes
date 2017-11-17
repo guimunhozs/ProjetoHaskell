@@ -34,4 +34,4 @@
 /empresa/#EmpresaId                          EmpresaIdR                 PUT
 
 /cliente                                     ClienteR                   GET POST
-/cliente/#ClienteId                          ClienteIdR                 DELETE PUT PATCH
+/cliente/#ClienteId                          ClienteIdR                 GET DELETE PUT PATCH

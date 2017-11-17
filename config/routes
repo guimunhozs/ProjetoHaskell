@@ -37,4 +37,4 @@
 /cliente/#ClienteId                          ClienteIdR                 GET DELETE PUT PATCH
 
 /dadosbancarios                              DadosBancariosR            GET POST
-/dadosbancarios/#DadosBancariosId            DadosBancariosIdR          PUT
+/dadosbancarios/#DadosBancariosId            DadosBancariosIdR          PUT DELETE

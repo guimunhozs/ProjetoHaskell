@@ -28,3 +28,9 @@ putDadosBancariosIdR dadosBancariosId = do
     novoDadosBancarios <- requireJsonBody :: Handler DadosBancarios
     runDB $ replace dadosBancariosId novoDadosBancarios
     sendStatusJSON noContent204 (object ["resp" .= ("UPDATED " ++ show (fromSqlKey dadosBancariosId))])
+    
+deleteDadosBancariosIdR :: DadosBancariosId -> Handler Value
+deleteDadosBancariosIdR dadosBancariosId = do
+    _ <- runDB $ get404 dadosBancariosId
+    runDB $ delete dadosBancariosId
+    sendStatusJSON noContent204 (object["resp" .= ("Deleted" ++ show (fromSqlKey dadosBancariosId))])

@@ -19,7 +19,7 @@ postCidadeR = do
     
 getCidadeR :: Handler TypedContent
 getCidadeR = do ----------------------[Asc CidadeNome]
-    cidades <- (runDB $ selectList [] [])::Handler [Entity Cidade]
+    cidades <- (runDB $ selectList [] [Asc CidadeNome])::Handler [Entity Cidade]
     sendStatusJSON created201 $ object["cidades".= cidades]
     
 getCidadeEstadoIdR :: EstadoId -> Handler TypedContent

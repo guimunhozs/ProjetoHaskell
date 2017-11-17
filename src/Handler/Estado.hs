@@ -18,7 +18,7 @@ postEstadoR = do
     
 getEstadoR :: Handler TypedContent
 getEstadoR = do
-    estados <- (runDB $ selectList [] [])::Handler [Entity Estado]
+    estados <- (runDB $ selectList [] [Asc EstadoNome])::Handler [Entity Estado]
     sendStatusJSON created201 $ object["estados".= estados]
     
 getEstadoIdR :: EstadoId -> Handler TypedContent

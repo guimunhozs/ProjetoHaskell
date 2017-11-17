@@ -15,3 +15,9 @@ getFuncionarioR :: Handler TypedContent
 getFuncionarioR = do
     funcionario <- (runDB $ selectList [FuncionarioExcluido ==. False][Asc FuncionarioNome]) :: Handler [Entity Funcionario]
     sendStatusJSON created201 $ object["Funcionario" .= funcionario]
+    
+postFuncionarioR :: Handler Value
+postFuncionarioR = do
+    funcionario <- (requireJsonBody :: Handler Funcionario)
+    funcionarioId <- runDB $ insert funcionario
+    sendStatusJSON created201 $ object["funcionarioId" .= funcionarioId]

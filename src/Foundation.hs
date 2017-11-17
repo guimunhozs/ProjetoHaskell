@@ -166,6 +166,7 @@ instance Yesod App where
     isAuthorized (ClienteIdR _) _ = return Authorized
     isAuthorized DadosBancariosR _ = return Authorized
     isAuthorized (DadosBancariosIdR _) _ = return Authorized
+    isAuthorized FuncionarioR _ = return Authorized
     isAuthorized ProfileR _ = isAuthenticated
     
 

@@ -6,8 +6,8 @@ Faltando no Trabalho
 		xinner join com cidade e estado
 	Handler Equipamento Guilherme
 		Inner Join com clientes ao listar nos dois gets
-	Handler Dados Bancários GUSTAVO
-		GET, PUT, POST, DELETE
+	xHandler Dados Bancários GUSTAVO
+		xGET, xPUT, xPOST, xDELETE
 	x Handler Empresa GUSTAVO
 		x PUT
 	Handler Servicos GUILHERME

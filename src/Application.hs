@@ -52,6 +52,7 @@ import Handler.Servico
 import Handler.Empresa
 import Handler.Cliente
 import Handler.DadosBancarios
+import Handler.Funcionario
 import Network.Wai.Middleware.Cors (CorsResourcePolicy(..), cors)
 
 -- This line actually creates our YesodDispatch instance. It is the second half

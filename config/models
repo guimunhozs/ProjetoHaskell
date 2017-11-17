@@ -134,6 +134,7 @@ Empresa json
 
 DadosBancarios json
     nome Text
+    banco Text
     agencia Text
     contaCorrente Text
     nossoNumero Text

@@ -21,3 +21,10 @@ postDadosBancariosR = do
     dadosbancarios <- (requireJsonBody :: Handler DadosBancarios)
     dadosbancariosId <- runDB $ insert dadosbancarios
     sendStatusJSON created201 $ object["DadosBancariosId" .= dadosbancariosId]
+    
+putDadosBancariosIdR :: DadosBancariosId -> Handler Value
+putDadosBancariosIdR dadosBancariosId = do
+    _ <- runDB $ get404 dadosBancariosId
+    novoDadosBancarios <- requireJsonBody :: Handler DadosBancarios
+    runDB $ replace dadosBancariosId novoDadosBancarios
+    sendStatusJSON noContent204 (object ["resp" .= ("UPDATED " ++ show (fromSqlKey dadosBancariosId))])

@@ -20,7 +20,9 @@ $(document).ready(function() {
     }});
     
     $(document).on('click', '.btnE', function(){
-        localStorage.setItem('fornecedorId',this.id);
+        var id = this.id;
+        id = id.split("a");
+        localStorage.setItem('fornecedorId', id[1]);
         window.location="../Fornecedor/editarFornecedor.html"; 
     });
     

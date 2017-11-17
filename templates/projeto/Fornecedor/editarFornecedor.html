@@ -261,26 +261,16 @@
               <!-- /.form-group -->
               <div class="form-group col-sm-3">
                 <label>Estado:</label>
-                <select class="form-control select2 select2-hidden-accessible" style="width: 100%;" tabindex="-1" aria-hidden="true" required>
-                  <option selected="selected" disabled selected >Selecione um estado</option>
-                  <option>Alaska</option>
-                  <option>California</option>
-                  <option>Delaware</option>
-                  <option>Tennessee</option>
-                  <option>Texas</option>
-                  <option>Washington</option>
+                <select id="estado" class="form-control select2 select2-hidden-accessible" style="width: 100%;" tabindex="-1" aria-hidden="true" required>
+                  <option value="" selected="selected" disabled selected >Selecione um estado</option>
+
                 </select>
               </div>
               <div class="form-group col-sm-6">
                 <label>Cidade:</label>
-                <select class="form-control select2 select2-hidden-accessible" style="width: 100%;" tabindex="-1" aria-hidden="true" required>
+                <select id="cidade" class="form-control select2 select2-hidden-accessible" style="width: 100%;" tabindex="-1" aria-hidden="true" required>
                   <option selected="selected" disabled selected >Selecione uma cidade</option>
-                  <option>Alaska</option>
-                  <option>California</option>
-                  <option>Delaware</option>
-                  <option>Tennessee</option>
-                  <option>Texas</option>
-                  <option>Washington</option>
+
                 </select>
               </div>
               <div class="form-group col-sm-3 text-right" style="margin-top: 25px">
@@ -342,7 +332,9 @@
 <script>
   $(function () {
     //Initialize Select2 Elements
-    $('.select2').select2()
+    $('.select2').select2({
+      tags: true
+    })
   })
 </script>
 </body>

@@ -25,11 +25,10 @@ postFuncionarioR = do
     
 getFuncionarioIdR :: FuncionarioId -> Handler TypedContent
 getFuncionarioIdR funcionarioId = do
-    runDB $ do 
-        funcionario <- get404 funcionarioId
-        cidade <- get404 $ funcionarioCidadeId $  funcionario
-        estado <- get404 $ funcionarioEstadoId $  funcionario
-        sendStatusJSON ok200 $ object ["Funcionario" .= funcionario, "Cidade" .= cidade, "Estado" .= estado]
+    funcionario <- runDB $ get404 funcionarioId
+    cidade <- runDB $ get404 $ funcionarioCidadeId funcionario
+    estado <- runDB $ get404 $ funcionarioEstadoId $  funcionario
+    sendStatusJSON ok200 $ object ["Funcionario" .= funcionario, "Cidade" .= cidade, "Estado" .= estado]
         
 putFuncionarioIdR :: FuncionarioId -> Handler Value
 putFuncionarioIdR funcionarioId = do
@@ -37,3 +36,9 @@ putFuncionarioIdR funcionarioId = do
     novoFuncionario <- requireJsonBody :: Handler Funcionario
     runDB $ replace funcionarioId novoFuncionario
     sendStatusJSON noContent204 (object ["resp" .= ("UPDATED " ++ show (fromSqlKey funcionarioId))])
+    
+deleteFuncionarioIdR :: FuncionarioId -> Handler Value
+deleteFuncionarioIdR funcionarioId = do
+    _ <- runDB $ get404 funcionarioId
+    runDB $ delete funcionarioId
+    sendStatusJSON noContent204 (object ["resp" .= ("DELETED" ++ show (fromSqlKey funcionarioId))])

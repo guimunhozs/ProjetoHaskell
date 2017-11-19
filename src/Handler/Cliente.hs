@@ -52,8 +52,7 @@ patchClienteIdR clienteId = do
     
 getClienteIdR :: ClienteId -> Handler TypedContent
 getClienteIdR clienteId = do
-    runDB $ do 
-        cliente <- get404 clienteId
-        cidade <- get404 $ clienteCidadeId $  cliente
-        estado <- get404 $ clienteEstadoId $  cliente
-        sendStatusJSON ok200 $ object ["Cliente" .= cliente, "Cidade" .= cidade, "Estado" .= estado]
+    cliente <- runDB $ get404 clienteId
+    cidade <- runDB $ get404 $ clienteCidadeId $  cliente
+    estado <- runDB $ get404 $ clienteEstadoId $  cliente
+    sendStatusJSON ok200 $ object ["Cliente" .= cliente, "Cidade" .= cidade, "Estado" .= estado]

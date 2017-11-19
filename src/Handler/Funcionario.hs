@@ -30,3 +30,10 @@ getFuncionarioIdR funcionarioId = do
         cidade <- get404 $ funcionarioCidadeId $  funcionario
         estado <- get404 $ funcionarioEstadoId $  funcionario
         sendStatusJSON ok200 $ object ["Funcionario" .= funcionario, "Cidade" .= cidade, "Estado" .= estado]
+        
+putFuncionarioIdR :: FuncionarioId -> Handler Value
+putFuncionarioIdR funcionarioId = do
+    _ <- runDB $ get404 funcionarioId
+    novoFuncionario <- requireJsonBody :: Handler Funcionario
+    runDB $ replace funcionarioId novoFuncionario
+    sendStatusJSON noContent204 (object ["resp" .= ("UPDATED " ++ show (fromSqlKey funcionarioId))])

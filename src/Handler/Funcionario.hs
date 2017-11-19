@@ -42,3 +42,9 @@ deleteFuncionarioIdR funcionarioId = do
     _ <- runDB $ get404 funcionarioId
     runDB $ delete funcionarioId
     sendStatusJSON noContent204 (object ["resp" .= ("DELETED" ++ show (fromSqlKey funcionarioId))])
+    
+patchFuncionarioIdR :: FuncionarioId -> Handler Value
+patchFuncionarioIdR funcionarioId = do
+    _ <- runDB $ get404 funcionarioId
+    runDB $ update funcionarioId [FuncionarioExcluido =. True]
+    sendStatusJSON noContent204 (object ["resp" .= ("UPDATED" ++ show (fromSqlKey funcionarioId))])

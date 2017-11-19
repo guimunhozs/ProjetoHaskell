@@ -38,4 +38,6 @@
 
 /dadosbancarios                              DadosBancariosR            GET POST
 /dadosbancarios/#DadosBancariosId            DadosBancariosIdR          PUT DELETE
-/funcionario                                 FuncionarioR               GET
+
+/funcionario                                 FuncionarioR               GET POST
+/funcionario/#FuncionarioId                  FuncionarioIdR             GET

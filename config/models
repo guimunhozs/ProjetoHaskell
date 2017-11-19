@@ -84,6 +84,8 @@ Funcionario json
     senha Text
     nivel Int
     excluido Bool
+    cidadeId CidadeId 
+    estadoId EstadoId
 
 Servico json
     nome Text

@@ -15,4 +15,9 @@ getContaR = do
     contas <- (runDB $ selectList [][]) :: Handler [Entity Conta]
     sendStatusJSON created201 $ object["Conta" .= contas]
 
-
+postContaR :: Handler TypedContent
+postContaR = do
+    conta <- requireJsonBody :: Handler Conta
+    contaId <- runDB $ insert conta
+    sendStatusJSON created201 $ object["contaId" .= contaId]
+    

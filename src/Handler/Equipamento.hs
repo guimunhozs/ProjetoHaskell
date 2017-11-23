@@ -18,8 +18,13 @@ postEquipamentoR = do
     
 getEquipamentoR :: Handler TypedContent
 getEquipamentoR = do
-    equipamentos <- (runDB $ selectList [] [])::Handler [Entity Equipamento]
-    sendStatusJSON created201 $ object["equipamentos".= equipamentos]
+    -- equipamentos <- (runDB $ selectList [] [])::Handler [Entity Equipamento]
+    -- sendStatusJSON created201 $ object["equipamentos".= equipamentos]
+    result <- runDB $ do
+        equip <- selectList [] []
+        cli <- mapM (get . equipamentoClienteId . entityVal) equip
+        return . zip equip $ catMaybes cli
+    sendStatusJSON ok200 $ object ["result" .= result]
     
 getEquipamentoIdR :: EquipamentoId -> Handler TypedContent
 getEquipamentoIdR equipamentoId = do

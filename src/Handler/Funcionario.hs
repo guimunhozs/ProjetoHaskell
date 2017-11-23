@@ -19,7 +19,7 @@ getFuncionarioR = do
 -- curl -v -X POST https://haskalpha-romefeller.c9users.io/funcionario -d '{"nome" : "Funcionario Exemplar","cpf" : "12345678910","rg" : "123456789","dataNascimento" : "01/05/2017",	"email" : "funcionario@emprego.com.br","telefone" : "13999999999","logradouro" : "rua do funcionario 123",	"bairro" : "Empregados",	"cep" : "11222222",	"senha" : "123",	"nivel" : 0,"excluido" : false}'
 postFuncionarioR :: Handler Value
 postFuncionarioR = do
-    funcionario <- (requireJsonBody :: Handler Funcionario)
+    funcionario <- requireJsonBody :: Handler Funcionario
     funcionarioId <- runDB $ insert funcionario
     sendStatusJSON created201 $ object["funcionarioId" .= funcionarioId] 
     

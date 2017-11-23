@@ -24,7 +24,7 @@ getCidadeR = do ----------------------[Asc CidadeNome]
     
 getCidadeEstadoIdR :: EstadoId -> Handler TypedContent
 getCidadeEstadoIdR estadoId = do
-   cidade <- (runDB $ selectList [CidadeEstadoId ==. estadoId ] []) ::Handler [Entity Cidade]
+   cidade <- (runDB $ selectList [CidadeEstadoId ==. estadoId ] [Asc CidadeNome]) ::Handler [Entity Cidade]
    sendStatusJSON created201 $ object["cidade".= cidade]
 
 -- /cidade/estado/#EstadoId CidadeEstadoIdR GET

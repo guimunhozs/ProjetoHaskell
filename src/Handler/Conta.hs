@@ -38,3 +38,30 @@ deleteContaIdR contaId = do
     _ <- runDB $ get404 contaId
     runDB $ delete contaId
     sendStatusJSON noContent204 (object ["resp" .= ("DELETED" ++ show (fromSqlKey contaId))])
+    
+getContasPagarIdR :: ContaId -> Handler TypedContent
+getContasPagarIdR contaId = do
+     conta <- runDB $ get404 contaId
+     fornecedor <- runDB $  get404 $ removeMaybe $ contaFornecedorId $ conta
+     sendStatusJSON ok200 $ object ["Conta" .= conta, "Fornecedor" .= fornecedor]
+
+removeMaybe :: Maybe a -> a
+removeMaybe (Just x) = x 
+
+{-
+/contasPagar/#ContaId                        ContasPagarIdR             GET
+
+{
+    "codigo" : "123445",
+    "dataEmissao" : "2017-08-01",
+    "dataVencimento" : "2017-08-01",
+    "valor" : 120.00,
+    "icPagarReceber" : true,
+    "icPago": false,
+    "clienteId" : 0,
+    "fornecedorId" : 1
+}
+
+-}
+--faltava o historico
+-- curl -X POST -v https://haskalpha-romefeller.c9users.io/conta -d '{"historico":"compra de tal produto","codigo":"123445","dataEmissao":"2017-08-01","dataVencimento":"2017-08-01","valor":120.00,"icPagarReceber":true,"icPago":false,"clienteId":null,"fornecedorId":1}'

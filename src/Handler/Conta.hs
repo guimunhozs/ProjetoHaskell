@@ -44,6 +44,12 @@ getContasPagarIdR contaId = do
      conta <- runDB $ get404 contaId
      fornecedor <- runDB $  get404 $ removeMaybe $ contaFornecedorId $ conta
      sendStatusJSON ok200 $ object ["Conta" .= conta, "Fornecedor" .= fornecedor]
+     
+getContasReceberIdR :: ContaId -> Handler TypedContent
+getContasReceberIdR contaId = do
+     conta <- runDB $ get404 contaId
+     cliente <- runDB $  get404 $ removeMaybe $ contaClienteId $ conta
+     sendStatusJSON ok200 $ object ["Conta" .= conta, "Cliente" .= cliente]
 
 removeMaybe :: Maybe a -> a
 removeMaybe (Just x) = x 

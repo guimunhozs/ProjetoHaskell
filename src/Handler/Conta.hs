@@ -51,6 +51,28 @@ getContasReceberIdR contaId = do
      cliente <- runDB $  get404 $ removeMaybe $ contaClienteId $ conta
      sendStatusJSON ok200 $ object ["Conta" .= conta, "Cliente" .= cliente]
 
+getContasPagarPagasR :: Handler TypedContent
+getContasPagarPagasR = do
+    contas <- (runDB $ selectList [ContaIcPagarReceber ==. True, ContaIcPago ==. True][Desc ContaDataVencimento]) :: Handler [Entity Conta]
+    sendStatusJSON created201 $ object["Conta" .= contas]
+
+getContasReceberPagasR :: Handler TypedContent
+getContasReceberPagasR = do
+    contas <- (runDB $ selectList [ContaIcPagarReceber ==. False, ContaIcPago ==. True][Desc ContaDataVencimento]) :: Handler [Entity Conta]
+    sendStatusJSON created201 $ object["Conta" .= contas]
+
+getContasPagarNaoPagasR :: Handler TypedContent
+getContasPagarNaoPagasR = do
+    contas <- (runDB $ selectList [ContaIcPagarReceber ==. True, ContaIcPago ==. False][Desc ContaDataVencimento]) :: Handler [Entity Conta]
+    sendStatusJSON created201 $ object["Conta" .= contas]
+
+getContasReceberNaoPagasR :: Handler TypedContent
+getContasReceberNaoPagasR = do
+    contas <- (runDB $ selectList [ContaIcPagarReceber ==. False, ContaIcPago ==. False][Desc ContaDataVencimento]) :: Handler [Entity Conta]
+    sendStatusJSON created201 $ object["Conta" .= contas]
+
+
+
 removeMaybe :: Maybe a -> a
 removeMaybe (Just x) = x 
 

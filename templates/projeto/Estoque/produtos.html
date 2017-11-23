@@ -39,14 +39,23 @@
 .btnX{
     font-size: 20px;
     color: #dd4c3a;
+    margin-right: 10px;
+    cursor:pointer;
 }
 
 .btnE{
     font-size: 20px;
     color: #f49c12;
+    cursor:pointer;
 }
 th, td, table {
   text-align:center;
+}
+@media (max-width: 600px) 
+{
+  .box-body {
+    overflow:auto; 
+  }
 }
 </style>
 </head>
@@ -231,26 +240,26 @@ th, td, table {
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                  <td>1</td>
-                  <td>Fonte Notebook Samsung</td>
-                  <td>5</td>
-                  <td>R$ 10,50</td>
-                  <td>R$ 21,00</td>
-                  <td>Samsung</td>
-                  <td>Kabum</td>
-                  <td><div class="organiza"><i class="fa fa-window-close btnX"></i> <i class="fa fa-pencil-square btnE"></i></div></td>
+                <tr id="teste">
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
                 </tr>
-                <tr>
-                  <td>2</td>
-                  <td>Fonte 600w</td>
-                  <td>5</td>
-                  <td>R$ 220,00</td>
-                  <td>R$ 350,00</td>
-                  <td>Corsair</td>
-                  <td>Tera Byte</td>
-                  <td><div class="organiza"><i class="fa fa-window-close btnX"></i> <i class="fa fa-pencil-square btnE"></i></div></td>
-                </tr>
+                <!--<tr>-->
+                <!--  <td>2</td>-->
+                <!--  <td>Fonte 600w</td>-->
+                <!--  <td>5</td>-->
+                <!--  <td>R$ 220,00</td>-->
+                <!--  <td>R$ 350,00</td>-->
+                <!--  <td>Corsair</td>-->
+                <!--  <td>Tera Byte</td>-->
+                <!--  <td><div class="organiza"><i class="fa fa-window-close btnX"></i> <i class="fa fa-pencil-square btnE"></i></div></td>-->
+                <!--</tr>-->
                 </tbody>
                 <tfoot>
                 <tr>
@@ -302,11 +311,7 @@ th, td, table {
 <script src="../../dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="../../dist/js/demo.js"></script>
+<script type="text/javascript" src="../js/Produto/produtos.js"></script>
 <!-- page script -->
-<script>
-  $(function () {
-    $('#example1').DataTable()
-  })
-</script>
 </body>
 </html>

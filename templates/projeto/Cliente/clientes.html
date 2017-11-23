@@ -39,14 +39,23 @@
 .btnX{
     font-size: 20px;
     color: #dd4c3a;
+    margin-right: 10px;
+    cursor:pointer;
 }
 
 .btnE{
     font-size: 20px;
     color: #f49c12;
+    cursor:pointer;
 }
 th, td, table {
   text-align:center;
+}
+@media (max-width: 600px) 
+{
+  .box-body {
+    overflow:auto; 
+  }
 }
 </style>
 </head>
@@ -229,21 +238,13 @@ th, td, table {
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                  <td>1</td>
-                  <td>Murilo Joaquim Pinto</td>
-                  <td>777.747.744-75</td>
-                  <td>40.876.340-1</td>
-                  <td>(21) 2872-1729</td>
-                  <td><div class="organiza"><i class="fa fa-window-close btnX"></i> <i class="fa fa-pencil-square btnE"></i></div></td>
-                </tr>
-                <tr>
-                  <td>2</td>
-                  <td>Giovanna Bárbara Barbosa</td>
-                  <td>781.599.060-64</td>
-                  <td>50.893.620-2</td>
-                  <td>(62) 3798-9001</td>
-                  <td><div class="organiza"><i class="fa fa-window-close btnX"></i> <i class="fa fa-pencil-square btnE"></i></div></td>
+                <tr id="teste">
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
                 </tr>
                 </tbody>
                 <tfoot>
@@ -281,6 +282,7 @@ th, td, table {
 
 <!-- jQuery 3 -->
 <script src="../../bower_components/jquery/dist/jquery.min.js"></script>
+<script src="../js/Cliente/clientes.js"></script>
 <!-- Bootstrap 3.3.7 -->
 <script src="../../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 <!-- DataTables -->
@@ -295,10 +297,5 @@ th, td, table {
 <!-- AdminLTE for demo purposes -->
 <script src="../../dist/js/demo.js"></script>
 <!-- page script -->
-<script>
-  $(function () {
-    $('#example1').DataTable()
-  })
-</script>
 </body>
 </html>

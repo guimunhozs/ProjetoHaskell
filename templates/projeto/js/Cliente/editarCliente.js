@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    var id = localStorage.getItem("fornecedorId");
+    var id = localStorage.getItem("clienteId");
     
     //função q colocar os valores nos campos
     function valueInput(value,id) {
@@ -7,20 +7,20 @@ $(document).ready(function() {
     }
     
     $.ajax({
-      url: "https://haskalpha-romefeller.c9users.io/fornecedor/"+id,
+      url: "https://haskalpha-romefeller.c9users.io/cliente/"+id,
       method: "GET",
       success: function(json){
-         var forn = json["Fornecedor"];
+         var cli = json["Cliente"];
         valueInput(id,"cd");
-        valueInput(forn["nome"],"razao");
-        valueInput(forn["contato"],"nomeContato");
-        valueInput(forn["telefone"],"tell");
-        valueInput(forn["email"],"email");
-        valueInput(forn["cnpj"],"cnpj");
-        valueInput(forn["cep"],"cep");
-        valueInput(forn["logradouro"],"logradouro");
-        valueInput(forn["complemento"],"complemento");
-        valueInput(forn["bairro"],"bairro");
+        valueInput(cli["nome"],"nome");
+        valueInput(cli["email"],"email");
+        valueInput(cli["telefone"],"tell");
+        valueInput(cli["rg"],"rg");
+        valueInput(cli["cpf"],"cpf");
+        valueInput(cli["cep"],"cep");
+        valueInput(cli["logradouro"],"logradouro");
+        valueInput(cli["complemento"],"complemento");
+        valueInput(cli["bairro"],"bairro");
         
         $.ajax({
           url: "https://haskalpha-romefeller.c9users.io/estado/",
@@ -30,12 +30,12 @@ $(document).ready(function() {
                 var estado = new Option(Element["nome"], Element["id"], true, true);
                 $("#estado").append(estado);
             });
-            var int = parseInt(forn["estadoId"]);
+            var int = parseInt(cli["estadoId"]);
             $("#estado").val(int);
         }});
         
         $.ajax({
-          url: "https://haskalpha-romefeller.c9users.io/cidade/estado/"+forn["estadoId"],
+          url: "https://haskalpha-romefeller.c9users.io/cidade/estado/"+cli["estadoId"],
           method: "GET",
           success: function(cidades){
             localStorage.setItem("cidades",JSON.stringify(cidades));
@@ -43,17 +43,17 @@ $(document).ready(function() {
                 var cidade = new Option(Element["nome"], Element["id"], true, true);
                 $("#cidade").append(cidade);
             });
-            var int = parseInt(forn["cidadeId"]);
+            var int = parseInt(cli["cidadeId"]);
             $("#cidade").val(int);
         }});
     }});
     
     function salvar(){
-      var nome = $("#razao").val();
+      var nome = $("#nome").val();
       var logradouro = $("#logradouro").val();
       var cep = $("#cep").val();
-      var cnpj = $("#cnpj").val();
-      var contato = $("#nomeContato").val();
+      var cpf = $("#cpf").val();
+      var rg = $("#rg").val();
       var telefone = $("#tell").val();
       var email = $("#email").val();
       var bairro = $("#bairro").val();
@@ -61,24 +61,24 @@ $(document).ready(function() {
       var complemento = $("#complemento").val();
       var cidadeId = parseInt($("#cidade").val());
       var estadoId = parseInt($("#estado").val());
-      
+
       var json = '{"nome":"'+nome+'",'
+               + '"rg":"'+rg+'",'
+               + '"cpf":"'+cpf+'",'
                + '"logradouro":"'+logradouro+'",'
+               + '"bairro":"'+bairro+'",'
                + '"cep":"'+cep+'",'
-               + '"cnpj":"'+cnpj+'",'
-               + '"contato":"'+contato+'",'
                + '"telefone":"'+telefone+'",'
                + '"email":"'+email+'",'
-               + '"bairro":"'+bairro+'",'
-               + '"excluido": false,'
                + '"complemento":"'+complemento+'",'
+               + '"excluido": false,'
                + '"cidadeId":'+cidadeId+','
                + '"estadoId":'+estadoId+''
                + '}';
       console.log(json);
     
       $.ajax({
-          url: "https://haskalpha-romefeller.c9users.io/fornecedor/"+$("#cd").val(),
+          url: "https://haskalpha-romefeller.c9users.io/cliente/"+$("#cd").val(),
           method: "PUT",
           data: json,
           success: function(result){

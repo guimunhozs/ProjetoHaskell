@@ -39,14 +39,23 @@
 .btnX{
     font-size: 20px;
     color: #dd4c3a;
+    margin-right: 10px;
+    cursor:pointer;
 }
 
 .btnE{
     font-size: 20px;
     color: #f49c12;
+    cursor:pointer;
 }
 th, td, table {
   text-align:center;
+}
+@media (max-width: 600px) 
+{
+  .box-body {
+    overflow:auto; 
+  }
 }
 </style>
 </head>
@@ -220,44 +229,41 @@ th, td, table {
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
                 <tr>
-                  <th class="col-md-1">Código</th>
-                  <th class="col-md-2">Nome</th>
-                  <th class="col-md-1">Marca</th>
-                  <th class="col-md-3">Modelo</th>
-                  <th class="col-md-3">Dono</th>
-                  <th class="col-md-1">Nº de série</th>
-                  <th class="col-md-1">Ações</th>
+                  <th>Código</th>
+                  <th>Nome</th>
+                  <th>Marca</th>
+                  <th>Dono</th>
+                  <th>Nº de série</th>
+                  <th>Ações</th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                  <td>1</td>
-                  <td>Notebook odyssey</td>
-                  <td>Samsung</td>
-                  <td>FXR I7 500GBHD 16GB Ram</td>
-                  <td>Murilo Joaquim Pinto</td>
-                  <td>21564949846</td>
-                  <td><div class="organiza"><i class="fa fa-window-close btnX"></i> <i class="fa fa-pencil-square btnE"></i></div></td>
+                <tr id="teste">
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
                 </tr>
-                <tr>
-                  <td>2</td>
-                  <td>GTX 1060</td>
-                  <td>Gigabyte</td>
-                  <td>6GB G1 gaming</td>
-                  <td>Giovanna Bárbara Barbosa</td>
-                  <td>94894984655</td>
-                  <td><div class="organiza"><i class="fa fa-window-close btnX"></i> <i class="fa fa-pencil-square btnE"></i></div></td>
-                </tr>
+                <!--<tr>-->
+                <!--  <td>2</td>-->
+                <!--  <td>GTX 1060</td>-->
+                <!--  <td>Gigabyte</td>-->
+                <!--  <td>6GB G1 gaming</td>-->
+                <!--  <td>Giovanna Bárbara Barbosa</td>-->
+                <!--  <td>94894984655</td>-->
+                <!--  <td><div class="organiza"><i class="fa fa-window-close btnX"></i> <i class="fa fa-pencil-square btnE"></i></div></td>-->
+                <!--</tr>-->
                 </tbody>
                 <tfoot>
                 <tr>
-                  <th class="col-md-1">Código</th>
-                  <th class="col-md-2">Nome</th>
-                  <th class="col-md-1">Marca</th>
-                  <th class="col-md-3">Modelo</th>
-                  <th class="col-md-3">Dono</th>
-                  <th class="col-md-1">Nº de série</th>
-                  <th class="col-md-1">Ações</th>
+                  <th>Código</th>
+                  <th>Nome</th>
+                  <th>Marca</th>
+                  <th>Dono</th>
+                  <th>Nº de série</th>
+                  <th>Ações</th>
                 </tr>
                 </tfoot>
               </table>
@@ -285,6 +291,7 @@ th, td, table {
 
 <!-- jQuery 3 -->
 <script src="../../bower_components/jquery/dist/jquery.min.js"></script>
+<script type="text/javascript" src="../js/Equipamento/equipamento.js"></script>
 <!-- Bootstrap 3.3.7 -->
 <script src="../../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 <!-- DataTables -->

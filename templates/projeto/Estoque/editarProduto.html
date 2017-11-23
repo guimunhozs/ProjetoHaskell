@@ -212,6 +212,42 @@
           <!--<h3 class="box-title">Select2</h3>-->
         <!-- /.box-header -->
         <div class="box-body">
+          <div class="box-body">
+          <div class="modal fade" id="success" role="dialog">
+            <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header" style="background: #3c8dbc;color: #ffffff;">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  <h4 class="modal-title">Produto</h4>
+                </div>
+                <div class="modal-body">
+                  <p>Dados salvos com sucesso!</p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="modal fade" id="error" role="dialog">
+            <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header" style="background: #3c8dbc;color: #ffffff;">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  <h4 class="modal-title">Produto</h4>
+                </div>
+                <div class="modal-body">
+                  <p>Erro ao salvar os dados!</p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+                </div>
+              </div>
+            </div>
+          </div>
           <form role="form" data-toggle="validator">
           <div class="row">
             <div class="col-md-12">
@@ -234,37 +270,32 @@
               </div>
               <div class="form-group col-sm-6">
                 <label>Quantidade Mínima:</label>
-                <input type="number" class="form-control" id="qtd" placeholder="Quantidade mínima" min="0" required>
+                <input type="number" class="form-control" id="qtdM" placeholder="Quantidade mínima" min="0" required>
               </div>
               <!-- /.form-group -->
               <div class="form-group col-sm-6">
                 <label>Valor de custo:</label>
                 <div class="input-group">
                   <span class="input-group-addon">R$</span>
-                  <input type="text" class="form-control" required>
+                  <input id="vlC" type="text" class="form-control" required>
                 </div>
               </div>
               <div class="form-group col-sm-6">
                 <label>Valor de Venda:</label>
                 <div class="input-group">
                   <span class="input-group-addon">R$</span>
-                  <input type="text" class="form-control" required>
+                  <input id="vlV" type="text" class="form-control" required>
                 </div>
               </div>
               <div class="form-group col-sm-6">
                 <label>Fornecedor:</label>
-                <select class="form-control select2 select2-hidden-accessible" style="width: 100%;" tabindex="-1" aria-hidden="true" required>
+                <select id="fornecedor" class="form-control select2 select2-hidden-accessible" style="width: 100%;" tabindex="-1" aria-hidden="true" required>
                   <option selected="selected" disabled selected >Selecione um fornecedor</option>
-                  <option>Alaska</option>
-                  <option>California</option>
-                  <option>Delaware</option>
-                  <option>Tennessee</option>
-                  <option>Texas</option>
-                  <option>Washington</option>
+                  
                 </select>
               </div>
               <div class="form-group col-sm-6 text-right" style="margin-top: 25px">
-                <input type="submit" class="btn btn-success" value="Salvar">
+                <button type="button" id="salvar" class="btn btn-success">Salvar</button>
               </div>
               <!-- /.form-group -->
             </div>
@@ -290,6 +321,7 @@
 
 <!-- jQuery 3 -->
 <script src="../../bower_components/jquery/dist/jquery.min.js"></script>
+<script type="text/javascript" src="../js/Produto/editarProduto.js"></script>
 <!-- Bootstrap 3.3.7 -->
 <script src="../../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 <!-- Select2 -->
@@ -321,7 +353,9 @@
 <script>
   $(function () {
     //Initialize Select2 Elements
-    $('.select2').select2()
+    $('.select2').select2({
+      tags: true
+    })
   })
 </script>
 </body>

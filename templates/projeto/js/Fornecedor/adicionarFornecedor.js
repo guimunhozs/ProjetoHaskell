@@ -1,5 +1,4 @@
 $(document).ready(function() {
-    var id = localStorage.getItem("fornecedorId");
     
     //função q colocar os valores nos campos
     function valueInput(value,id) {
@@ -7,47 +6,17 @@ $(document).ready(function() {
     }
     
     $.ajax({
-      url: "https://haskalpha-romefeller.c9users.io/fornecedor/"+id,
+      url: "https://haskalpha-romefeller.c9users.io/estado/",
       method: "GET",
-      success: function(json){
-         var forn = json["Fornecedor"];
-        valueInput(id,"cd");
-        valueInput(forn["nome"],"razao");
-        valueInput(forn["contato"],"nomeContato");
-        valueInput(forn["telefone"],"tell");
-        valueInput(forn["email"],"email");
-        valueInput(forn["cnpj"],"cnpj");
-        valueInput(forn["cep"],"cep");
-        valueInput(forn["logradouro"],"logradouro");
-        valueInput(forn["complemento"],"complemento");
-        valueInput(forn["bairro"],"bairro");
-        
-        $.ajax({
-          url: "https://haskalpha-romefeller.c9users.io/estado/",
-          method: "GET",
-          success: function(estados){
-            estados["estados"].forEach(function(Element){
-                var estado = new Option(Element["nome"], Element["id"], true, true);
-                $("#estado").append(estado);
-            });
-            var int = parseInt(forn["estadoId"]);
-            $("#estado").val(int);
-        }});
-        
-        $.ajax({
-          url: "https://haskalpha-romefeller.c9users.io/cidade/estado/"+forn["estadoId"],
-          method: "GET",
-          success: function(cidades){
-            localStorage.setItem("cidades",JSON.stringify(cidades));
-            cidades["cidade"].forEach(function(Element){
-                var cidade = new Option(Element["nome"], Element["id"], true, true);
-                $("#cidade").append(cidade);
-            });
-            var int = parseInt(forn["cidadeId"]);
-            $("#cidade").val(int);
-        }});
+      success: function(estados){
+        estados["estados"].forEach(function(Element){
+            var estado = new Option(Element["nome"], Element["id"], true, true);
+            $("#estado").append(estado);
+        });
+        $("#estado").val(0);
     }});
     
+
     function salvar(){
       var nome = $("#razao").val();
       var logradouro = $("#logradouro").val();
@@ -78,8 +47,8 @@ $(document).ready(function() {
       console.log(json);
     
       $.ajax({
-          url: "https://haskalpha-romefeller.c9users.io/fornecedor/"+$("#cd").val(),
-          method: "PUT",
+          url: "https://haskalpha-romefeller.c9users.io/fornecedor/",
+          method: "POST",
           data: json,
           success: function(result){
             $('#success').modal({show: 'true'}); 
@@ -97,16 +66,17 @@ $(document).ready(function() {
     
     $("#estado").change(function(){
       $('#cidade').empty();
+      var cidade = new Option("Selecione uma cidade", 0, true, true);
+      $("#cidade").append(cidade);
       $.ajax({
         url: "https://haskalpha-romefeller.c9users.io/cidade/estado/"+$("#estado").val(),
         method: "GET",
         success: function(cidades){
           cidades["cidade"].forEach(function(Element){
-              var cidade = new Option(Element["nome"], Element["id"], true, true);
+              cidade = new Option(Element["nome"], Element["id"], true, true);
               $("#cidade").append(cidade);
           });
-          var int = parseInt(cidades["cidade"][0]["id"]);
-          $("#cidade").val(int);
+          $("#cidade").val(0);
       }});
     });
 });

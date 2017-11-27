@@ -213,52 +213,80 @@
           <!--<h3 class="box-title">Select2</h3>-->
         <!-- /.box-header -->
         <div class="box-body">
+          
+          <div class="modal fade" id="success" role="dialog">
+            <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header" style="background: #3c8dbc;color: #ffffff;">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  <h4 class="modal-title">Equipamento</h4>
+                </div>
+                <div class="modal-body">
+                  <p>Dados salvos com sucesso!</p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="modal fade" id="error" role="dialog">
+            <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header" style="background: #3c8dbc;color: #ffffff;">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  <h4 class="modal-title">Equipamento</h4>
+                </div>
+                <div class="modal-body">
+                  <p>Erro ao salvar os dados!</p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          
           <form role="form" data-toggle="validator">
           <div class="row">
             <div class="col-md-12">
-              <div class="form-group col-sm-4">
+              
+              <div class="form-group col-sm-6">
+                <label>Cliente:</label>
+                <select id="cliente" class="form-control select2 select2-hidden-accessible" style="width: 100%;" tabindex="-1" aria-hidden="true" required>
+                  <option selected="selected"  selected >Selecione um cliente</option>
+                </select>
+              </div>
+              
+              <div class="form-group col-sm-6">
                 <label class="control-label">Nome:</label>
-                <input type="text" class="form-control" id="nome" placeholder="Nome do produto" required>
+                <input type="text" class="form-control" id="nome" placeholder="Nome do equipamento" required>
               </div>
-              <div class="form-group col-sm-4">
+              <div class="form-group col-sm-3">
                 <label>Marca:</label>
-                <input type="text" class="form-control" id="marca" placeholder="Marca do produto" required>
-              </div>
-              <div class="form-group col-sm-4">
-                <label>Modelo:</label>
-                <input type="text" class="form-control" id="modelo" placeholder="Modelo" required>
+                <input type="text" class="form-control" id="marca" placeholder="Marca do equipamento" required>
               </div>
               <!-- /.form-group -->
-              <div class="form-group col-sm-4">
-                <label>Voltagem:</label>
-                <div class="input-group">
-                  <input type="text" class="form-control" required>
-                  <span class="input-group-addon">Volts</span>
-                </div>
-              </div>
-              <div class="form-group col-sm-4">
+              
+              <div class="form-group col-sm-3">
                 <label>Código de patrimônio:</label>
                 <input type="text" class="form-control" id="patrimonio" placeholder="Código de patrimônio:" required>
               </div>
-              <div class="form-group col-sm-4">
-                <label>Número de Série:</label>
-                  <input type="text" class="form-control" required>
+              <!-- form-group -->
+              <div class="form-group col-sm-3">
+                <label>Tensão:</label>
+                <div class="input-group">
+                  <input type="text" id="tensao" class="form-control" required>
+                  <span class="input-group-addon">Volts</span>
+                </div>
               </div>
+              
               <!-- /.form-group -->
-              <div class="form-group col-sm-6">
-                <label>Cliente:</label>
-                <select class="form-control select2 select2-hidden-accessible" style="width: 100%;" tabindex="-1" aria-hidden="true" required>
-                  <option selected="selected" disabled selected >Selecione um cliente</option>
-                  <option>Alaska</option>
-                  <option>California</option>
-                  <option>Delaware</option>
-                  <option>Tennessee</option>
-                  <option>Texas</option>
-                  <option>Washington</option>
-                </select>
-              </div>
-              <div class="form-group col-sm-6 text-right" style="margin-top: 25px">
-                <input type="submit" class="btn btn-success" value="Salvar">
+              <div class="form-group col-sm-3 text-right" style="margin-top: 25px">
+                <input type="button" id="salvar" class="btn btn-success" value="Salvar">
               </div>
               <!-- /.form-group -->
             </div>
@@ -288,6 +316,8 @@
 <script src="../../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 <!-- Select2 -->
 <script src="../../bower_components/select2/dist/js/select2.full.min.js"></script>
+<!-- AdicionarEquipamento -->
+<script src="../js/Equipamento/adicionarEquipamento.js"></script>
 <!-- InputMask -->
 <script src="../../plugins/input-mask/jquery.inputmask.js"></script>
 <script src="../../plugins/input-mask/jquery.inputmask.date.extensions.js"></script>
@@ -317,6 +347,8 @@
     //Initialize Select2 Elements
     $('.select2').select2()
   })
+  
+  
 </script>
 </body>
 </html>

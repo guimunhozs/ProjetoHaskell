@@ -53,6 +53,13 @@
 .x{
   color: #ff0000;
   margin-top: 10px;
+  cursor:pointer;
+}
+
+.a{
+  color: #00ff00;
+  margin-top: 10px;
+  cursor:pointer;
 }
 </style>
 </head>
@@ -221,6 +228,41 @@
           <!--<h3 class="box-title">Select2</h3>-->
         <!-- /.box-header -->
         <div class="box-body">
+          <div class="modal fade" id="success" role="dialog">
+            <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header" style="background: #3c8dbc;color: #ffffff;">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  <h4 class="modal-title">Serviço</h4>
+                </div>
+                <div class="modal-body">
+                  <p>Dados salvos com sucesso!</p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="modal fade" id="error" role="dialog">
+            <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header" style="background: #3c8dbc;color: #ffffff;">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  <h4 class="modal-title">Serviço</h4>
+                </div>
+                <div class="modal-body">
+                  <p>Erro ao salvar os dados!</p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+                </div>
+              </div>
+            </div>
+          </div>
           <form role="form" data-toggle="validator">
           <div class="row">
             <div class="col-md-12">
@@ -236,18 +278,34 @@
                 <label>Valor Final:</label>
                 <div class="input-group">
                   <span class="input-group-addon">$</span>
-                  <input type="text" class="form-control" id="valorTotal" disabled>
+                  <input id="vlF" type="text" class="form-control" id="valorTotal" disabled>
                 </div>
               </div>
-              <div class="form-group col-sm-6">
+              <div class="form-group col-sm-4">
+                <label class="control-label">Equipamento</label>
+                <input type="text" class="form-control" id="equipamento" placeholder="Equipamento" disabled>
+              </div>
+              <div class="form-group col-sm-4">
                 <label class="control-label">Data de Inicio:</label>
                 <input type="date" class="form-control" id="dataI" required>
               </div>
-              <div class="form-group col-sm-6">
+              <div class="form-group col-sm-4">
                 <label class="control-label">Data de Termino:</label>
                 <input type="date" class="form-control" id="dataT" required>
               </div>
               <!-- /.form-group -->
+              <div class="form-group col-sm-4">
+                  <label>Descrição de Entrada do produto</label>
+                  <textarea id="descEntrada" class="form-control" rows="3" placeholder="Descrição de Entrada do produto" disabled></textarea>
+              </div>
+              <div class="form-group col-sm-4">
+                  <label>Descrição do Cliente</label>
+                  <textarea id="descCliente" class="form-control" rows="3" placeholder="Descrição do Cliente" disabled></textarea>
+              </div>
+              <div class="form-group col-sm-4">
+                  <label>Descrição do Tecnico</label>
+                  <textarea id="descTecnico" class="form-control" rows="3" placeholder="Descrição do Tecnico"></textarea>
+              </div>
             </div>
             <!-- /.col -->
             <!-- TODO falta criar uma tabela q adiciona linha e quando apertar em salvar ele conta qunatas linhas tem e se tiver diferente adiciona no banco-->
@@ -258,42 +316,30 @@
       </div>
       <div class="box box-info">
     <div class="box-header with-border">
-      <h3 class="box-title">Itens venda</h3>
+      <h3 class="box-title">Andamento</h3>
     <!-- /.box-header -->
     </div>
     <div class="box-body">
             <table class="table table-striped">
-                <tbody>
+                <thead>
                 <tr>
-                  <th>#</th>
-                  <th class="col-md-4">Descrição</th>
-                  <th class="col-md-2">Status</th>
-                  <th class="col-md-2">ValorAgregado</th>
-                  <th class="col-md-2">Funcionario</th>
+                  <!--<th>#</th>-->
+                  <th align="center" class="col-md-4">Descrição</th>
+                  <th align="center" class="col-md-2">Data Inicio</th>
+                  <th align="center" class="col-md-2">Valor Agregado</th>
+                  <th align="center" class="col-md-2">Funcionario</th>
                   <th></th>
                 </tr>
-                <tr>
-                  <td>1.</td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td align="center"><i class="fa fa-times x"></td>
-                </tr>
-                <tr>
-                  <td>2.</td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td align="center"><i class="fa fa-times x"></td>
-                </tr>
-              </tbody></table>
+              </thead>
+              <tbody id="andamento">
+                
+              </tbody>
+              </table>
     <div class="form-group col-sm-11 text-right" style="margin-top: 25px">
-      <button type="button" class="btn btn-warning">Adicionar andamento</button>
+      <button type="button" id="adcAndamento" class="btn btn-warning">Adicionar andamento</button>
     </div>
     <div class="form-group col-sm-1 text-right" style="margin-top: 25px">
-      <input type="submit" class="btn btn-success" value="Salvar">
+      <input type="submit" id="salvar" class="btn btn-success" value="Salvar">
     </div>
     </div>
     </section>
@@ -311,6 +357,7 @@
 
 <!-- jQuery 3 -->
 <script src="../../bower_components/jquery/dist/jquery.min.js"></script>
+<script src="../js/Servico/editarServico.js"></script>
 <!-- Bootstrap 3.3.7 -->
 <script src="../../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 <!-- Select2 -->

@@ -39,14 +39,23 @@
 .btnX{
     font-size: 20px;
     color: #dd4c3a;
+    margin-right: 10px;
+    cursor:pointer;
 }
 
 .btnE{
     font-size: 20px;
     color: #f49c12;
+    cursor:pointer;
 }
 th, td, table {
   text-align:center;
+}
+@media (max-width: 600px) 
+{
+  .box-body {
+    overflow:auto; 
+  }
 }
 </style>
 </head>
@@ -230,23 +239,14 @@ th, td, table {
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                  <td>1</td>
-                  <td>Murilo Joaquim Pinto</td>
-                  <td>Notebook odyssey</td>
-                  <td>22/12/2017</td>
-                  <td> --- </td>
-                  <td>R$ 350,50</td>
-                  <td><div class="organiza"><i class="fa fa-window-close btnX"></i> <i class="fa fa-pencil-square btnE"></i></div></td>
-                </tr>
-                <tr>
-                  <td>2</td>
-                  <td>Giovanna Bárbara Barbosa</td>
-                  <td>GTX 1060</td>
-                  <td>22/11/2017</td>
-                  <td>01/12/2017</td>
-                  <td>R$ 600,050</td>
-                  <td><div class="organiza"><i class="fa fa-window-close btnX"></i> <i class="fa fa-pencil-square btnE"></i></div></td>
+                <tr id="teste">
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
                 </tr>
                 </tbody>
                 <tfoot>
@@ -286,6 +286,7 @@ th, td, table {
 <!-- jQuery 3 -->
 <script src="../../bower_components/jquery/dist/jquery.min.js"></script>
 <!-- Bootstrap 3.3.7 -->
+<script type="text/javascript" src="../js/Servico/servico.js"></script>
 <script src="../../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 <!-- DataTables -->
 <script src="../../bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
@@ -299,10 +300,5 @@ th, td, table {
 <!-- AdminLTE for demo purposes -->
 <script src="../../dist/js/demo.js"></script>
 <!-- page script -->
-<script>
-  $(function () {
-    $('#example1').DataTable()
-  })
-</script>
 </body>
 </html>

@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    var id = localStorage.getItem("produtoId");
+    var id = localStorage.getItem("equipamentoId");
     
     //função q colocar os valores nos campos
     function valueInput(value,id) {
@@ -10,54 +10,56 @@ $(document).ready(function() {
       url: "https://haskalpha-romefeller.c9users.io/equipamento/"+id,
       method: "GET",
       success: function(json){
-         var prod = json;
-         console.log(prod)
+         var equipamento = json;
+         console.log(equipamento)
         valueInput(id,"cd");
-        valueInput(prod["produto"]["nome"],"nome");
-        valueInput(prod["produto"]["marca"],"marca");
-        valueInput(prod["produto"]["quantidadeMin"],"qtdM");
-        valueInput(prod["produto"]["quantidade"],"qtd");
-        valueInput(parseFloat(prod["produto"]["valorVenda"]).toFixed(2),"vlV");
-        valueInput(parseFloat(prod["produto"]["valorCusto"]).toFixed(2),"vlC");
+        valueInput(equipamento["Equipamento"]["nome"],"nome");
+        valueInput(equipamento["Equipamento"]["marca"],"marca");
+        valueInput(equipamento["Equipamento"]["modelo"],"modelo");
+        valueInput(parseInt(equipamento["Equipamento"]["voltagem"]),"tensao");
+        valueInput(equipamento["Equipamento"]["patrimonio"],"patrimonio");
 
         $.ajax({
-          url: "https://haskalpha-romefeller.c9users.io/fornecedor/",
+          url: "https://haskalpha-romefeller.c9users.io/cliente/",
           method: "GET",
           success: function(json){
-            console.log(json['result']);
-            json['result'].forEach(function(Element){
+            console.log(json['Cliente']);
+            json['Cliente'].forEach(function(Element){
               console.log(Element);
-                var estado = new Option(Element[0]["nome"], Element[0]["id"], true, true);
-                $("#fornecedor").append(estado);
+                var cliente = new Option(Element["nome"], Element["id"], true, true);
+                $("#cliente").append(cliente);
             });
-            var int = parseInt(prod["produto"]["fornecedorId"]);
-            $("#fornecedor").val(int);
+            var int = parseInt(equipamento["Equipamento"]["clienteId"]);
+            $("#cliente").val(int);
         }});
+        
+        var excluido = false;
+      console.log(excluido);
     }});
     
     function salvar(){
       var nome = $("#nome").val();
       var marca = $("#marca").val();
-      var quantidadeMinima = parseInt($("#qtdM").val());
-      var quantidade = parseInt($("#qtd").val());
-      var valorVenda = parseFloat($("#vlV").val());
-      var valorCusto = parseFloat($("#vlC").val());
-      var excluido = "false";
-      var fornecedorId = parseInt($("#fornecedor").val());
+      var modelo = ($("#modelo").val());
+      var voltagem = $("#tensao").val();
+      var patrimonio = ($("#patrimonio").val());
+      var excluido = false;
+      console.log(excluido);
+      var clienteId = parseInt($("#cliente").val());
 
-      var json = '{"nome":"'+nome+'",'
-               + '"marca":"'+marca+'",'
-               + '"quantidadeMin":'+quantidadeMinima+','
-               + '"quantidade":'+quantidade+','
-               + '"valorVenda":'+valorVenda+','
-               + '"valorCusto":'+valorCusto+','
-               + '"excluido": false,'
-               + '"fornecedorId":'+fornecedorId
-               + '}';
-      console.log(json);
+      var json = {
+        "nome" : nome,
+        "marca" : marca,
+        "voltagem" : voltagem,
+        "patrimonio" : patrimonio,
+        "excluido" : excluido,
+        "clienteId" : clienteId
+      };
+      
+      json = JSON.stringify(json);
     
       $.ajax({
-          url: "https://haskalpha-romefeller.c9users.io/produto/"+$("#cd").val(),
+          url: "https://haskalpha-romefeller.c9users.io/equipamento/"+$("#cd").val(),
           method: "PUT",
           data: json,
           success: function(result){

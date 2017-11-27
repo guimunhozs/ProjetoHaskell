@@ -219,84 +219,106 @@
           <!--<h3 class="box-title">Select2</h3>-->
         <!-- /.box-header -->
         <div class="box-body">
+          
+          <div class="modal fade" id="success" role="dialog">
+            <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header" style="background: #3c8dbc;color: #ffffff;">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  <h4 class="modal-title">Empresa</h4>
+                </div>
+                <div class="modal-body">
+                  <p>Dados salvos com sucesso!</p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="modal fade" id="error" role="dialog">
+            <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header" style="background: #3c8dbc;color: #ffffff;">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  <h4 class="modal-title">Empresa</h4>
+                </div>
+                <div class="modal-body">
+                  <p>Erro ao salvar os dados!</p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          
           <form role="form" data-toggle="validator">
           <div class="row">
             <div class="col-md-12">
-              <div class="form-group col-sm-6">
-                <label class="control-label">Razão Social:</label>
-                <input type="text" class="form-control" id="nome" placeholder="Razão Social" required>
-              </div>
-              <div class="form-group col-sm-6">
-                <label class="control-label">Nome Fantasia:</label>
-                <input type="text" class="form-control" id="nomeF" placeholder="Nome Fantasia" required>
-              </div>
-              <div class="form-group col-sm-6">
-                <label class="control-label">E-mail:</label>
-                <input type="email" class="form-control" id="email" placeholder="E-mail" required>
-              </div>
-              <div class="form-group col-sm-6">
-                <label class="control-label">Telefone:</label>
-                <input type="text" class="form-control" id="tell" placeholder="Telefone" required>
-              </div>
-              <div class="form-group col-sm-6">
+              <div class="form-group col-sm-4">
                 <label>CNPJ:</label>
                 <input type="text" class="form-control" id="cnpj" placeholder="CNPJ" required>
               </div>
-              <div class="form-group col-sm-6">
+              <div class="form-group col-sm-4">
+                <label class="control-label">Razão Social:</label>
+                <input type="text" class="form-control" id="nome" placeholder="Razão Social" required>
+              </div>
+              <div class="form-group col-sm-4">
+                <label class="control-label">Nome Fantasia:</label>
+                <input type="text" class="form-control" id="nomeFantasia" placeholder="Nome Fantasia" required>
+              </div>
+              <div class="form-group col-sm-4">
+                <label class="control-label">E-mail:</label>
+                <input type="email" class="form-control" id="email" placeholder="E-mail" required>
+              </div>
+              <div class="form-group col-sm-2">
                 <label>CEP:</label>
                 <input type="text" class="form-control" id="cep" placeholder="CEP" required>
               </div>
               <!-- /.form-group -->
-              <div class="form-group col-sm-5">
+              <div class="form-group col-sm-3">
+                <label>Estado:</label>
+                <select id="estado" class="form-control select2 select2-hidden-accessible" style="width: 100%;" tabindex="-1" aria-hidden="true" required>
+                  <option selected="selected" disabled selected >Selecione um estado</option>
+                </select>
+              </div>
+              <div class="form-group col-sm-3">
+                <label>Cidade:</label>
+                <select id="cidade" class="form-control select2 select2-hidden-accessible" style="width: 100%;" tabindex="-1" aria-hidden="true" required>
+                  <option selected="selected" disabled selected >Selecione uma cidade</option>
+                </select>
+              </div>
+              <!-- /.form-group -->
+              <div class="form-group col-sm-6">
                 <label>Logradouro:</label>
                 <input type="text" class="form-control" id="logradouro" placeholder="Logradouro" required>
               </div>
-              <div class="form-group col-sm-2">
-                <label>Complemento:</label>
-                <input type="text" class="form-control" id="complemento" placeholder="complemento" required>
-              </div>
-              <div class="form-group col-sm-5">
+              <div class="form-group col-sm-3">
                 <label>Bairro:</label>
                 <input type="text" class="form-control" id="bairro" placeholder="Bairro" required>
               </div>
-              <!-- /.form-group -->
-              <div class="form-group col-sm-3">
-                <label>Estado:</label>
-                <select class="form-control select2 select2-hidden-accessible" style="width: 100%;" tabindex="-1" aria-hidden="true" required>
-                  <option selected="selected" disabled selected >Selecione um estado</option>
-                  <option>Alaska</option>
-                  <option>California</option>
-                  <option>Delaware</option>
-                  <option>Tennessee</option>
-                  <option>Texas</option>
-                  <option>Washington</option>
-                </select>
+              <div class="form-group col-sm-2">
+                <label class="control-label">Telefone:</label>
+                <input type="text" class="form-control" id="telefone" placeholder="Telefone" required>
               </div>
-              <div class="form-group col-sm-6">
-                <label>Cidade:</label>
-                <select class="form-control select2 select2-hidden-accessible" style="width: 100%;" tabindex="-1" aria-hidden="true" required>
-                  <option selected="selected" disabled selected >Selecione uma cidade</option>
-                  <option>Alaska</option>
-                  <option>California</option>
-                  <option>Delaware</option>
-                  <option>Tennessee</option>
-                  <option>Texas</option>
-                  <option>Washington</option>
-                </select>
-              </div>
-              <div class="form-group col-sm-3 text-right" style="margin-top: 25px">
-                <input type="submit" class="btn btn-success" value="Salvar">
+              <div class="form-group col-sm-1 text-right" style="margin-top: 25px">
+                <input type="button" id="salvar" class="btn btn-success" value="Salvar">
               </div>
               <!-- /.form-group -->
             </div>
             <!-- /.col -->
             <!-- TODO falta criar uma tabela q adiciona linha e quando apertar em salvar ele conta qunatas linhas tem e se tiver diferente adiciona no banco-->
           
-            <table class="table table-striped" style="margin-top:30px">
+            <table id="example1" class="table table-striped" style="margin-top:30px">
                 <tbody>
                 <tr>
                   <th>#</th>
                   <th>Banco</th>
+                  <th>Código</th>
                   <th>Agencia</th>
                   <th>Conta Corrente</th>
                   <th>Nosso Numero</th>
@@ -305,30 +327,17 @@
                 </tr>
                 <tr>
                   <td></td>
-                  <td><input type="text" class="form-control" id="banco" placeholder="Banco" required></td>
-                  <td><input type="text" class="form-control" id="agencia" placeholder="Agencia" required></td>
-                  <td><input type="text" class="form-control" id="cc" placeholder="Conta Corrente" required></td>
-                  <td><input type="text" class="form-control" id="nn" placeholder="Nosso Numero" required></td>
-                  <td><input type="text" class="form-control" id="cedente" placeholder="Cedente" required></td>
-                  <td align="center"><i class="fa fa-plus plus"></i></td>
+                  <td><input type="text" class="form-control" id="nomeBanco" placeholder="Banco" ></td>
+                  <td><input type="text" class="form-control" id="codigoBanco" placeholder="Codigo" ></td>
+                  <td><input type="text" class="form-control" id="agencia" placeholder="Agencia" ></td>
+                  <td><input type="text" class="form-control" id="contaCorrente" placeholder="Conta Corrente" ></td>
+                  <td><input type="text" class="form-control" id="nossoNumero" placeholder="Nosso Numero" ></td>
+                  <td><input type="text" class="form-control" id="cedente" placeholder="Cedente" ></td>
+                  <td align="center"><i class="fa fa-plus plus" id="adicionar"></i></td>
+                </tr>
+                <tr id="teste">
                 </tr>
                 <tr>
-                  <td>1.</td>
-                  <td>Itau</td>
-                  <td>1343</td>
-                  <td>445676</td>
-                  <td>756757665</td>
-                  <td>Guilherme</td>
-                  <td align="center"><i class="fa fa-times x"></td>
-                </tr>
-                <tr>
-                  <td>2.</td>
-                  <td>Caixa</td>
-                  <td>787</td>
-                  <td>4543545</td>
-                  <td>5645657788</td>
-                  <td>Luis</td>
-                  <td align="center"><i class="fa fa-times x"></i></td>
                 </tr>
               </tbody></table>
           </div>
@@ -354,8 +363,11 @@
 <script src="../../bower_components/jquery/dist/jquery.min.js"></script>
 <!-- Bootstrap 3.3.7 -->
 <script src="../../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+
 <!-- Select2 -->
 <script src="../../bower_components/select2/dist/js/select2.full.min.js"></script>
+<!-- javascript empresa.js -->
+<script type="text/javascript" src="../js/Empresa/empresa.js"></script>
 <!-- InputMask -->
 <script src="../../plugins/input-mask/jquery.inputmask.js"></script>
 <script src="../../plugins/input-mask/jquery.inputmask.date.extensions.js"></script>
@@ -379,12 +391,16 @@
 <script src="../../dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="../../dist/js/demo.js"></script>
+<!-- DataTables -->
+<script src="../../bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
+<script src="../../bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
 <!-- Page script -->
 <script>
   $(function () {
     //Initialize Select2 Elements
     $('.select2').select2()
-  })
+  });
 </script>
+
 </body>
 </html>

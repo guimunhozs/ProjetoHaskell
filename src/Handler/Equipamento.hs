@@ -28,8 +28,12 @@ getEquipamentoR = do
     
 getEquipamentoIdR :: EquipamentoId -> Handler TypedContent
 getEquipamentoIdR equipamentoId = do
-    equipamento <- runDB $ get404 equipamentoId
-    sendStatusJSON created201 $ object["equipamento".= equipamento]
+    -- equipamento <- runDB $ get404 equipamentoId
+    -- sendStatusJSON created201 $ object["equipamento".= equipamento]
+    runDB $ do
+        equip <- get404 equipamentoId
+        cliente <- get404 $ equipamentoClienteId equip
+        sendStatusJSON ok200 $ object ["Equipamento" .= equip, "Cliente" .= cliente]
 
 -- verificar
 deleteEquipamentoIdR :: EquipamentoId -> Handler Value
@@ -44,5 +48,11 @@ putEquipamentoIdR equipamentoId = do
     novoEquipamento <- requireJsonBody :: Handler Equipamento
     runDB $ replace equipamentoId novoEquipamento
     sendStatusJSON noContent204 (object ["resp" .= ("UPDATED " ++ show (fromSqlKey equipamentoId))])
+    
+getEquipamentoClienteIdR :: ClienteId -> Handler TypedContent
+getEquipamentoClienteIdR clienteId = do
+    _ <- runDB $ get404 clienteId
+    equipamentos <- (runDB $ selectList[EquipamentoClienteId ==. clienteId][Asc EquipamentoId]) :: Handler [Entity Equipamento]
+    sendStatusJSON created201 $ object ["Equipamento" .= equipamentos]
 
 -- falta um path em quantidade

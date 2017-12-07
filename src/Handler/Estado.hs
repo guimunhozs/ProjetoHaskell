@@ -3,6 +3,8 @@
 {-# LANGUAGE TemplateHaskell #-}
 {-# LANGUAGE MultiParamTypeClasses #-}
 {-# LANGUAGE TypeFamilies #-}
+
+
 --curl -X POST -v https://haskalpha-romefeller.c9users.io/estado -d '{"nome":"São Paulo", "sigla": "SP"}'
 module Handler.Estado where
     

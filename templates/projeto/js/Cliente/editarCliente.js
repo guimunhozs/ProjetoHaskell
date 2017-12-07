@@ -7,7 +7,7 @@ $(document).ready(function() {
     }
     
     $.ajax({
-      url: "https://haskalpha-romefeller.c9users.io/cliente"+id,
+      url: "https://haskalpha-romefeller.c9users.io/cliente/"+id,
       method: "GET",
       success: function(json){
          var cli = json["Cliente"];

@@ -1,0 +1,95 @@
+passo 1
+sudo apt-get update
+ 
+passo 2
+curl -sSL https://get.haskellstack.org/ | sh
+--saber se instalou, digite stack
+ 
+passo 3
+stack new nomedoprojeto yesod-postgres
+ 
+passo 4
+cd nomedoprojeto
+ 
+passo 5
+stack setup
+ 
+passo 6
+stack build
+--acaba quando aparece linking
+ 
+framework web (yesod)
+servidor executavel (warp)
+NGINX
+proxy reverse
+ 
+HTTP protocol
+ 
+REQUEST
+HEADER
+-method
+-URI = rota /cliente
+ 
+BODY
+-QueryString parameters ou forms ou JSON
+ 
+ 
+RESPONSE
+HEADER
+-STATUS
+ 
+BODY
+-DOC HTML OU JSON
+ 
+settings 
+static-dir (pasta estatica: html, css, javascript, imagens)
+ 
+database
+onde configura o banco (manter aspas)
+ 
+routes
+static 
+auth é o login
+favicon é o icone do site
+robots do google
+ 
+/rota/tipodarota/metodo
+ 
+rotas
+/ 
+/comments
+/profile 
+ 
+tipo da rota
+o haskell nao procura as rotas como string, e sim como tipos
+ 
+metodos http
+indicam quais açoes a serem tomadas
+ 
+exemplo de funcao
+getHomeR
+postHomeR
+metodoTipo
+ 
+src (source do site)
+foundation  (é o arquivo mestre) é um exemplo, apagaremos tudo
+setting, model e application não altera
+import é onde colocamos os Modules
+altera foundation e handler
+ 
+trabalho 2
+10 -> individual
+10 -> grupo
+ 
+-> GIT COM, no minimo, 45 commits
+-> a parte individual consiste em responder 3 perguntas (cada valendo 3.33) só do seu commit haskell
+-> tema livre
+-> minimo de 5 tabelas no banco
+-> apresentacao
+-> apresentar produto
+-> navegacao
+-> site funcionando e compilado
+-> 20 min por grupo
+-> opção de escolha de tema
+-> webservice com ionic (móvel)
+-> webapp (html/css/js + haskell)

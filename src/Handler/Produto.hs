@@ -46,11 +46,23 @@ putProdutoIdR produtoId = do
     runDB $ replace produtoId novoProduto
     sendStatusJSON noContent204 (object ["resp" .= ("UPDATED " ++ show (fromSqlKey produtoId))])
 
--- falta um path em quantidade
 
-pathProdutoIdQtR :: ProdutoId -> Int -> Handler Value
-pathProdutoIdQtR pid qt = do 
+patchProdutoIdQtR :: ProdutoId -> Int -> Handler Value
+patchProdutoIdQtR pid qt = do 
     _ <- runDB $ get404 pid
     runDB $ update pid [ProdutoQuantidade =. qt]
     sendStatusJSON noContent204 (object ["resp" .= (fromSqlKey pid)])
     
+    -- oq estão fazendo?
+    
+-- getProdutoMinR :: Handler Value
+-- getProdutoMinR = do
+--     produto <- (runDB $ selectList [ProdutoQuantidade <. ( removeMonada ProdutoQuantidadeMin)][Asc ProdutoQuantidade]) :: Handler [Entity Produto]
+--     sendStatusJSON created201 $ object ["Produtos" .= produto]
+
+-- removeMaybe :: Maybe a -> a
+-- removeMaybe (Just x) = x
+
+-- removeMonada :: EntityField Produto (Maybe Int) -> Int
+-- removeMonada  (Just x) = x
+-- -- nao acha melhor fazer logo em js???? é apenas um foreach ou um filter

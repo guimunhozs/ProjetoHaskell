@@ -1,0 +1,279 @@
+select * from estado;
+
+ id |        nome         | sigla 
+----+---------------------+-------
+  1 | Acre                | AC
+  2 | Alagoas             | AL
+  3 | Amazonas            | AM
+  4 | Amapá               | AP
+  5 | Bahia               | BA
+  6 | Ceara               | CE
+  7 | Distrito Federal    | DF
+  8 | Espirito Santo      | ES
+  9 | Goiás               | GO
+ 10 | Maranhão            | MA
+ 11 | Minas Gerais        | MG
+ 12 | Mato Grosso do Sul  | MS
+ 13 | Mato Grosso         | MT
+ 14 | Pará                | PA
+ 15 | Paraíba             | PB
+ 16 | Pernambuco          | PE
+ 17 | Piauí               | PI
+ 18 | Paraná              | PR
+ 19 | Rio de Janeiro      | RJ
+ 20 | Rio Grande do Norte | RN
+
+-- -------------------------------------------------------------------------------------------------------------
+select * from cidade;
+
+ id |         nome          | estado_id 
+----+-----------------------+-----------
+  1 | São Paulo             |        26
+  2 | Santos                |        26
+  3 | São Vicente           |        26
+  4 | Guaruja               |        26
+  5 | Rio de Janeiro        |        19
+  6 | Angra dos Reis        |        19
+  7 | São Sebastião do Alto |        19
+  8 | Volta Redonda         |        19
+
+-- -------------------------------------------------------------------------------------------------------------
+select * from cliente;
+
+ id |        nome        |    rg     |     cpf     |     logradouro      | bairro |   cep    |   telefone   |          email          | complemento | excluido | cidade_id | estado_id 
+----+--------------------+-----------+-------------+---------------------+--------+----------+--------------+-------------------------+-------------+----------+-----------+-----------
+  1 | Henrique Alexandre | 343535014 | 02848522879 | Rua São Judas Tadeu | Marapé | 11123456 | 13 35902733  | henrique@hotmail.com.br | 299         | f        |         2 |        26
+  2 | Guilherme          | 237122546 | 81682975550 | Rua Silvino Sala    | Atuba  | 83326713 | 32353489     | gui@gmail.com           | 32          | t        |         2 |        26
+  3 | Jorge Silva        | 332223334 | 3333333335  | Rua da Enseada      | Embare | 11222222 | 013991232323 | jorge@silva.com         | num 30      | f        |         2 |        26
+
+-- -------------------------------------------------------------------------------------------------------------
+select * from funcionario;
+
+id |          nome          |     cpf     |    rg     | data_nascimento |         email         |   telefone   |        logradouro        |     bairro      |   cep    | senha | nivel | excluido | cidade_id | estado_id 
+----+------------------------+-------------+-----------+-----------------+-----------------------+--------------+--------------------------+-----------------+----------+-------+-------+----------+-----------+-----------
+  1 | Kaique                 | 26835215291 | 103654793 | 1995-09-22      | kaique@gmail.com      | 32323232     | Rua Fernando de Noronha  | Santa Terezinha | 77808305 | 123   |     2 | f        |         2 |        26
+  2 | Thiago                 | 83995255701 | 263910623 | 1995-08-12      | thiago@gmail.com      | 32329598     | Loteamento Santo Antônio | Cruz das Armas  | 58085620 | 123   |     2 | f        |         2 |        26
+  3 | Maria das Graças       | 44433322211 | 445556667 | 1980-02-02      | mariagracas@gmail.com | 13991333333  | Rua do canal 45          | Enseada         | 11222222 | 1234  |     1 | f        |         2 |        26
+ 11 | Jose Carlos            | 44433322211 | 334442221 | 1990-02-02      | josecarlos@gmail.com  | 013991545676 | Rua da Gloria 30         | Enseada         | 11222333 | 1234  |     1 | f        |         4 |        26
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-- -------------------------------------------------------------------------------------------------------------
+select * from andamento;
+
+ id | numero | servico_id |    nome    | date_andamento |    descricao    | status | valor | funcionario_id 
+----+--------+------------+------------+----------------+-----------------+--------+-------+----------------
+ 13 |      1 |          1 | formatação | 2017-10-12     | formatar o note | 1      |    90 |              1
+
+-- -------------------------------------------------------------------------------------------------------------
+
+select * from conta;
+
+ id |       historico       | codigo | data_emissao | data_vencimento | valor | ic_pagar_receber | ic_pago | cliente_id | fornecedor_id 
+----+-----------------------+--------+--------------+-----------------+-------+------------------+---------+------------+---------------
+  1 | compra de tal produto | 123445 | 2017-08-01   | 2017-08-01      |   120 | t                | f       |            |             1
+  2 | compra do produto     | 123445 | 2017-08-01   | 2017-08-01      |   120 | t                | f       |            |             1
+  4 | compra de tal produto | 123445 | 2017-08-01   | 2017-08-01      |   120 | f                | f       |          1 |              
+
+-- -------------------------------------------------------------------------------------------------------------
+select * from dados_bancarios;
+
+ id |          nome           | banco | agencia | conta_corrente | nosso_numero |  cedente   
+----+-------------------------+-------+---------+----------------+--------------+------------
+  1 | Caixa Economica Federal | 104   | 2179    | 1              | 90000000001  | 7000000002
+
+-- -------------------------------------------------------------------------------------------------------------
+select * from empresa;
+
+ id |         nome          | nome_fantasia |      cnpj      |       logradouro        |   bairro   |   cep    |   telefone   |        email         | cidade_id | estado_id 
+----+-----------------------+---------------+----------------+-------------------------+------------+----------+--------------+----------------------+-----------+-----------
+  1 | Almsaed Estudio LTDA. | AdminLTE      | 12345678910111 | Rua das Empresas num 57 | Alphaville | 11222333 | 013991223344 | adminlte@almsaed.com |         1 |        26
+
+-- -------------------------------------------------------------------------------------------------------------
+select * from equipamento;
+
+ id |        nome         | voltagem | patrimonio |  marca  | excluido | cliente_id 
+----+---------------------+----------+------------+---------+----------+------------
+  2 | Tablet Galaxy Tab A | 200V     | 132475745  | Samsung | f        |          2
+  3 | macbook             | 220      | 453453     | apple   | f        |          1
+  1 | notebook            | 220      | 12354765   | LG      | f        |          1
+  4 | Notebook            | 110      | 1234       | Asus    | f        |          3
+
+-- -------------------------------------------------------------------------------------------------------------
+
+select * from fornecedor;
+
+ id |  nome   |       logradouro       |   cep    |      cnpj      | contato |  telefone   |         email          |     bairro      | excluido | complemento | cidade_id | estado_id 
+----+---------+------------------------+----------+----------------+---------+-------------+------------------------+-----------------+----------+-------------+-----------+-----------
+  1 | Samsung | Rua Estrada Gerânios   | 06817100 | 04659045000123 | João    | 11 28336626 | contato@sumsung.com.br | Jardim Lavorato | f        | 299         |         8 |        19
+  2 | DELL    | Rua Conselheiro Nebias | 14784270 | 58291622000104 | Marcos  | 11 27090040 | marcos@dell.com.br     | Boqueirão       | f        | 354         |         2 |        26
+
+
+-- -------------------------------------------------------------------------------------------------------------
+select * from item_venda;
+
+ id | valor_item | quantidade | produto_id | venda_id 
+----+------------+------------+------------+----------
+
+-- -------------------------------------------------------------------------------------------------------------
+select * from produto;
+
+ id |       nome        | quantidade | quantidade_min | valor_custo | valor_venda |    marca    | excluido | fornecedor_id 
+----+-------------------+------------+----------------+-------------+-------------+-------------+----------+---------------
+  1 | Fonte de Desktop  |          4 |              1 |        10.5 |        22.5 | Samsung     | f        |             1
+  2 | Fonte de Notebook |          8 |              2 |        15.3 |        25.3 | Dell gaming | f        |             2
+
+-- -------------------------------------------------------------------------------------------------------------
+select * from servico;
+
+ id |     nome      |                 diagnostico_cliente                 | diagnostico_tecnico |  observacao_entrada   | data_inicial | data_final | status | valor | equipamento_id 
+----+---------------+-----------------------------------------------------+---------------------+-----------------------+--------------+------------+--------+-------+----------------
+  1 | Formatação    | nao apresenta problemas, so quer realizar o servico | sistema corrompido  | trocar placa de video | 2017-10-10   |            |      1 |    80 |              1
+  2 | trocar a tela | tela quebrada                                       | display quebrado    | trocar tela           | 2017-11-05   |            |      1 |    95 |              2
+
+-- -------------------------------------------------------------------------------------------------------------
+select * from venda;
+
+ id | data_vencimento | data_emissao | valor | concluida | cliente_id | funcionario_id 
+----+-----------------+--------------+-------+-----------+------------+----------------
+
+-- -------------------------------------------------------------------------------------------------------------
+
+
+
+    nome
+    logradouro
+    cep
+    cnpj
+    contato
+    telefone
+    email
+    bairro
+    excluido Bool
+    complemento Text
+    cidadeId CidadeId 
+    estadoId EstadoId
+    
+Conta json
+    historico Text
+    codigo Text
+    dataEmissao Day Maybe
+    dataVencimento Day Maybe
+    valor Double
+    icPagarReceber Bool
+    icPago Bool 
+    clienteId ClienteId Maybe
+    fornecedorId FornecedorId Maybe
+    
+Produto json
+    nome Text
+    quantidade Int
+    quantidadeMin Int Maybe
+    valorCusto Double
+    valorVenda Double
+    marca Text
+    excluido Bool
+    fornecedorId FornecedorId 
+
+Equipamento json
+    nome Text
+    voltagem Text
+    patrimonio Text
+    marca Text
+    excluido Bool
+    clienteId ClienteId
+    
+Funcionario json
+    nome Text
+    cpf Text
+    rg Text
+    dataNascimento Text
+    email Text
+    telefone Text
+    logradouro Text
+    bairro Text
+    cep Text
+    senha Text
+    nivel Int
+    excluido Bool
+    cidadeId CidadeId 
+    estadoId EstadoId
+
+Servico json
+    nome Text
+    diagnosticoCliente Text
+    diagnosticoTecnico Text Maybe
+    observacaoEntrada Text
+    dataInicial Day
+    dataFinal Day Maybe
+    status Int
+    valor Double Maybe
+    equipamentoId EquipamentoId 
+    
+Andamento json
+    numero Int
+    servicoId ServicoId
+    nome Text
+    dateAndamento Day
+    descricao Text
+    status Text
+    valor Double
+    funcionarioId FuncionarioId
+
+Venda json
+    dataVencimento Day
+    dataEmissao Day
+    valor Double
+    concluida Bool
+    clienteId ClienteId
+    funcionarioId FuncionarioId
+    
+ItemVenda json
+    valorItem Double
+    quantidade Int
+    produtoId ProdutoId
+    vendaId VendaId
+
+Empresa json
+    nome Text
+    nomeFantasia Text
+    cnpj Text
+    logradouro Text
+    bairro Text
+    cep Text
+    telefone Text
+    email Text
+    cidadeId CidadeId 
+    estadoId EstadoId
+
+DadosBancarios json
+    nome Text
+    banco Text
+    agencia Text
+    contaCorrente Text
+    nossoNumero Text
+    cedente Text

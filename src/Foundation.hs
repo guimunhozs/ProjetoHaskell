@@ -168,6 +168,28 @@ instance Yesod App where
     isAuthorized (DadosBancariosIdR _) _ = return Authorized
     isAuthorized FuncionarioR _ = return Authorized
     isAuthorized (FuncionarioIdR _) _ = return Authorized
+    isAuthorized ContaR _ = return Authorized
+    isAuthorized ContasReceberR _ = return Authorized
+    isAuthorized ContasPagarR _ = return Authorized
+    isAuthorized (ContasPagarIdR _) _ = return Authorized
+    isAuthorized (ContasReceberIdR _) _ = return Authorized
+    isAuthorized (ContaIdR _) _ = return Authorized
+    isAuthorized ContasPagarNaoPagasR _ = return Authorized
+    isAuthorized ContasPagarPagasR _ = return Authorized
+    isAuthorized ContasReceberNaoPagasR _ = return Authorized
+    isAuthorized ContasReceberPagasR _ = return Authorized
+    isAuthorized AndamentoR _ = return Authorized
+    isAuthorized (AndamentoIdR _) _ = return Authorized
+    isAuthorized VendaR _ = return Authorized
+    isAuthorized (VendaIdR _) _ = return Authorized
+    isAuthorized ItemVendaR _ = return Authorized
+    isAuthorized (ItemVendaIdR _) _ = return Authorized
+    isAuthorized (ItemVendaVendaR _) _ = return Authorized
+    isAuthorized ServicoR _ = return Authorized
+    isAuthorized (ServicoIdR _) _ = return Authorized
+    isAuthorized (ServicoIdStatusR _) _= return Authorized 
+    isAuthorized (EquipamentoClienteIdR _) _ = return Authorized
+    isAuthorized (LoginFuncR) _ = return Authorized
     isAuthorized ProfileR _ = isAuthenticated
     
 

@@ -4,32 +4,34 @@ Faltando no Trabalho
 		xGET, xPUT, xPOST, xDELETE
 		xinner join de cliente ao listar cliente
 		xinner join com cidade e estado
-	Handler Equipamento Guilherme
-		Inner Join com clientes ao listar nos dois gets
+	XHandler Equipamento Guilherme
+		XInner Join com clientes ao listar nos dois gets
 	xHandler Dados Bancários GUSTAVO
 		xGET, xPUT, xPOST, xDELETE
 	x Handler Empresa GUSTAVO
 		x PUT
-	Handler Servicos GUILHERME
-		join com cliente, equipamento, andamento, funcionario
-	Handler Andamento GUILHERME
-		get, put, post, delete
-		join com funcionario
+	XHandler Servicos GUILHERME
+	X	join com cliente, equipamento andamento, funcionario
+	XHandler Andamento GUILHERME
+	X	get, put, post, delete
+	X	join com funcionario
 	Handler	Venda
-		get put post delete
+	X	get put post delete
 		join cliente funcionario itensvenda produto
 	Handler itensVenda
-		get put post delete
+	X	get put post delete
 		join com produto
-	Handler Funcionario GUSTAVO
-		get put, post, delete
+	xHandler Funcionario GUSTAVO
+		xget xput, xpost, xdelete
  X	Handler Fornecedor GUILHERME
 		join cidade estado
  X  Handler Produto GUILHERME
 		join fornecedor
 	Handler Contas GUSTAVO
-		x get x post put delete
+		xget xpost xput xelete
 		join cliente e fornecedor
+		
+	Login (select a patir da senha e o email em funcionario)
 
 	Home com notificacoes
 	controlar estoque minimo
@@ -40,11 +42,10 @@ frontend
 	formulários
 		
 		
-	Fornecedor:
-		listagem:
-		  X	listar,
-		  X	excluir,
-		  X	alterar
-		editar:
-			mostrar dados,
-			salvar
+	Fornecedor: OK
+	CLiente: OK
+	Produto: OK
+	equipamento: OK
+	funcionario ok
+	
+		

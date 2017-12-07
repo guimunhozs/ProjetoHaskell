@@ -1,0 +1,193 @@
+> nossa maquina virtual
+ 
+https://ide.c9.io/romefeller/haskalpha
+ 
+>ver dados do banco no heroku
+ 
+overview -> heroku dev -> setting -> view credentials
+ 
+============================================
+ 
+Host
+ec2-184-72-223-199.compute-1.amazonaws.com
+Database
+dd38nlpb8toste
+User
+zynbjdulkejgzc
+Port
+5432
+Password
+6d867c2771669e88b96f6da5d91427f7b848c3213a8fccc73d37ed9afebc12ae
+URI
+postgres://zynbjdulkejgzc:6d867c2771669e88b96f6da5d91427f7b848c3213a8fccc73d37ed9afebc12ae@ec2-184-72-223-199.compute-1.amazonaws.com:5432/dd38nlpb8tosteHeroku CLI
+heroku pg:psql postgresql-trapezoidal-32568 --app bdgus01
+ 
+psql -h ec2-184-72-223-199.compute-1.amazonaws.com -U zynbjdulkejgzc -d dd38nlpb8toste
+ 
+============================================
+______________________________________________
+conectar c9 no github
+ 
+> entrar na pasta
+ 
+cd entrarnapasta
+ 
+> inicializa o git
+ 
+git init // inicializa o git cria a pasta .git
+ 
+> ver status do git
+ 
+git status // mostra os untracked files que sao arquivos que nao estao na pasta .git
+ 
+> adicionar arquivos ao .git
+ 
+git add . // adcionac todos vermelhinhos
+ 
+> criar commit
+ 
+git commit -m "Uma mensagem, meu primeiro arquivo" // a mensagem é um comentario
+ 
+> conectar git
+ 
+git remote add origin "enderecodogit" // conecta ao git o endereço é http
+ 
+>inserir no git
+ 
+git push origin master // coloca usuario e senha pull recupera arquivo 
+ 
+_______________________
+ 
+>clonar git / configurar
+ 
+git clone na raiz
+ 
+git clone https://github.com/romefeller/yesodvazio
+ 
+renomeia e exclui o .git
+ 
+> criar conexao do banco de dados
+ 
+conecta o banco em projeto/config/settings.yml
+ 
+> compila o projeto
+ 
+stack build // na pasta do projeto
+ 
+>adicionar package no projeto
+-
+ projeto/templates/package.yaml e coloca o package (sem versão)
+ 
+linking = deu tudo certo
+ 
+>conectar ao banco
+ 
+conectar ao banco via prompt tudo na mesma linha -h é host - U usuario -d o banco
+ 
+psql -h ec2-184-72-223-199.compute-1.amazonaws.com -U zynbjdulkejgzc -d dd38nlpb8toste
+ 
+> ver tabelas
+ver tabelas \dt
+ 
+comandos iguais o sql
+ 
+> configurar
+ 
+>config -> routes
+ 
+apagar linha 6
+ 
+colocar a rota
+ 
+rota tipo metodo
+ 
+/cliente/inserir ClienteInsereR Post
+/cliente ClienteInsereR Post
+ 
+> padrao rest 
+consulta = get
+post = insere
+delete = deletar
+put = atualizar
+ 
+> criar banco no framework
+ config-> models
+Cliente json // para criar instancia de json ou seja, ele entender como json
+    nome Text
+    cpf Text
+    salario Double
+ 
+é criado como
+data Cliente = Cliente
+    {    
+        clienteNome :: Text,
+        clienteCpf :: Text,
+        clienteSalario :: Double
+} deriving Show
+================================
+Cria as tabelas no banco
+================================
+Cria um tipo chamado ClienteId
+================================
+Um tipo pra cada campo
+================================
+ClienteNome
+ClienteCpf
+ClienteSalario
+Para fazer Query type-safe
+===============================
+>>identificar tabela no framework
+modificar imports import.Handler.NomedaTabela
+modificar no projeto/src/Handler/
+modificar no projeto/settings/Application/
+ 
+===============================
+>criar funcao em haskell
+Handler é a monada da WEB
+metodoTipo
+postClienteInsereR :: Handler Value // retornando Json, logo é Value
+postClienteInsereR = do
+cliente <- requireJsonBody :: Handler Cliente // parseia Json para tipo cliente
+cid <- runDB $ insert Cliente // todo comando de banco de dados tem que ter runDB
+sendStatusJSON created201 (object ["resp" .= (fromSqlKey cid)]) é a mesma coisa que {"resp":1}
+ 
+> executar comando
+stack exec aulahaskell
+ 
+> terminais
+um pro yesod
+um pro psql
+um pro curl
+ 
+>pegar url
+preview -> preview running aplication -> getapp
+ 
+>curl // simula uma request na url
+mesma linha
+curl -v -X metodo endereco -d JSON
+curl -v -X Post https://framework-gustaboranski.c9users.io/cliente -d '{"nome":"Alberto", "cpf":08062302822","salario":63500}'
+ 
+> rota com parametro
+/cliente/#ClienteId/buscar BuscarR Get
+ 
+>funcao buscar
+ 
+getBuscarR :: ClienteId ->Handler Value
+getBuscarR cid = do
+cliente <- runDB $ get404 cid // faz um select e retorna 404 se nao achar || select * from Cliente wgere id = cid
+sendStatusJSON ok200 (object ["resp" .= (toJSON cliente)])
+ 
+>curl de buscar
+curl -v -X Get https://framework-gustaboranski.c9users.io/cliente/1/buscar
+ 
+> parar aplicacao 
+ctrl C
+tirar -v no curl
+ 
+> rota de apagar
+/cliente/#ClienteId/apagar ApagarR Delete
+curl -v -X Delete https://framework-gustaboranski.c9users.io/cliente/1/buscar
+ 
+>rota de update
+/cliente/#ClienteId/alterar AlterarR Put
+curl -v -X Post https://framework-gustaboranski.c9users.io/cliente/1/alterar -d '{"nome":"Alberto", "cpf":08062302822","salario":63500}'

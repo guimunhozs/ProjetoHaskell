@@ -19,17 +19,17 @@ postServicoR = do
 getServicoR :: Handler TypedContent
 getServicoR = do
     result <- runDB $ do
-        servico <- selectList [] []
+        servico <- selectList [ServicoStatus ==. 1] []
         equip   <- mapM (get . servicoEquipamentoId . entityVal) servico
         cliente <- mapM (get . equipamentoClienteId) (catMaybes equip)
         return $ zip3 servico (catMaybes equip)  (catMaybes cliente) 
     sendStatusJSON ok200 $ object ["result" .= result]
     --testar
     
-patchServicoIdStatusR :: ServicoId -> Int -> Handler Value
-patchServicoIdStatusR sid status = do 
+patchServicoIdStatusR :: ServicoId -> Handler Value
+patchServicoIdStatusR sid = do 
     _ <- runDB $ get404 sid
-    runDB $ update sid [ServicoStatus =. status]
+    runDB $ update sid [ServicoStatus =. 2]
     sendStatusJSON noContent204 (object ["resp" .= (fromSqlKey sid)])
     
 putServicoIdR :: ServicoId -> Handler Value

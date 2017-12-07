@@ -15,6 +15,12 @@ getContasPagarR = do
     contas <- (runDB $ selectList [ContaIcPagarReceber ==. True][Desc ContaDataVencimento]) :: Handler [Entity Conta]
     sendStatusJSON created201 $ object["Conta" .= contas]
 
+    -- result <- runDB $ do
+    --     conta <- selectList [ContaIcPagarReceber ==. True] []
+    --     fornecedor <- mapM ( join $ fmap get contaFornecedorId . entityVal) catMaybes conta
+    --     return $ zip conta (catMaybes fornecedor)
+    -- sendStatusJSON ok200 $ object ["result" .= result]
+
 getContasReceberR :: Handler TypedContent
 getContasReceberR = do
     contas <- (runDB $ selectList [ContaIcPagarReceber ==. False][Desc ContaDataVencimento]) :: Handler [Entity Conta]
@@ -92,4 +98,4 @@ removeMaybe (Just x) = x
 
 -}
 --faltava o historico
--- curl -X POST -v https://haskalpha-romefeller.c9users.io/conta -d '{"historico":"compra de tal produto","codigo":"123445","dataEmissao":"2017-08-01","dataVencimento":"2017-08-01","valor":120.00,"icPagarReceber":true,"icPago":false,"clienteId":null,"fornecedorId":1}'
+-- curl -X POST -v https://haskalpha-romefeller.c9users.io/conta -d '{"historico":"compra de tal produto","codigo":"123445","dataEmissao":"2017-08-01","dataVencimento":"2017-08-01","valor":120.00,"icPagarReceber":true,"icPago":false,"clienteId":null,"fornecedorId":2}'

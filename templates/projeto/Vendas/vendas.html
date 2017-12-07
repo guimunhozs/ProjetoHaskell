@@ -39,14 +39,23 @@
 .btnX{
     font-size: 20px;
     color: #dd4c3a;
+    margin-right: 10px;
+    cursor:pointer;
 }
 
 .btnE{
     font-size: 20px;
     color: #f49c12;
+    cursor:pointer;
 }
 th, td, table {
   text-align:center;
+}
+@media (max-width: 600px) 
+{
+  .box-body {
+    overflow:auto; 
+  }
 }
 </style>
 </head>
@@ -56,9 +65,9 @@ th, td, table {
   <header class="main-header">
 
     <!-- Logo -->
-    <a href="index2.html" class="logo">
+    <a href="../home.html" class="logo">
       <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg">Guilherme</span>
+      <span class="logo-lg nome"></span>
     </a>
 
     <!-- Header Navbar -->
@@ -79,8 +88,7 @@ th, td, table {
             <ul class="dropdown-menu">
               <!-- The user image in the menu -->
               <li class="newLogout">
-                <p>
-                  Guilherme
+                <p class="nome">
                 </p>
               </li>              
               <!-- Menu Footer-->
@@ -149,7 +157,7 @@ th, td, table {
             <li><a href="../Fornecedor/fornecedores.html">Listar Fornecedores</a></li>
           </ul>
         </li><!-- Fornecedores -->
-        <li class="treeview">
+        <li class="treeview funcionario">
           <a href="#"><i class="fa fa-child"></i> <span>Funcionarios</span>
             <span class="pull-right-container">
                 <i class="fa fa-angle-left pull-right"></i>
@@ -222,7 +230,7 @@ th, td, table {
                 <tr>
                   <th class="col-md-1">Código</th>
                   <th class="col-md-3">Cliente</th>
-                  <th class="col-md-1">Quantidade</th>
+                  <th class="col-md-1">Funcionário</th>
                   <th class="col-md-1">Valor total</th>
                   <th class="col-md-2">Data de Venda</th>
                   <th class="col-md-2">Data de Vencimento</th>
@@ -230,30 +238,12 @@ th, td, table {
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                  <td>1</td>
-                  <td>Murilo Joaquim Pinto</td>
-                  <td>5</td>
-                  <td>R$ 350,50</td>
-                  <td>22/12/2017</td>
-                  <td>01/01/2018</td>
-                  <td><div class="organiza"><i class="fa fa-window-close btnX"></i> <i class="fa fa-pencil-square btnE"></i></div></td>
-                </tr>
-                <tr>
-                  <td>2</td>
-                  <td>Giovanna Bárbara Barbosa</td>
-                  <td>3</td>
-                  <td>R$ 600,050</td>
-                  <td>22/01/2017</td>
-                  <td>01/02/2018</td>
-                  <td><div class="organiza"><i class="fa fa-window-close btnX"></i> <i class="fa fa-pencil-square btnE"></i></div></td>
-                </tr>
                 </tbody>
                 <tfoot>
                 <tr>
                   <th class="col-md-1">Código</th>
                   <th class="col-md-3">Cliente</th>
-                  <th class="col-md-1">Quantidade</th>
+                  <th class="col-md-1">Funcionário</th>
                   <th class="col-md-1">Valor total</th>
                   <th class="col-md-2">Data de Venda</th>
                   <th class="col-md-2">Data de Vencimento</th>
@@ -298,10 +288,19 @@ th, td, table {
 <script src="../../dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="../../dist/js/demo.js"></script>
+<!-- Vendas.js -->
+<script type="text/javascript" src="../js/Venda/vendas.js"></script>
 <!-- page script -->
 <script>
   $(function () {
     $('#example1').DataTable()
+    var funcionario = JSON.parse(localStorage.getItem("Dados_Funcionario"));
+console.log(funcionario);
+$(".nome").text(funcionario.Funcionario.nome);  
+if(parseInt(funcionario.Funcionario.nivel) == 2){
+  $(".funcionario").hide()
+}
+  
   })
 </script>
 </body>

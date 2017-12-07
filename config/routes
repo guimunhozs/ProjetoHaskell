@@ -21,14 +21,16 @@
 
 /produto                                     ProdutoR                   GET POST
 /produto/#ProdutoId                          ProdutoIdR                 DELETE GET PUT
-/produto/#ProdutoId/Quantidade/#Int          ProdutoIdQtR               PATH
+/produto/#ProdutoId/Quantidade/#Int          ProdutoIdQtR               PATCH
+
 
 /equipamento                                 EquipamentoR               GET POST
 /equipamento/#EquipamentoId                  EquipamentoIdR             DELETE GET PUT
+/equipamento/cliente/#ClienteId              EquipamentoClienteIdR      GET
 
 /servico                                     ServicoR                   GET POST
 /servico/#ServicoId                          ServicoIdR                 GET PUT
-/servico/#ServicoId/Status/#Int              ServicoIdStatusR           PATH
+/servico/status/#ServicoId                   ServicoIdStatusR           PATCH
 
 /empresa                                     EmpresaR                   GET 
 /empresa/#EmpresaId                          EmpresaIdR                 PUT
@@ -40,4 +42,34 @@
 /dadosbancarios/#DadosBancariosId            DadosBancariosIdR          PUT DELETE
 
 /funcionario                                 FuncionarioR               GET POST
-/funcionario/#FuncionarioId                  FuncionarioIdR             GET
+/funcionario/#FuncionarioId                  FuncionarioIdR             GET PUT DELETE PATCH
+
+/conta                                       ContaR                     POST
+/contasPagar                                 ContasPagarR               GET
+
+/contasReceber                               ContasReceberR             GET
+/conta/#ContaId                              ContaIdR                   PUT DELETE
+
+/contasPagar/#ContaId                        ContasPagarIdR             GET
+/contasReceber/#ContaId                      ContasReceberIdR           GET
+
+/contasPagarNaoPagas                         ContasPagarNaoPagasR       GET
+/contasPagarPagas                            ContasPagarPagasR          GET
+
+/contasReceberNaoPagas                       ContasReceberNaoPagasR     GET
+/contasReceberPagas                          ContasReceberPagasR        GET
+
+/andamento                                   AndamentoR                 GET POST
+/andamento/#AndamentoId                      AndamentoIdR               PUT DELETE GET
+/andamento/servico/#ServicoId                AndamentoServR             GET
+/andamentostatus/#AndamentoId                AndamentoIdStatusR         PATCH
+
+/venda                                       VendaR                     GET POST
+/venda/#VendaId                              VendaIdR                   GET PUT DELETE PATCH
+
+/itemvenda                                   ItemVendaR                 POST
+/itemvenda/#ItemVendaId                      ItemVendaIdR               PUT DELETE
+/itemvenda/venda/#VendaId                    ItemVendaVendaR            GET
+
+
+/login/funcionario                           LoginFuncR                 POST

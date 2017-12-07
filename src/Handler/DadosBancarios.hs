@@ -13,7 +13,7 @@ import Database.Persist.Postgresql
 --curl -v -X Get https://haskalpha-romefeller.c9users.io/dadosbancarios
 getDadosBancariosR :: Handler TypedContent
 getDadosBancariosR = do
-    dadosbancarios <- (runDB $ selectList [] [Asc DadosBancariosNome]) :: Handler [Entity DadosBancarios]
+    dadosbancarios <- (runDB $ selectList [] [Asc DadosBancariosId]) :: Handler [Entity DadosBancarios]
     sendStatusJSON created201 $ object["DadosBancarios" .= dadosbancarios]
 
 postDadosBancariosR :: Handler Value

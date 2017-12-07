@@ -4,4 +4,40 @@ psql -h ec2-184-72-223-199.compute-1.amazonaws.com -U zynbjdulkejgzc -d dd38nlpb
 6d867c2771669e88b96f6da5d91427f7b848c3213a8fccc73d37ed9afebc12ae
 
 
-- subsite
+- drop schema public cascade;
+- create schema public;
+
+
+
+===============ESTADOS==================
+
+INSERT INTO Estado (nome, sigla) VALUES ('Acre', 'AC'),('Alagoas', 'AL'),('Amazonas', 'AM'),('Amapá', 'AP'),('Bahia', 'BA'),('Ceara', 'CE'),('Distrito Federal', 'DF'),('Espirito Santo', 'ES'),('Goiás', 'GO'),('Maranhão', 'MA'),('Minas Gerais', 'MG'),('Mato Grosso do Sul', 'MS'),('Mato Grosso', 'MT'),('Pará', 'PA'),('Paraíba', 'PB'),('Pernambuco', 'PE'),('Piauí', 'PI'),('Paraná', 'PR'),('Rio de Janeiro', 'RJ'),('Rio Grande do Norte', 'RN'),('Rondônia', 'RO'),('Roraima', 'RR'),('Rio Grande do Sul', 'RS'),('Santa Catarina', 'SC'),('Sergipe', 'SE'),('São Paulo', 'SP'),('Tocantins', 'TO');
+
+
+
+INSERT INTO Cidade (nome, estadoId) values ('Santos', 26), ('São Vicente', 26), ('Guaruja', 26), ('PraiaGrande', 26), ('Santo André', 26);
+INSERT INTO Cidade (nome, estadoId) values ('Rio de Janeiro', 19), ('Angra dos Reis', 19), ('São Sebastião do Alto', 19), ('Macuco', 19), ('Volta Redonda', 19);
+
+curl -X POST -v https://haskalpha-romefeller.c9users.io/cidade -d '{"nome":"São Paulo", "estadoId": 26}'
+curl -X POST -v https://haskalpha-romefeller.c9users.io/cidade -d '{"nome":"Santos", "estadoId": 26}'
+curl -X POST -v https://haskalpha-romefeller.c9users.io/cidade -d '{"nome":"São Vicente", "estadoId": 26}'
+curl -X POST -v https://haskalpha-romefeller.c9users.io/cidade -d '{"nome":"Guaruja", "estadoId": 26}'
+
+curl -X POST -v https://haskalpha-romefeller.c9users.io/cidade -d '{"nome":"Rio de Janeiro", "estadoId": 19}'
+curl -X POST -v https://haskalpha-romefeller.c9users.io/cidade -d '{"nome":"Angra dos Reis", "estadoId": 19}'
+curl -X POST -v https://haskalpha-romefeller.c9users.io/cidade -d '{"nome":"São Sebastião do Alto", "estadoId": 19}'
+curl -X POST -v https://haskalpha-romefeller.c9users.io/cidade -d '{"nome":"Volta Redonda", "estadoId": 19}'
+
+
+
+--curl -X POST -v https://haskalpha-romefeller.c9users.io/fornecedor -d '{"nome":"Samsung", "logradouro":"Rua Estrada Gerânios", "cep":"06817100", "cnpj":"04659045000123", "contato":"João","telefone":"11 28336626", "email":"contato@sumsung.com.br", "bairro":"Jardim Lavorato", "excluido":false, "complemento":"299", "cidadeId": 8, "estadoId":19}'
+--curl -X POST -v https://haskalpha-romefeller.c9users.io/fornecedor -d '{"nome":"DELL", "logradouro":"Rua Conselheiro Nebias", "cep":"14784270", "cnpj":"58291622000104", "contato":"Marcos","telefone":"11 27090040", "email":"marcos@dell.com.br", "bairro":"Boqueirão", "excluido":false, "complemento":"354", "cidadeId": 2, "estadoId":26}'
+
+-- curl -X POST -v https://haskalpha-romefeller.c9users.io/cliente -d '{"nome" : "Henrique Alexandre" , "rg" :  "343535014" , "cpf" : "02848522879" , "logradouro" :"Rua São Judas Tadeu, 174" , "bairro": "Marapé" , "cep" : "11123456" , "telefone" :"13 35902733" , "email" : "henrique@hotmail.com.br" , "excluido" : false, "cidadeId" :2, "estadoId" : 26 , "complemento":"299" }'
+-- curl -X PUT -v https://haskalpha-romefeller.c9users.io/cliente -d {"nome":"Henrique Alexandre","logradouro":"Rua São Judas Tadeu, 174","cep":"11123456","cpf":"02848522879","rg":"343535014","telefone":"13 35902733","email":"henrique@hotmail.com.br","bairro":"Marapé","excluido": false,"complemento":"299","cidadeId":2,"estadoId":26}
+
+
+-- curl -X POST -v https://haskalpha-romefeller.c9users.io/produto -d '{"nome":"Fonte de Desktop","quantidade":5, "quantidadeMin":1, "valorCusto": 10.50, "valorVenda":22.50,"marca": "Corser","excluido":false, "fornecedorId": 2}'
+-- curl -X PUT -v https://haskalpha-romefeller.c9users.io/produto/1 -d'{"nome":"Fonte de Desktop","quantidade":5, "quantidadeMin":1, "valorCusto": 10.50, "valorVenda":22.50,"marca": "Samsung","excluido":false, "fornecedorId": 1}'
+
+{"nome":"Fonte de Desktop","marca":"Samsung","quantidadeMin":"1","quantidade":"5","valorVenda":"22.50","valorCusto":"10.50","excluido": false,"fornecedorId":1}

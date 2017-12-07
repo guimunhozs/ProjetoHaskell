@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>AdminLTE 2 | Advanced form elements</title>
+  <title>AdminLTE 2 | Data Tables</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.7 -->
@@ -12,24 +12,13 @@
   <link rel="stylesheet" href="../../bower_components/font-awesome/css/font-awesome.min.css">
   <!-- Ionicons -->
   <link rel="stylesheet" href="../../bower_components/Ionicons/css/ionicons.min.css">
-  <!-- daterange picker -->
-  <link rel="stylesheet" href="../../bower_components/bootstrap-daterangepicker/daterangepicker.css">
-  <!-- bootstrap datepicker -->
-  <link rel="stylesheet" href="../../bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">
-  <!-- iCheck for checkboxes and radio inputs -->
-  <link rel="stylesheet" href="../../plugins/iCheck/all.css">
-  <!-- Bootstrap Color Picker -->
-  <link rel="stylesheet" href="../../bower_components/bootstrap-colorpicker/dist/css/bootstrap-colorpicker.min.css">
-  <!-- Bootstrap time Picker -->
-  <link rel="stylesheet" href="../../plugins/timepicker/bootstrap-timepicker.min.css">
-  <!-- Select2 -->
-  <link rel="stylesheet" href="../../bower_components/select2/dist/css/select2.min.css">
+  <!-- DataTables -->
+  <link rel="stylesheet" href="../../bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="../../dist/css/AdminLTE.min.css">
   <!-- AdminLTE Skins. Choose a skin from the css/skins
        folder instead of downloading all of them to reduce the load. -->
   <link rel="stylesheet" href="../../dist/css/skins/_all-skins.min.css">
-
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -46,15 +35,37 @@
     padding: 10px;
     text-align: center;
 }
+
+.btnX{
+    font-size: 20px;
+    color: #dd4c3a;
+    margin-right: 10px;
+    cursor:pointer;
+}
+
+.btnE{
+    font-size: 20px;
+    color: #f49c12;
+    cursor:pointer;
+}
+th, td, table {
+  text-align:center;
+}
+@media (max-width: 600px) 
+{
+  .box-body {
+    overflow:auto; 
+  }
+}
 </style>
 </head>
-<body class="skin-blue sidebar-mini sidebar-collapse">
+<body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
 
-  <header class="main-header">
+    <header class="main-header">
 
     <!-- Logo -->
-    <a href="index2.html" class="logo">
+    <a href="../home.html" class="logo">
       <!-- logo for regular state and mobile devices -->
       <span class="logo-lg nome"></span>
     </a>
@@ -130,7 +141,7 @@
                 <i class="fa fa-angle-left pull-right"></i>
               </span>
           </a>
-          <ul class="treeview-menu">
+          <ul class="treeview-menu active menu-open">
             <li><a href="../Estoque/adicionarProduto.html">Adicionar Produto</a></li>
             <li><a href="../Estoque/produtos.html">Listar Produto</a></li>
           </ul>
@@ -194,7 +205,7 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Editar Equipamento
+        Estoque abaixo da quantidade
         <!-- <small>advanced tables</small> -->
       </h1>
       <!-- <ol class="breadcrumb">
@@ -205,101 +216,71 @@
     </section>
 
     <!-- Main content -->
-     <section class="content">
-      <div class="box box-info">
-        <div class="box-header with-border">
-          <!--<h3 class="box-title">Select2</h3>-->
-        <!-- /.box-header -->
-        <div class="box-body">
-          <div class="modal fade" id="success" role="dialog">
-            <div class="modal-dialog">
-            <!-- Modal content-->
-            <div class="modal-content">
-                <div class="modal-header" style="background: #3c8dbc;color: #ffffff;">
-                  <button type="button" class="close" data-dismiss="modal">&times;</button>
-                  <h4 class="modal-title">Equipamento</h4>
-                </div>
-                <div class="modal-body">
-                  <p>Dados salvos com sucesso!</p>
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
-                </div>
-              </div>
+    <section class="content">
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="box">
+            <!-- <div class="box-header">
+              <h3 class="box-title">Data Table With Full Features</h3>
+            </div> -->
+            <!-- /.box-header -->
+            <div class="box-body">
+              <table id="example1" class="table table-bordered table-striped">
+                <thead>
+                <tr>
+                  <th class="col-md-1">Código</th>
+                  <th class="col-md-3">Nome</th>
+                  <th class="col-md-1">Quantidade</th>
+                  <th class="col-md-1">Preço de compra</th>
+                  <th class="col-md-1">Preço de venda</th>
+                  <th>Marca</th>
+                  <th>Fornecedor</th>
+                  <th class="col-md-1">Ações</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr id="teste">
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                </tr>
+                <!--<tr>-->
+                <!--  <td>2</td>-->
+                <!--  <td>Fonte 600w</td>-->
+                <!--  <td>5</td>-->
+                <!--  <td>R$ 220,00</td>-->
+                <!--  <td>R$ 350,00</td>-->
+                <!--  <td>Corsair</td>-->
+                <!--  <td>Tera Byte</td>-->
+                <!--  <td><div class="organiza"><i class="fa fa-window-close btnX"></i> <i class="fa fa-pencil-square btnE"></i></div></td>-->
+                <!--</tr>-->
+                </tbody>
+                <tfoot>
+                <tr>
+                  <th>Código</th>
+                  <th>Nome</th>
+                  <th>Quantidade</th>
+                  <th>Preço de compra</th>
+                  <th>Preço de venda</th>
+                  <th>Marca</th>
+                  <th>Fornecedor</th>
+                  <th>Ações</th>
+                </tr>
+                </tfoot>
+              </table>
             </div>
+            <!-- /.box-body -->
           </div>
-          
-          <div class="modal fade" id="error" role="dialog">
-            <div class="modal-dialog">
-            <!-- Modal content-->
-            <div class="modal-content">
-                <div class="modal-header" style="background: #3c8dbc;color: #ffffff;">
-                  <button type="button" class="close" data-dismiss="modal">&times;</button>
-                  <h4 class="modal-title">Equipamento</h4>
-                </div>
-                <div class="modal-body">
-                  <p>Erro ao salvar os dados!</p>
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
-                </div>
-              </div>
-            </div>
-          </div>
-          <form role="form" data-toggle="validator">
-          <div class="row">
-            <div class="col-md-12">
-              <div class="form-group col-sm-2">
-                <label class="control-label">Código:</label>
-                <input type="text" class="form-control" id="cd" value="" disabled>
-              </div>
-              
-              <div class="form-group col-sm-5">
-                <label>Cliente:</label>
-                <select id="cliente" class="form-control select2 select2-hidden-accessible" style="width: 100%;" tabindex="-1" aria-hidden="true" required>
-                  <option value=0 selected="selected" selected >Selecione um cliente</option>
-                </select>
-              </div>
-              
-              <div class="form-group col-sm-5">
-                <label class="control-label">Nome:</label>
-                <input type="text" class="form-control" id="nome" placeholder="Nome do equipamento" required>
-              </div>
-              
-              <!-- /.form-group -->
-              <div class="form-group col-sm-3">
-                <label>Marca:</label>
-                <input type="text" class="form-control" id="marca" placeholder="Marca do equipamento" required>
-              </div>
-              <!-- /.form-group -->
-              
-              <div class="form-group col-sm-4">
-                <label>Código de patrimônio:</label>
-                <input type="text" class="form-control" id="patrimonio" placeholder="Código de patrimônio:" required>
-              </div>
-              
-              <!-- /.form-group -->
-              
-              <div class="form-group col-sm-3">
-                <label>Tensão:</label>
-                <div class="input-group">
-                  <input type="number" id="tensao" class="form-control" required>
-                  <span class="input-group-addon">Volts</span>
-                </div>
-              </div>
-              
-              <!-- /.form-group -->
-              <div class="form-group col-sm-2 text-right" style="margin-top: 25px">
-                <input type="button" class="btn btn-success" id="salvar" value="Salvar">
-              </div>
-              <!-- /.form-group -->
-            </div>
-            <!-- /.col -->
-            
+          <!-- /.box -->
         </div>
-        <!-- /.box-body -->
-       </form>
+        <!-- /.col -->
       </div>
+      <!-- /.row -->
     </section>
     <!-- /.content -->
   </div>
@@ -316,49 +297,28 @@
 
 <!-- jQuery 3 -->
 <script src="../../bower_components/jquery/dist/jquery.min.js"></script>
-<script src="../js/Equipamento/editarEquipamento.js"></script>
 <!-- Bootstrap 3.3.7 -->
 <script src="../../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-<!-- Select2 -->
-<script src="../../bower_components/select2/dist/js/select2.full.min.js"></script>
-<!-- InputMask -->
-<script src="../../plugins/input-mask/jquery.inputmask.js"></script>
-<script src="../../plugins/input-mask/jquery.inputmask.date.extensions.js"></script>
-<script src="../../plugins/input-mask/jquery.inputmask.extensions.js"></script>
-<!-- date-range-picker -->
-<script src="../../bower_components/moment/min/moment.min.js"></script>
-<script src="../../bower_components/bootstrap-daterangepicker/daterangepicker.js"></script>
-<!-- bootstrap datepicker -->
-<script src="../../bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
-<!-- bootstrap color picker -->
-<script src="../../bower_components/bootstrap-colorpicker/dist/js/bootstrap-colorpicker.min.js"></script>
-<!-- bootstrap time picker -->
-<script src="../../plugins/timepicker/bootstrap-timepicker.min.js"></script>
+<!-- DataTables -->
+<script src="../../bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
+<script src="../../bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
 <!-- SlimScroll -->
 <script src="../../bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
-<!-- iCheck 1.0.1 -->
-<script src="../../plugins/iCheck/icheck.min.js"></script>
 <!-- FastClick -->
 <script src="../../bower_components/fastclick/lib/fastclick.js"></script>
 <!-- AdminLTE App -->
 <script src="../../dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="../../dist/js/demo.js"></script>
-<!-- Page script -->
-<script>
-  $(function () {
-    //Initialize Select2 Elements
-    $('.select2').select2({
-      tags: true
-    })
-      
-var funcionario = JSON.parse(localStorage.getItem("Dados_Funcionario"));
+<script type="text/javascript" src="../js/Produto/produtosMin.js"></script>
+<!-- page script -->
+</body>
+</html>
+<script type="text/javascript">
+  var funcionario = JSON.parse(localStorage.getItem("Dados_Funcionario"));
 console.log(funcionario);
 $(".nome").text(funcionario.Funcionario.nome);  
 if(parseInt(funcionario.Funcionario.nivel) == 2){
   $(".funcionario").hide()
 }
-  })
 </script>
-</body>
-</html>

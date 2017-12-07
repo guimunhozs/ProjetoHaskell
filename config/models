@@ -24,6 +24,7 @@ Cliente json
     cep Text
     telefone Text
     email Text
+    complemento Text
     excluido Bool
     cidadeId CidadeId 
     estadoId EstadoId

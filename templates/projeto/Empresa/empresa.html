@@ -60,9 +60,9 @@
   <header class="main-header">
 
     <!-- Logo -->
-    <a href="index2.html" class="logo">
+    <a href="../home.html" class="logo">
       <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg">Guilherme</span>
+      <span class="logo-lg nome"></span>
     </a>
 
     <!-- Header Navbar -->
@@ -83,8 +83,7 @@
             <ul class="dropdown-menu">
               <!-- The user image in the menu -->
               <li class="newLogout">
-                <p>
-                  Guilherme
+                <p class="nome">
                 </p>
               </li>              
               <!-- Menu Footer-->
@@ -153,7 +152,7 @@
             <li><a href="../Fornecedor/fornecedores.html">Listar Fornecedores</a></li>
           </ul>
         </li><!-- Fornecedores -->
-        <li class="treeview">
+        <li class="treeview funcionario">
           <a href="#"><i class="fa fa-child"></i> <span>Funcionarios</span>
             <span class="pull-right-container">
                 <i class="fa fa-angle-left pull-right"></i>
@@ -312,34 +311,36 @@
             </div>
             <!-- /.col -->
             <!-- TODO falta criar uma tabela q adiciona linha e quando apertar em salvar ele conta qunatas linhas tem e se tiver diferente adiciona no banco-->
-          
-            <table id="example1" class="table table-striped" style="margin-top:30px">
-                <tbody>
-                <tr>
-                  <th>#</th>
-                  <th>Banco</th>
-                  <th>Código</th>
-                  <th>Agencia</th>
-                  <th>Conta Corrente</th>
-                  <th>Nosso Numero</th>
-                  <th>Cedente</th>
-                  <th></th>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td><input type="text" class="form-control" id="nomeBanco" placeholder="Banco" ></td>
-                  <td><input type="text" class="form-control" id="codigoBanco" placeholder="Codigo" ></td>
-                  <td><input type="text" class="form-control" id="agencia" placeholder="Agencia" ></td>
-                  <td><input type="text" class="form-control" id="contaCorrente" placeholder="Conta Corrente" ></td>
-                  <td><input type="text" class="form-control" id="nossoNumero" placeholder="Nosso Numero" ></td>
-                  <td><input type="text" class="form-control" id="cedente" placeholder="Cedente" ></td>
-                  <td align="center"><i class="fa fa-plus plus" id="adicionar"></i></td>
-                </tr>
-                <tr id="teste">
-                </tr>
-                <tr>
-                </tr>
-              </tbody></table>
+            <div class="box-body table-responsive">
+              <table id="example1" class="table table-striped "  style="margin-top:30px">
+                  <tbody>
+                  <tr>
+                    <th>#</th>
+                    <th>Banco</th>
+                    <th>Código</th>
+                    <th>Agencia</th>
+                    <th>Conta Corrente</th>
+                    <th>Nosso Numero</th>
+                    <th>Cedente</th>
+                    <th></th>
+                  </tr>
+                  <tr>
+                    <td></td>
+                    <td><input type="text" class="form-control" id="nomeBanco" placeholder="Banco" ></td>
+                    <td><input type="text" class="form-control" id="codigoBanco" placeholder="Codigo" ></td>
+                    <td><input type="text" class="form-control" id="agencia" placeholder="Agencia" ></td>
+                    <td><input type="text" class="form-control" id="contaCorrente" placeholder="Conta Corrente" ></td>
+                    <td><input type="text" class="form-control" id="nossoNumero" placeholder="Nosso Numero" ></td>
+                    <td><input type="text" class="form-control" id="cedente" placeholder="Cedente" ></td>
+                    <td align="center"><i class="fa fa-plus plus" id="adicionar"></i></td>
+                  </tr>
+                  <tr id="teste">
+                  </tr>
+                  <tr>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
         <!-- /.box-body -->
@@ -399,6 +400,14 @@
   $(function () {
     //Initialize Select2 Elements
     $('.select2').select2()
+    
+    var funcionario = JSON.parse(localStorage.getItem("Dados_Funcionario"));
+console.log(funcionario);
+$(".nome").text(funcionario.Funcionario.nome);  
+if(parseInt(funcionario.Funcionario.nivel) == 2){
+  $(".funcionario").hide()
+}
+  
   });
 </script>
 

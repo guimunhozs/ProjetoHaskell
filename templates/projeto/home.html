@@ -37,6 +37,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
     padding: 10px;
     text-align: center;
 }
+
+a {
+  color: #333;
+  text-decoration :none;
+}
 </style>
 </head>
 
@@ -47,9 +52,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <header class="main-header">
 
     <!-- Logo -->
-    <a href="index2.html" class="logo">
+    <a href="#" class="logo">
       <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg">Guilherme</span>
+      <span class="logo-lg nome"></span>
     </a>
 
     <!-- Header Navbar -->
@@ -70,8 +75,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <ul class="dropdown-menu">
               <!-- The user image in the menu -->
               <li class="newLogout">
-                <p>
-                  Guilherme
+                <p class="nome">
                 </p>
               </li>              
               <!-- Menu Footer-->
@@ -140,7 +144,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <li><a href="../projeto/Fornecedor/fornecedores.html">Listar Fornecedores</a></li>
           </ul>
         </li><!-- Fornecedores -->
-        <li class="treeview">
+        <li class="treeview funcionario">
           <a href="#"><i class="fa fa-child"></i> <span>Funcionarios</span>
             <span class="pull-right-container">
                 <i class="fa fa-angle-left pull-right"></i>
@@ -187,13 +191,76 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
-      <h1>Home</h1>
+      <h1>Dashboard</h1>
     </section>
 
     <!-- Main content -->
     <section class="content container-fluid">
-
-     <small>Bem vindo ao sistema Funcionario</small>
+      
+      <div class="row">
+        
+        <div class="col-md-6 col-sm-6 col-xs-12">
+          <a href="../projeto/Servico/servicosNaoFinalizados.html">
+            <div class="info-box">
+              <span class="info-box-icon bg-blue" id="servicoIcon"><i class="fa fa-wrench"></i></span>
+  
+              <div class="info-box-content">
+                <span class="info-box-text" id="txtServicos">Serviços não finalizados</span>
+                <span class="info-box-number" id="qtServicos"></span>
+              </div>
+              <!-- /.info-box-content -->
+            </div>
+          </a>
+          <!-- /.info-box -->
+        </div>
+        
+        <div class="col-md-6 col-sm-6 col-xs-12">
+          <a href="../projeto/Estoque/produtosMin.html">
+            <div class="info-box">
+              <span class="info-box-icon bg-grey" id="produtosIcon"><i class="fa fa-cubes"></i></span>
+  
+              <div class="info-box-content">
+                <span class="info-box-text" id="txQtdeMin">Produtos abaixo da Quantidade</span>
+                <span class="info-box-number" id="qtProdutosMin"></span>
+              </div>
+              <!-- /.info-box-content -->
+            </div>
+          <!-- /.info-box -->
+          </a>
+        </div>
+        
+        <div class="col-md-6 col-sm-6 col-xs-12">
+          <a href="../projeto/Conta/contasReceberVencidas.html">
+            <div class="info-box">
+              <span class="info-box-icon bg-grey" id="receberIcon"><i class="fa fa-usd"></i></span>
+  
+              <div class="info-box-content">
+                <span class="info-box-text">Contas a Receber Vencidas</span>
+                <span class="info-box-number" id="qtContasReceber"></span>
+              </div>
+              <!-- /.info-box-content -->
+            </div>
+          </a>
+          <!-- /.info-box -->
+        </div>
+        
+        <div class="col-md-6 col-sm-6 col-xs-12">
+          <a href="../projeto/Conta/contasPagarVencidas.html">
+            <div class="info-box">
+              <span class="info-box-icon bg-grey" id="pagarIcon"><i class="fa fa-usd"></i></span>
+  
+              <div class="info-box-content">
+                <span class="info-box-text" id="txtContasPagar">Contas a Pagar Vencidas</span>
+                <span class="info-box-number" id="qtContasPagar"></span>
+              </div>
+              <!-- /.info-box-content -->
+            </div>
+          </a>
+          <!-- /.info-box -->
+        </div>
+        
+      </div>
+     
 
     </section>
     <!-- /.content -->
@@ -221,9 +288,22 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 <!-- AdminLTE App -->
 <script src="../dist/js/adminlte.min.js"></script>
-
+<script src="../bower_components/chart.js/Chart.js"></script>
 <!-- Optionally, you can add Slimscroll and FastClick plugins.
      Both of these plugins are recommended to enhance the
      user experience. -->
+<script src="js/home.js"></script>
+<script src="js/dataAtual.js"></script>
 </body>
 </html>
+
+<script type="text/javascript">
+  
+var funcionario = JSON.parse(localStorage.getItem("Dados_Funcionario"));
+console.log(funcionario);
+$(".nome").text(funcionario.Funcionario.nome);  
+if(parseInt(funcionario.Funcionario.nivel) == 2){
+  $(".funcionario").hide()
+}
+  
+</script>

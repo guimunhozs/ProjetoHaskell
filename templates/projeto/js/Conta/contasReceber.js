@@ -1,27 +1,25 @@
 $(document).ready(function() {
     var table = $('#example1').DataTable();
     
-    var promisse1 = $.ajax("https://haskalpha-romefeller.c9users.io/fornecedor").promise();
-    var promisse2 = $.ajax("https://haskalpha-romefeller.c9users.io/contasPagar").promise();
+    var promisse1 = $.ajax("https://haskalpha-romefeller.c9users.io/cliente").promise();
+    var promisse2 = $.ajax("https://haskalpha-romefeller.c9users.io/contasReceber").promise();
     
     Promise.all([promisse1,promisse2]).then(function(arr){
-        var fornecedores = arr[0].result
-        fornecedores = fornecedores.map(function(fornecedor){return fornecedor[0]});
-        console.log("fornecedores map ", fornecedores);
-        var contasPagar = arr[1].Conta;
-        contasPagar.forEach(function(Element){
-        console.log("fornecedor id ", Element.fornecedorId);
-            Element.fornecedor = fornecedores.filter(function(fornecedor){
-                return fornecedor.id == Element.fornecedorId
-            })[0];
+        console.log("array cliente" , arr[0]);
+        console.log("array contas", arr[1]);
+        var clientes = arr[0].Cliente;
+        var contasReceber = arr[1].Conta;
+        contasReceber.forEach(function(Element){
+            Element.cliente = clientes.filter(function(cliente){
+                return cliente.id == Element.clienteId;
+        })[0]; //o [0] se faz necessário pois o filter retorna um array
             
-            console.log(Element.fornecedor);
             
             table.row.add([
                 Element.id,    
                 Element.codigo,
                 Element.valor.toFixed(2),
-                Element.fornecedor.nome,
+                Element.cliente.nome,
                 Element.dataVencimento,
                 "<div class='organiza'><i id='e"+Element.id +"' class='fa fa-window-close btnX'></i><i id='a"+Element.id+"' class='fa fa-pencil-square btnE'></i></div>"
             ]).draw(false).nodes().to$().attr("id","eq"+Element.id);
@@ -33,7 +31,7 @@ $(document).ready(function() {
         var id = this.id;
         id = id.split("a");
         localStorage.setItem('contaId', id[1]);
-        localStorage.setItem('tipoConta', "pagar");
+        localStorage.setItem('tipoConta', "receber");
         window.location="../Conta/editarConta.html"; 
     });
     

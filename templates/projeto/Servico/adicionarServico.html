@@ -54,9 +54,9 @@
   <header class="main-header">
 
     <!-- Logo -->
-    <a href="index2.html" class="logo">
+    <a href="../home.html" class="logo">
       <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg">Guilherme</span>
+      <span class="logo-lg nome"></span>
     </a>
 
     <!-- Header Navbar -->
@@ -77,8 +77,7 @@
             <ul class="dropdown-menu">
               <!-- The user image in the menu -->
               <li class="newLogout">
-                <p>
-                  Guilherme
+                <p class="nome">
                 </p>
               </li>              
               <!-- Menu Footer-->
@@ -147,7 +146,7 @@
             <li><a href="../Fornecedor/fornecedores.html">Listar Fornecedores</a></li>
           </ul>
         </li><!-- Fornecedores -->
-        <li class="treeview">
+        <li class="treeview funcionario">
           <a href="#"><i class="fa fa-child"></i> <span>Funcionarios</span>
             <span class="pull-right-container">
                 <i class="fa fa-angle-left pull-right"></i>
@@ -213,80 +212,93 @@
           <!--<h3 class="box-title">Select2</h3>-->
         <!-- /.box-header -->
         <div class="box-body">
+          
+          <div class="modal fade" id="success" role="dialog">
+            <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header" style="background: #3c8dbc;color: #ffffff;">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  <h4 class="modal-title">Funcionario</h4>
+                </div>
+                <div class="modal-body">
+                  <p>Dados salvos com sucesso!</p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" id="imprimir" class="btn btn-default" data-dismiss="modal">Imprimir Recibo</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="modal fade" id="error" role="dialog">
+            <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header" style="background: #3c8dbc;color: #ffffff;">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  <h4 class="modal-title">Funcionario</h4>
+                </div>
+                <div class="modal-body">
+                  <p>Erro ao salvar os dados!</p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          
           <form role="form" data-toggle="validator">
           <div class="row">
             <div class="col-md-12">
               <div class="form-group col-sm-6">
                 <label>Cliente:</label>
-                <select class="form-control select2 select2-hidden-accessible" style="width: 100%;" tabindex="-1" aria-hidden="true" required>
-                  <option selected="selected" disabled selected >Selecione um cliente</option>
-                  <option>Alaska</option>
-                  <option>California</option>
-                  <option>Delaware</option>
-                  <option>Tennessee</option>
-                  <option>Texas</option>
-                  <option>Washington</option>
+                <select id="cliente" class="form-control select2 select2-hidden-accessible" style="width: 100%;" tabindex="-1" aria-hidden="true" required>
+                  <option value="0" selected="selected" selected >Selecione um cliente</option>
                 </select>
               </div>
               <div class="form-group col-sm-6">
                 <label>Equipamento:</label>
-                <select class="form-control select2 select2-hidden-accessible" style="width: 100%;" tabindex="-1" aria-hidden="true" required>
-                  <option selected="selected" disabled selected >Selecione um equipamento</option>
-                  <option>Alaska</option>
-                  <option>California</option>
-                  <option>Delaware</option>
-                  <option>Tennessee</option>
-                  <option>Texas</option>
-                  <option>Washington</option>
+                <select id="equipamento" class="form-control select2 select2-hidden-accessible" style="width: 100%;" tabindex="-1" aria-hidden="true" required>
+                  <option  value="0" selected="selected" selected >Selecione um equipamento</option>
                 </select>
               </div>
-              <div class="form-group col-sm-4">
+              <div class="form-group col-sm-3">
                 <label>Serviço:</label>
-                <input type="text" class="form-control" id="servico" placeholder="Nome do Serviço" required>
+                <input id="nome" type="text" class="form-control" id="servico" placeholder="Nome do Serviço" required>
               </div>
-              <div class="form-group col-sm-4">
-                <label>Status:</label>
-                <select class="form-control select2 select2-hidden-accessible" style="width: 100%;" tabindex="-1" aria-hidden="true" required>
-                  <option selected="selected" disabled selected >Selecione um status</option>
-                  <option>Alaska</option>
-                  <option>California</option>
-                  <option>Delaware</option>
-                  <option>Tennessee</option>
-                  <option>Texas</option>
-                  <option>Washington</option>
-                </select>
-              </div>
-              <div class="form-group col-sm-4">
+              <div class="form-group col-sm-3">
                 <label>Valor do serviço:</label>
                 <div class="input-group">
                   <span class="input-group-addon">$</span>
-                  <input type="text" class="form-control" required>
+                  <input id="valor" type="text" class="form-control" placeholder="Valor do Serviço" required>
                 </div>
               </div>
-              <div class="form-group col-sm-6">
+              <div class="form-group col-sm-3">
                 <label class="control-label">Data da Entrada:</label>
-                <input type="date" class="form-control" id="dataE" required>
+                <input id="dataEntrada" type="date" class="form-control" id="dataE" required>
               </div>
-              <div class="form-group col-sm-6">
+              <div class="form-group col-sm-3">
                 <label class="control-label">Data da Saida:</label>
-                <input type="date" class="form-control" id="dataS" required>
+                <input id="dataSaida" type="date" class="form-control" id="dataS" required>
               </div>
               <div class="form-group col-sm-4">
                   <label>Descrição de Entrada do produto</label>
-                  <textarea class="form-control" rows="3" placeholder="Descrição de Entrada do produto"></textarea>
+                  <textarea id="descricaoEntrada" class="form-control" rows="3" placeholder="Descrição de Entrada do produto"></textarea>
               </div>
               <div class="form-group col-sm-4">
                   <label>Descrição do Cliente</label>
-                  <textarea class="form-control" rows="3" placeholder="Descrição do Cliente"></textarea>
+                  <textarea id="descricaoCliente" class="form-control" rows="3" placeholder="Descrição do Cliente"></textarea>
               </div>
               <div class="form-group col-sm-4">
                   <label>Descrição do Tecnico</label>
-                  <textarea class="form-control" rows="3" placeholder="Descrição do Tecnico"></textarea>
+                  <textarea id="descricaoTecnico" class="form-control" rows="3" placeholder="Descrição do Tecnico"></textarea>
               </div>
               <!-- /.form-group -->
               
               <div class="form-group col-sm-12 text-right" style="margin-top: 25px">
-                <input type="submit" class="btn btn-success" value="Salvar">
+                <input id="salvar" type="button" class="btn btn-success" value="Salvar">
               </div>
               <!-- /.form-group -->
             </div>
@@ -312,6 +324,8 @@
 
 <!-- jQuery 3 -->
 <script src="../../bower_components/jquery/dist/jquery.min.js"></script>
+<script src="../js/Servico/adicionarServico.js"></script>
+
 <!-- Bootstrap 3.3.7 -->
 <script src="../../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 <!-- Select2 -->
@@ -344,6 +358,13 @@
   $(function () {
     //Initialize Select2 Elements
     $('.select2').select2()
+    var funcionario = JSON.parse(localStorage.getItem("Dados_Funcionario"));
+console.log(funcionario);
+$(".nome").text(funcionario.Funcionario.nome);  
+if(parseInt(funcionario.Funcionario.nivel) == 2){
+  $(".funcionario").hide()
+}
+  
   })
 </script>
 </body>

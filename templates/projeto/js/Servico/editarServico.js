@@ -1,9 +1,19 @@
 $(document).ready(function() {
     var id = localStorage.getItem("servicoId");
     
+    var vlInicial = 0.0;
+    
     //função q colocar os valores nos campos
     function valueInput(value,id) {
         $("#"+id).val(value)
+    }
+    
+    function getDataFinal(){
+        if($("#dataT").val() == ""){
+          return null;
+        }else{
+          return $("#dataT").val();
+        }
     }
     
     $.ajax({
@@ -25,25 +35,40 @@ $(document).ready(function() {
         valueInput(serv["Servico"]["diagnosticoCliente"],"descCliente");
         valueInput(serv["Servico"]["diagnosticoTecnico"],"descTecnico");
         
-        serv["Andamento"].forEach(function(Element){
-            var row = 
-                '<tr id="r'+Element[0]['id']+'">'
-               // +'  <td>'+Element[0]['id']+'</td>'
-                +'  <td>'+Element[0]['descricao']+'</td>'
-                +'  <td>'+Element[0]['dateAndamento']+'</td>'
-                +'  <td>'+Element[0]['valor'].toFixed(2)+'</td>'
-                +'  <td id="f'+Element[0]['funcionarioId']+'">'+Element[1]['nome']+'</td>'
-                +'  <td><i class="fa fa-times x" id="a'+Element[0]['id']+'"></i></td>'
-                +'</tr>'
+        $(".andamentos").empty();
+        serv.Andamento.forEach(function(element){
+          
+          var row = 
+                '<tr class="andamentos" id="r'+element[0].id+'">'
+                +'  <td>'+ element[0].nome +'</td>'
+                +'  <td>'+ element[0].dateAndamento+'</td>'
+                +'  <td class="vlServ">'+element[0].valor.toFixed(2)+'</td>'
+                +'  <td>'+ element[1].nome+'</td>'
+                +'  <td><i class="fa fa-times x" click="" id="a'+element[0].id+'"></i></td>'
+                +'</tr>';
           
             $("#andamento").append(row);
+            
+            calculoValorServico();
         });
+        
     }});
+    
+    function calculoValorServico(){
+      var valorestotais =0;
+      $(".vlServ").each(function(elemento) {
+            valorestotais += parseFloat(this.innerHTML);
+            console.log("valores totais dentro do each", valorestotais);
+        });
+        console.log("valores fora do each". valorestotais);
+        $("#valorTotal").val(valorestotais.toFixed(2));
+    }
     
     $(document).on('click', '.x', function(){
         var id = this.id;
         id = id.split("a");
         $("#r"+id[1]).remove();
+        calculoValorServico();
         var index=0;
         var serv = JSON.parse(localStorage.getItem("servico"));
         serv["Andamento"].forEach(function(Element,Index){
@@ -63,7 +88,9 @@ $(document).ready(function() {
         
         $.ajax({
           url: "https://haskalpha-romefeller.c9users.io/andamento/"+id[1],
-          method: "DELETE"
+          method: "DELETE",
+          success: function(){
+          }
         });
     });
     
@@ -91,9 +118,9 @@ $(document).ready(function() {
         "diagnosticoTecnico"  : $("#descTecnico").val(),
         "observacaoEntrada"   : serv["Servico"].observacaoEntrada,
         "dataInicial"         : $("#dataI").val(),
-        "dataFinal"           : $("#dataF").val() == undefined?null:$("#dataF").val(),
+        "dataFinal"           : getDataFinal(),
         "status"              : 1,
-        "valor"               : parseFloat($("#vlF").val()),
+        "valor"               : parseFloat($("#valorTotal").val()),
         "equipamentoId"       : parseInt(serv["Servico"].equipamentoId)
       };
      
@@ -105,7 +132,7 @@ $(document).ready(function() {
             $('#success').modal({show: 'true'}); 
           },
           error: function(result){
-            $('#error').modal({show: 'false'})
+            $('#error').modal({show: 'false'});
           }
       });
     }

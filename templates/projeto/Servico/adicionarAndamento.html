@@ -54,9 +54,9 @@
   <header class="main-header">
 
     <!-- Logo -->
-    <a href="index2.html" class="logo">
+    <a href="../home.html" class="logo">
       <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg">Guilherme</span>
+      <span class="logo-lg nome"></span>
     </a>
 
     <!-- Header Navbar -->
@@ -77,8 +77,7 @@
             <ul class="dropdown-menu">
               <!-- The user image in the menu -->
               <li class="newLogout">
-                <p>
-                  Guilherme
+                <p class="nome">
                 </p>
               </li>              
               <!-- Menu Footer-->
@@ -147,7 +146,7 @@
             <li><a href="../Fornecedor/fornecedores.html">Listar Fornecedores</a></li>
           </ul>
         </li><!-- Fornecedores -->
-        <li class="treeview">
+        <li class="treeview funcionario">
           <a href="#"><i class="fa fa-child"></i> <span>Funcionarios</span>
             <span class="pull-right-container">
                 <i class="fa fa-angle-left pull-right"></i>
@@ -213,46 +212,82 @@
           <!--<h3 class="box-title">Select2</h3>-->
         <!-- /.box-header -->
         <div class="box-body">
+          
+          <div class="modal fade" id="success" role="dialog">
+            <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header" style="background: #3c8dbc;color: #ffffff;">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  <h4 class="modal-title">Funcionario</h4>
+                </div>
+                <div class="modal-body">
+                  <p>Dados salvos com sucesso!</p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-default" id="fechar" data-dismiss="modal">Fechar</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="modal fade" id="error" role="dialog">
+            <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header" style="background: #3c8dbc;color: #ffffff;">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  <h4 class="modal-title">Funcionario</h4>
+                </div>
+                <div class="modal-body">
+                  <p>Erro ao salvar os dados!</p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          
           <form role="form" data-toggle="validator">
           <div class="row">
             <div class="col-md-12">
               <div class="form-group col-sm-4">
                 <label>Código:</label>
-                <input type="text" class="form-control" id="cd" placeholder="Código do serviço" required>
+                <input type="text" class="form-control" id="cd" disabled placeholder="Código do serviço" required>
               </div>
               <div class="form-group col-sm-4">
-                <label>Cliente:</label>
-                <input type="text" class="form-control" id="cliente" placeholder="Cliente" required>
+                <label>Título:</label>
+                <input type="text" class="form-control" id="nome" placeholder="Título do Andamento" required>
               </div>
               <div class="form-group col-sm-4">
                 <label>Valor do Andamento:</label>
                 <div class="input-group">
                   <span class="input-group-addon">$</span>
-                  <input type="text" class="form-control" required>
+                  <input id="valor" type="text" class="form-control" required>
                 </div>
               </div>
               <div class="form-group col-sm-4">
-                <label class="control-label">Data da Inicio:</label>
-                <input type="date" class="form-control" id="data1" required>
+                <label class="control-label">Data da Atualização:</label>
+                <input type="date" class="form-control" id="dataInicio" required>
               </div>
               <div class="form-group col-sm-4">
                 <label>Status:</label>
-                <select class="form-control select2 select2-hidden-accessible" style="width: 100%;" tabindex="-1" aria-hidden="true" required>
+                <select id="status" class="form-control select2 select2-hidden-accessible" style="width: 100%;" tabindex="-1" aria-hidden="true" required>
                   <option selected="selected" disabled selected >Selecione um status</option>
-                  <option>Alaska</option>
-                  <option>California</option>
-                  <option>Delaware</option>
-                  <option>Tennessee</option>
-                  <option>Texas</option>
-                  <option>Washington</option>
+                  <option value=1>Iniciado</option>
+                  <option value=3>Cancelado</option>
+                  <option value=4>Aguardando Peça</option>
+                  <option value=5>Manutenção</option>
+                  <option=value=6>Finalizado</option>
                 </select>
               </div>
               <div class="form-group col-sm-4">
                   <label>Descrição so andamento</label>
-                  <textarea class="form-control" rows="3" placeholder="Descrição do andamento"></textarea>
+                  <textarea class="form-control" rows="3" id="descricao" placeholder="Descrição do andamento"></textarea>
               </div>
               <div class="form-group col-sm-12 text-right" style="margin-top: 25px">
-                <input type="submit" class="btn btn-success" value="Salvar">
+                <input type="button" id="salvar" class="btn btn-success" value="Salvar">
               </div>
               <!-- /.form-group -->
             </div>
@@ -304,11 +339,22 @@
 <script src="../../dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="../../dist/js/demo.js"></script>
+<!-- Adicionar Andamento -->
+<script type="text/javascript" src="../js/Servico/adicionarAndamento.js"></script>
+<!-- Data atual -->
+<script type="text/javascript" src="../js/dataAtual.js"></script>
 <!-- Page script -->
 <script>
   $(function () {
     //Initialize Select2 Elements
     $('.select2').select2()
+    var funcionario = JSON.parse(localStorage.getItem("Dados_Funcionario"));
+console.log(funcionario);
+$(".nome").text(funcionario.Funcionario.nome);  
+if(parseInt(funcionario.Funcionario.nivel) == 2){
+  $(".funcionario").hide()
+}
+  
   })
 </script>
 </body>

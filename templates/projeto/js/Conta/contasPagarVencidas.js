@@ -15,16 +15,16 @@ $(document).ready(function() {
                 return fornecedor.id == Element.fornecedorId
             })[0];
             
-            console.log(Element.fornecedor);
-            
-            table.row.add([
-                Element.id,    
-                Element.codigo,
-                Element.valor.toFixed(2),
-                Element.fornecedor.nome,
-                Element.dataVencimento,
-                "<div class='organiza'><i id='e"+Element.id +"' class='fa fa-window-close btnX'></i><i id='a"+Element.id+"' class='fa fa-pencil-square btnE'></i></div>"
-            ]).draw(false).nodes().to$().attr("id","eq"+Element.id);
+            if ((dataValor(Element.dataVencimento) < dataValor(dataAtual())) && (Element.icPago == false)){
+                table.row.add([
+                    Element.id,    
+                    Element.codigo,
+                    Element.valor.toFixed(2),
+                    Element.fornecedor.nome,
+                    Element.dataVencimento,
+                    "<div class='organiza'><i id='e"+Element.id +"' class='fa fa-window-close btnX'></i><i id='a"+Element.id+"' class='fa fa-pencil-square btnE'></i></div>"
+                ]).draw(false).nodes().to$().attr("id","eq"+Element.id);
+            }
         });
         
     });

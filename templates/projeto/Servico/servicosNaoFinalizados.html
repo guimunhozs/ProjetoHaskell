@@ -51,12 +51,18 @@
 th, td, table {
   text-align:center;
 }
+@media (max-width: 600px) 
+{
+  .box-body {
+    overflow:auto; 
+  }
+}
 </style>
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
 
-   <header class="main-header">
+  <header class="main-header">
 
     <!-- Logo -->
     <a href="../home.html" class="logo">
@@ -126,8 +132,7 @@ th, td, table {
           <ul class="treeview-menu">
             <li><a href="../Conta/adicionarConta.html">Adicionar Contas</a></li>
             <li><a href="../Conta/contasPagar.html">Listar Contas a Pagar</a></li>
-            <li><a 
-            href="#">Listar Contas a Receber</a></li>
+            <li><a href="../Conta/contasReceber.html">Listar Contas a Receber</a></li>
           </ul>
         </li><!-- Contas -->
         <li class="treeview">
@@ -169,11 +174,11 @@ th, td, table {
                 <i class="fa fa-angle-left pull-right"></i>
               </span>
           </a>
-          <ul class="treeview-menu">
+          <ul class="treeview-menu active menu-open">
             <li><a href="../Servico/adicionarServico.html">Adicionar Serviço</a></li>
             <li><a href="../Servico/adicionarAndamento.html">Adicionar Andamento</a></li>
             <li><a href="../Equipamento/adicionarEquipamento.html">Adicionar Equipamento</a></li>
-            <li><a href="../Servico/servicos.html">Listar Serviço</a></li>
+            <li class="active"><a href="../Servico/servicos.html">Listar Serviço</a></li>
             <li><a href="../Equipamento/equipamentos.html">Listar Equipamento</a></li>
           </ul>
         </li><!-- Serviço -->
@@ -200,7 +205,7 @@ th, td, table {
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Contas a Receber
+        Serviços não finalizados
         <!-- <small>advanced tables</small> -->
       </h1>
       <!-- <ol class="breadcrumb">
@@ -219,28 +224,38 @@ th, td, table {
               <h3 class="box-title">Data Table With Full Features</h3>
             </div> -->
             <!-- /.box-header -->
-            <div class="box-body table-responsive">
-              <table id="example1"  class="table table-bordered table-striped">
+            <div class="box-body">
+              <table id="example1" class="table table-bordered table-striped">
                 <thead>
                 <tr>
                   <th class="col-md-1">Código</th>
-                  <th class="col-md-3">Nº documento</th>
-                  <th class="col-md-1">Valor</th>
-                  <th class="col-md-1">Cliente</th>
-                  <th class="col-md-1">Data</th>
+                  <th class="col-md-3">Cliente</th>
+                  <th class="col-md-1">Equipamento</th>
+                  <th class="col-md-1">Data Entrada</th>
+                  <th class="col-md-2">Data Saida</th>
+                  <th class="col-md-2">Valor Total</th>
                   <th class="col-md-1">Ações</th>
                 </tr>
                 </thead>
                 <tbody>
-              
+                <tr id="teste">
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                </tr>
                 </tbody>
                 <tfoot>
                 <tr>
                   <th class="col-md-1">Código</th>
-                  <th class="col-md-3">Nº documento</th>
-                  <th class="col-md-1">Valor</th>
-                  <th class="col-md-1">Cliente</th>
-                  <th class="col-md-1">Data</th>
+                  <th class="col-md-3">Cliente</th>
+                  <th class="col-md-1">Equipamento</th>
+                  <th class="col-md-1">Data Entrada</th>
+                  <th class="col-md-2">Data Saida</th>
+                  <th class="col-md-2">Valor Total</th>
                   <th class="col-md-1">Ações</th>
                 </tr>
                 </tfoot>
@@ -270,6 +285,7 @@ th, td, table {
 <!-- jQuery 3 -->
 <script src="../../bower_components/jquery/dist/jquery.min.js"></script>
 <!-- Bootstrap 3.3.7 -->
+<script type="text/javascript" src="../js/Servico/servicoNaoFinalizado.js"></script>
 <script src="../../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 <!-- DataTables -->
 <script src="../../bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
@@ -282,18 +298,15 @@ th, td, table {
 <script src="../../dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="../../dist/js/demo.js"></script>
-<script src="../js/Conta/contasReceber.js"></script>
 <!-- page script -->
-<script>
-  $(function () {
-    $('#example1').DataTable()
-    var funcionario = JSON.parse(localStorage.getItem("Dados_Funcionario"));
+</body>
+</html>
+<script type="text/javascript">
+  var funcionario = JSON.parse(localStorage.getItem("Dados_Funcionario"));
 console.log(funcionario);
 $(".nome").text(funcionario.Funcionario.nome);  
 if(parseInt(funcionario.Funcionario.nivel) == 2){
-  $(".funcionario").hide();
+  $(".funcionario").hide()
 }
-  })
+  
 </script>
-</body>
-</html>

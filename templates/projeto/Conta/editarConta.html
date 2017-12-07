@@ -113,9 +113,9 @@ input:checked + .slider:before {
   <header class="main-header">
 
     <!-- Logo -->
-    <a href="index2.html" class="logo">
+    <a href="../home.html" class="logo">
       <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg">Guilherme</span>
+      <span class="logo-lg nome"></span>
     </a>
 
     <!-- Header Navbar -->
@@ -136,8 +136,7 @@ input:checked + .slider:before {
             <ul class="dropdown-menu">
               <!-- The user image in the menu -->
               <li class="newLogout">
-                <p>
-                  Guilherme
+                <p class="nome">
                 </p>
               </li>              
               <!-- Menu Footer-->
@@ -206,7 +205,7 @@ input:checked + .slider:before {
             <li><a href="../Fornecedor/fornecedores.html">Listar Fornecedores</a></li>
           </ul>
         </li><!-- Fornecedores -->
-        <li class="treeview">
+        <li class="treeview funcionario">
           <a href="#"><i class="fa fa-child"></i> <span>Funcionarios</span>
             <span class="pull-right-container">
                 <i class="fa fa-angle-left pull-right"></i>
@@ -291,62 +290,34 @@ input:checked + .slider:before {
                 <label>Valor da Conta:</label>
                 <div class="input-group">
                   <span class="input-group-addon">R$</span>
-                  <input type="text" class="form-control" required>
+                  <input type="text" id="valor"class="form-control" required>
                 </div>
               </div>
-              <div class="form-group col-sm-6">
-                <label>Valor Pago:</label>
-                <div class="input-group">
-                  <span class="input-group-addon">R$</span>
-                  <input type="text" class="form-control" required>
-                </div>
-              </div>
+              
               <!-- /.form-group -->
               <div class="form-group col-sm-6">
                 <label>Data de emissão:</label>
-                <input type="date" class="form-control" id="dateE" required>
+                <input type="date" class="form-control" id="dataEmissao" required>
               </div>
-              <div class="form-group col-sm-6">
+              <div class="form-group col-sm-4">
                 <label>Data de vencimento:</label>
-                <input type="date" class="form-control" id="dataV" required>
+                <input type="date" class="form-control" id="dataVencimento" required>
               </div>
               <!-- /.form-group -->
-              <div class="form-group col-sm-6">
-                <label>Data de Pagamento:</label>
-                <input type="date" class="form-control" id="dataP" required>
-              </div>
-              <div id="list1" class="form-group col-sm-6">
-                <label>Fornecedor:</label>
-                <select class="form-control select2 select2-hidden-accessible" style="width: 100%;" tabindex="-1" aria-hidden="true" required>
-                  <option selected="selected" disabled selected >Selecione um fornecedor</option>
-                  <option>Alaska</option>
-                  <option>California</option>
-                  <option>Delaware</option>
-                  <option>Tennessee</option>
-                  <option>Texas</option>
-                  <option>Washington</option>
-                </select>
-              </div>
-              <div id="list2" class="form-group col-sm-6 gost">
-                <label>Cliente:</label>
-                <select class="form-control select2 select2-hidden-accessible" style="width: 100%;" tabindex="-1" aria-hidden="true" required>
-                  <option selected="selected" disabled selected >Selecione uma cliente</option>
-                  <option>Alaska</option>
-                  <option>California</option>
-                  <option>Delaware</option>
-                  <option>Tennessee</option>
-                  <option>Texas</option>
-                  <option>Washington</option>
+              <div class="form-group col-sm-4">
+                <label id="lblClienteFornecedor"></label>
+                <select id="ClienteFornecedor" class="form-control select2 select2-hidden-accessible" style="width: 100%;" tabindex="-1" aria-hidden="true" required>
+                  <option value=0 selected="selected" selected id="optClienteFornecedor"></option>
                 </select>
               </div>
               
-              <div class="form-group col-sm-6" style="margin-top: 25px;">
+              <div class="form-group col-sm-4" style="margin-top: 25px;">
                 <label style="margin-right: 20px;">Pago: <input type="checkbox" id="toggle-two"></label>
                 <label>Conta: <input type="checkbox" id="toggle-two2"></label>
               </div>
               
               <div class="form-group col-sm-12 text-right" style="margin-top: 25px">
-                <input type="submit" class="btn btn-success" value="Salvar">
+                <input type="button" id="salvar" class="btn btn-success" value="Salvar">
               </div>
               <!-- /.form-group -->
             </div>
@@ -400,8 +371,10 @@ input:checked + .slider:before {
 <script src="../../dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="../../dist/js/demo.js"></script>
+<script src="../js/Conta/editarConta.js"></script>
 <!-- Page script -->
 <script>
+
   $(function () {
     //Initialize Select2 Elements
     $('.select2').select2()
@@ -421,6 +394,12 @@ input:checked + .slider:before {
       $('#list2').toggle();
     })
 
+var funcionario = JSON.parse(localStorage.getItem("Dados_Funcionario"));
+console.log(funcionario);
+$(".nome").text(funcionario.Funcionario.nome);  
+if(parseInt(funcionario.Funcionario.nivel) == 2){
+  $(".funcionario").hide();
+}
     
   })
 </script>

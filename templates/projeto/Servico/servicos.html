@@ -65,9 +65,9 @@ th, td, table {
   <header class="main-header">
 
     <!-- Logo -->
-    <a href="index2.html" class="logo">
+    <a href="../home.html" class="logo">
       <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg">Guilherme</span>
+      <span class="logo-lg nome"></span>
     </a>
 
     <!-- Header Navbar -->
@@ -88,8 +88,7 @@ th, td, table {
             <ul class="dropdown-menu">
               <!-- The user image in the menu -->
               <li class="newLogout">
-                <p>
-                  Guilherme
+                <p class="nome">
                 </p>
               </li>              
               <!-- Menu Footer-->
@@ -158,7 +157,7 @@ th, td, table {
             <li><a href="../Fornecedor/fornecedores.html">Listar Fornecedores</a></li>
           </ul>
         </li><!-- Fornecedores -->
-        <li class="treeview">
+        <li class="treeview funcionario">
           <a href="#"><i class="fa fa-child"></i> <span>Funcionarios</span>
             <span class="pull-right-container">
                 <i class="fa fa-angle-left pull-right"></i>
@@ -302,3 +301,12 @@ th, td, table {
 <!-- page script -->
 </body>
 </html>
+<script type="text/javascript">
+  var funcionario = JSON.parse(localStorage.getItem("Dados_Funcionario"));
+console.log(funcionario);
+$(".nome").text(funcionario.Funcionario.nome);  
+if(parseInt(funcionario.Funcionario.nivel) == 2){
+  $(".funcionario").hide()
+}
+  
+</script>

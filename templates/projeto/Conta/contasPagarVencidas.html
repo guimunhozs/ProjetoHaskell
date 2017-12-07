@@ -117,7 +117,7 @@ th, td, table {
             <li><a href="../Cliente/clientes.html">Listar Clientes</a></li>
           </ul>
         </li><!-- Cliente -->
-        <li class="treeview">
+        <li class="treeview active menu-open">
           <a href="#"><i class="fa fa-usd"></i> <span>Contas</span>
             <span class="pull-right-container">
                 <i class="fa fa-angle-left pull-right"></i>
@@ -126,8 +126,7 @@ th, td, table {
           <ul class="treeview-menu">
             <li><a href="../Conta/adicionarConta.html">Adicionar Contas</a></li>
             <li><a href="../Conta/contasPagar.html">Listar Contas a Pagar</a></li>
-            <li><a 
-            href="#">Listar Contas a Receber</a></li>
+            <li><a href="../Conta/contasReceber.html">Listar Contas a Receber</a></li>
           </ul>
         </li><!-- Contas -->
         <li class="treeview">
@@ -200,7 +199,7 @@ th, td, table {
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Contas a Receber
+        Contas a Pagar Vencidas
         <!-- <small>advanced tables</small> -->
       </h1>
       <!-- <ol class="breadcrumb">
@@ -220,28 +219,36 @@ th, td, table {
             </div> -->
             <!-- /.box-header -->
             <div class="box-body table-responsive">
-              <table id="example1"  class="table table-bordered table-striped">
+              <table id="example1" class="table table-bordered table-striped">
                 <thead>
                 <tr>
                   <th class="col-md-1">Código</th>
                   <th class="col-md-3">Nº documento</th>
                   <th class="col-md-1">Valor</th>
-                  <th class="col-md-1">Cliente</th>
+                  <th class="col-md-1">Fornecedor</th>
                   <th class="col-md-1">Data</th>
                   <th class="col-md-1">Ações</th>
                 </tr>
                 </thead>
                 <tbody>
-              
+                <!--<tr>-->
+                <!--  <td><div class="organiza"><i class="fa fa-window-close btnX"></i> <i class="fa fa-pencil-square btnE"></i></div></td>-->
+                <!--</tr>-->
+                <!--<tr>-->
+                <!--  <td><div class="organiza"><i class="fa fa-window-close btnX"></i> <i class="fa fa-pencil-square btnE"></i></div></td>-->
+                <!--</tr>-->
+                <!--<tr>-->
+                <!--  <td><div class="organiza"><i class="fa fa-window-close btnX"></i> <i class="fa fa-pencil-square btnE"></i></div></td>-->
+                <!--</tr>-->
                 </tbody>
                 <tfoot>
                 <tr>
-                  <th class="col-md-1">Código</th>
-                  <th class="col-md-3">Nº documento</th>
-                  <th class="col-md-1">Valor</th>
-                  <th class="col-md-1">Cliente</th>
-                  <th class="col-md-1">Data</th>
-                  <th class="col-md-1">Ações</th>
+                  <!--<th class="col-md-1">Código</th>-->
+                  <!--<th class="col-md-3">Nº documento</th>-->
+                  <!--<th class="col-md-1">Valor</th>-->
+                  <!--<th class="col-md-1">Cliente</th>-->
+                  <!--<th class="col-md-1">Data</th>-->
+                  <!--<th class="col-md-1">Ações</th>-->
                 </tr>
                 </tfoot>
               </table>
@@ -271,9 +278,6 @@ th, td, table {
 <script src="../../bower_components/jquery/dist/jquery.min.js"></script>
 <!-- Bootstrap 3.3.7 -->
 <script src="../../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-<!-- DataTables -->
-<script src="../../bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
-<script src="../../bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
 <!-- SlimScroll -->
 <script src="../../bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
 <!-- FastClick -->
@@ -282,18 +286,20 @@ th, td, table {
 <script src="../../dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="../../dist/js/demo.js"></script>
-<script src="../js/Conta/contasReceber.js"></script>
 <!-- page script -->
+<!-- DataTables -->
+<script src="../../bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
+<script src="../../bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+<!-- contasPagar -->
+<script src="../js/Conta/contasPagarVencidas.js"></script>
+<script type="text/javascript" src="../js/dataAtual.js"></script>
 <script>
-  $(function () {
-    $('#example1').DataTable()
-    var funcionario = JSON.parse(localStorage.getItem("Dados_Funcionario"));
+var funcionario = JSON.parse(localStorage.getItem("Dados_Funcionario"));
 console.log(funcionario);
 $(".nome").text(funcionario.Funcionario.nome);  
 if(parseInt(funcionario.Funcionario.nivel) == 2){
   $(".funcionario").hide();
 }
-  })
 </script>
 </body>
 </html>

@@ -4,6 +4,10 @@ $(document).ready(function() {
     var produtos = [];
     var idItensVenda =0;
     $("#valorTotal").val(0);
+    
+    $("#dateV").val(dataAtual());
+    
+    $("#vencimento").val(dataAtual());
     //função q colocar os valores nos campos
     function valueInput(value,id) {
         $("#"+id).val(value)
@@ -258,8 +262,8 @@ $(document).ready(function() {
             salvarItensVenda();
             gerarConta(json);
             $('#success').modal({show: 'true'}); 
-            $("#fechar").click(function(){
-              recarregar();
+            $("#imprimir").click(function(){
+              window.location="../reciboVenda.html";
             });
           },
           error: function(response){

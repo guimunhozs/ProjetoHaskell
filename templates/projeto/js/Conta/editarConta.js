@@ -31,7 +31,7 @@ $(document).ready(function() {
         valueInput(id,"cd");
         valueInput(conta["Conta"]["codigo"],"codigoDoc");
         valueInput(conta["Conta"]["historico"],"descricao");
-        valueInput(parseFloat(conta["Conta"]["valor"].toFixed(2)),"valor");
+        valueInput(parseFloat(conta["Conta"]["valor"]).toFixed(2),"valor");
         valueInput(conta["Conta"]["dataEmissao"],"dataEmissao");
         valueInput(conta["Conta"]["dataVencimento"],"dataVencimento");
         if(conta["Conta"]["icPago"]){
@@ -79,6 +79,35 @@ $(document).ready(function() {
         }});
     }
     
-    // falta fazer o salvar e colocar o modal de que foi ou não
+    $("#salvar").click(function() {
+
+      var json = {
+        "historico"       : $("#descricao").val(),
+        "codigo"          : $("#codigoDoc").val(),
+        "dataEmissao"     : $("#dataEmissao").val(),
+        "dataVencimento"  : $("#dataVencimento").val()==""?null:$("#dataVencimento").val(),
+        "valor"           : parseFloat($("#valor").val()),
+        "icPagarReceber"  : localStorage.getItem("tipoConta") == "pagar"?true:false,
+        "icPago"          : $("#toggle-two").prop('checked'),
+        "clienteId"       : localStorage.getItem("tipoConta") == "pagar"?null:parseInt($("#ClienteFornecedor").val()),
+        "fornecedorId"    : localStorage.getItem("tipoConta") == "pagar"?parseInt($("#ClienteFornecedor").val()):null
+      };
+      
+     
+      
+      
+      $.ajax({
+          url: "https://haskalpha-romefeller.c9users.io/conta/"+$("#cd").val(),
+          method: "PUT",
+          data: JSON.stringify(json),
+          success: function(result){
+            $('#success').modal({show: 'true'}); 
+          },
+          error: function(result){
+            $('#error').modal({show: 'false'})
+          }
+      });
+      
+    });
 
 });

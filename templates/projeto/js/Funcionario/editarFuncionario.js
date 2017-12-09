@@ -5,6 +5,11 @@ $(document).ready(function() {
     function valueInput(value,id) {
         $("#"+id).val(value)
     }
+    if(JSON.parse(localStorage.getItem("Dados_Funcionario")).Funcionario.nivel == 2){
+      $("#nivel").attr("disabled", true);
+    }else{
+      $("#nivel").attr("disabled", false);
+    }
     
     $.ajax({
       url: "https://haskalpha-romefeller.c9users.io/funcionario/"+id,

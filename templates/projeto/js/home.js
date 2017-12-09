@@ -120,4 +120,11 @@ $(document).ready(function() {
      }
     });
     
+    $("#profile").click(function(){
+        var funcId = JSON.parse(localStorage.getItem("Dados_Funcionario"));
+        console.log("func com parse", funcId);
+       localStorage.setItem("funcionarioId", funcId.Funcionario.id) 
+      window.location ="../projeto/Funcionario/editarFuncionario.html";
+    });
+    
 });

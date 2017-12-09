@@ -7,7 +7,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>AdminLTE 2 | Starter</title>
+  <title>Recibo</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.min.css">
@@ -37,11 +37,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
     padding: 10px;
     text-align: center;
 }
-
-a {
-  color: #333;
-  text-decoration :none;
-}
 </style>
 </head>
 
@@ -52,7 +47,7 @@ a {
   <header class="main-header">
 
     <!-- Logo -->
-    <a href="#" class="logo">
+    <a href="home.html" class="logo">
       <!-- logo for regular state and mobile devices -->
       <span class="logo-lg nome"></span>
     </a>
@@ -81,10 +76,10 @@ a {
               <!-- Menu Footer-->
               <li class="user-footer">
                 <div class="pull-left">
-                  <a id="profile" class="btn btn-default btn-flat">Profile</a>
+                  <a href="#" class="btn btn-default btn-flat">Profile</a>
                 </div>
                 <div class="pull-right">
-                  <a href="#" id="logout" class="btn btn-default btn-flat">Sign out</a>
+                  <a href="#" class="btn btn-default btn-flat">Sign out</a>
                 </div>
               </li>
             </ul>
@@ -191,76 +186,144 @@ a {
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
-      <h1>Dashboard</h1>
+      <h1>Recibo</h1>
     </section>
 
     <!-- Main content -->
     <section class="content container-fluid">
-      
+     <!-- DONUT CHART -->
+          <div class="box box-primary">
+            <div class="box-header with-border">
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              <!-- Main content -->
+    <section class="invoice">
+      <!-- title row -->
       <div class="row">
-        
-        <div class="col-md-6 col-sm-6 col-xs-12">
-          <a href="../projeto/Servico/servicosNaoFinalizados.html">
-            <div class="info-box">
-              <span class="info-box-icon bg-blue" id="servicoIcon"><i class="fa fa-wrench"></i></span>
-  
-              <div class="info-box-content">
-                <span class="info-box-text" id="txtServicos">Serviços não finalizados</span>
-                <span class="info-box-number" id="qtServicos"></span>
-              </div>
-              <!-- /.info-box-content -->
-            </div>
-          </a>
-          <!-- /.info-box -->
+        <div class="col-xs-12">
+          <h2 class="page-header">
+            <i class="fa fa-globe"></i> <span id="empresa"></span>
+            <small class="pull-right">Data: <span class="data"></span></small>
+          </h2>
         </div>
-        
-        <div class="col-md-6 col-sm-6 col-xs-12">
-          <a href="../projeto/Estoque/produtosMin.html">
-            <div class="info-box">
-              <span class="info-box-icon bg-grey" id="produtosIcon"><i class="fa fa-cubes"></i></span>
-  
-              <div class="info-box-content">
-                <span class="info-box-text" id="txQtdeMin">Produtos abaixo da Quantidade</span>
-                <span class="info-box-number" id="qtProdutosMin"></span>
-              </div>
-              <!-- /.info-box-content -->
-            </div>
-          <!-- /.info-box -->
-          </a>
-        </div>
-        
-        <div class="col-md-6 col-sm-6 col-xs-12">
-          <a href="../projeto/Conta/contasReceberVencidas.html">
-            <div class="info-box">
-              <span class="info-box-icon bg-grey" id="receberIcon"><i class="fa fa-usd"></i></span>
-  
-              <div class="info-box-content">
-                <span class="info-box-text">Contas a Receber Vencidas</span>
-                <span class="info-box-number" id="qtContasReceber"></span>
-              </div>
-              <!-- /.info-box-content -->
-            </div>
-          </a>
-          <!-- /.info-box -->
-        </div>
-        
-        <div class="col-md-6 col-sm-6 col-xs-12">
-          <a href="../projeto/Conta/contasPagarVencidas.html">
-            <div class="info-box">
-              <span class="info-box-icon bg-grey" id="pagarIcon"><i class="fa fa-usd"></i></span>
-  
-              <div class="info-box-content">
-                <span class="info-box-text" id="txtContasPagar">Contas a Pagar Vencidas</span>
-                <span class="info-box-number" id="qtContasPagar"></span>
-              </div>
-              <!-- /.info-box-content -->
-            </div>
-          </a>
-          <!-- /.info-box -->
-        </div>
-        
+        <!-- /.col -->
       </div>
-     
+      <!-- info row -->
+      <div class="row invoice-info">
+        <div class="col-sm-4 invoice-col">
+          <address>
+            <!--<strong>Empresa LTDA</strong><br>-->
+            Logradouro: <span id="rua"></span><br>
+            Telefone: <span class="telefone"></span><br>
+            Email: <span id="email"><span></span>
+          </address>
+        </div>
+        <!-- /.col -->
+        <div class="col-sm-4 invoice-col">
+          <address>
+            <strong id="cliente"></strong><br>
+            RG: <span id="rg"></span><br>
+            CPF: <span id="cpf"></span><br>
+            Telefone: <span id="telefoneC"></span><br>
+            Email: <span id="emailC"></span>
+          </address>
+        </div>
+        
+        <div class="col-sm-4 invoice-col">
+          <address class="">
+            <div class="col-sm-6"></div>
+            <h3 class="col-sm-6">
+              Total:<br>
+              R$ <span id="valorTotal"></span>
+            </h3>
+          </address>
+        </div>
+        
+        
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+
+      <!-- Table row -->
+      <div class="row">
+        <div class="col-xs-12 table-responsive">
+          <table class="table table-striped">
+            <thead>
+            <tr>
+              <th class="col-md-4">Produto</th>
+            <th class="col-md-2">Quantidade</th>
+            <th class="col-md-2">Valor Unt</th>
+            <th class="col-md-2">Valor Total</th>
+            </tr>
+            </thead>
+            <tbody id="itemVenda">
+            </tbody>
+          </table>
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+
+      <div class="row">
+        <!-- accepted payments column -->
+        <div class="col-xs-6">
+          <p class="lead">Informações necessárias:</p>
+          <p class="text-muted well well-sm no-shadow" style="margin-top: 10px;">
+           Este recibo registra a venda dos produtos listados, Tendo prazo de 90 dias corridos a partir da data atual para troca por defeito.<br>
+          </p>
+        </div>
+        <!-- /.col -->
+        <div class="col-xs-4">
+
+          <div class="table-responsive">
+            <p>Cliente:</p></br>
+            <p style="margem-top:20px">Funcionario:</p>
+          </div>
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+
+      <!-- this row will not appear when printing -->
+      <div class="row no-print col-md-offset-11">
+        <div class="col-xs-2">
+          <button type="button" target="_blank" class="btn btn-default" onclick="teste()"><i class="fa fa-print"></i> Imprimir</a>
+        </div>
+      </div>
+    </section>
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+
+        </div>
+        <!-- /.col (LEFT) -->
 
     </section>
     <!-- /.content -->
@@ -271,10 +334,8 @@ a {
   <footer class="main-footer">
     <!-- To the right -->
     <div class="pull-right hidden-xs">
-      Anything you want
     </div>
     <!-- Default to the left -->
-    <strong>Copyright &copy; 2016 <a href="#">Company</a>.</strong> All rights reserved.
   </footer>
 
 </div>
@@ -292,23 +353,85 @@ a {
 <!-- Optionally, you can add Slimscroll and FastClick plugins.
      Both of these plugins are recommended to enhance the
      user experience. -->
-<script src="js/home.js"></script>
-<script src="js/dataAtual.js"></script>
 </body>
 </html>
 
 <script type="text/javascript">
-  
-var funcionario = JSON.parse(localStorage.getItem("Dados_Funcionario"));
+
+var id = localStorage.getItem("vendaId");
+
+var data = new Date();
+
+var dia     = data.getDate();           // 1-31
+var mes     = data.getMonth();          // 0-11 (zero=janeiro)
+var ano    = data.getFullYear();       // 4 dígitos"
+
+$(".data").text(dia+"/"+mes+"/"+ano);
+
+    $.ajax({
+        url: "https://haskalpha-romefeller.c9users.io/venda/"+id,
+        method: "GET",
+        success: function(json){
+          console.log("json do carregarItens" ,json);
+          var soma = 0;
+          json["itemVenda"].forEach(function(Element){
+            console.log("dados element", Element);
+            var vltotal = Element[0].quantidade * Element[1].valorVenda;
+            var row = 
+                '<tr class="itensVenda" id="r'+Element[0].id+'">'
+                +'  <td>'+Element[1].nome+'</td>'
+                +'  <td>'+Element[0].quantidade+'</td>'
+                +'  <td>'+Element[1].valorVenda.toFixed(2) +'</td>'
+                +'  <td class="vltotal">'+ (Element[0].quantidade * Element[1].valorVenda).toFixed(2) +'</td>'
+                +'</tr>';
+          
+            $("#itemVenda").append(row);
+            soma += vltotal;
+            console.log("valortotal", vltotal);
+            console.log("soma ", soma);
+            $("#valorTotal").text(soma.toFixed(2));
+        });
+        var row = 
+                '<tr >'
+                +'  <td></td>'
+                +'  <td></td>'
+                +'  <td><strong>Total: </strong></td>'
+                +'  <td><strong> R$ '+ $("#valorTotal").text() +'</strong></td>'
+                +'</tr>';
+        $("#itemVenda").append(row);
+        
+        $("#cliente").text(json["cliente"]["nome"]);
+        $("#rg").text(json["cliente"]["rg"]);
+        $("#cpf").text(json["cliente"]["cpf"]);
+        $("#telefoneC").text(json["cliente"]["telefone"]);
+        $("#emailC").text(json["cliente"]["email"]);
+      }});
+        
+        // calculoValorVenda();
+    
+    $.ajax({
+      url: "https://haskalpha-romefeller.c9users.io/empresa",
+      method: "GET",
+      success: function(json){
+        $("#rua").text(json["empresa"][0]["logradouro"]);
+        $(".telefone").text(json["empresa"][0]["telefone"]);
+        $("#email").text(json["empresa"][0]["email"]);
+        $("#empresa").text(json["empresa"][0]["nomeFantasia"]);
+      }
+    });
+    
+    
+        var funcionario = JSON.parse(localStorage.getItem("Dados_Funcionario"));
 console.log(funcionario);
 $(".nome").text(funcionario.Funcionario.nome);  
 if(parseInt(funcionario.Funcionario.nivel) == 2){
   $(".funcionario").hide()
-}
-
-$("#logout").click(function(){
-  localStorage.setItem("Dados_Funcionario", null);
-  window.location = "login.html";
-});
+}''
+        
+function teste(){
   
+  window.print();
+  
+}
 </script>
+

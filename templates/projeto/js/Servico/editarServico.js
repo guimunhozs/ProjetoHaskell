@@ -1,6 +1,10 @@
 $(document).ready(function() {
     var id = localStorage.getItem("servicoId");
     
+    var idBotao ="";
+    
+    var clienteId;
+    
     var vlInicial = 0.0;
     
     //função q colocar os valores nos campos
@@ -16,6 +20,32 @@ $(document).ready(function() {
         }
     }
     
+    function gerarAndamento(){
+      var funcionario = JSON.parse(localStorage.getItem("Dados_Funcionario"));
+      var json = {
+        "status": "6",
+        "descricao": "Entrega do Equipamento na data de " + dataAtual(),
+        "funcionarioId":funcionario.Funcionario.id,//pegar id do usuário logado
+        "nome": "Entrega de Equipamento",
+        "servicoId": parseInt(id),
+        "dateAndamento": dataAtual(),
+        "numero": 1,
+        "valor": 0
+      };
+      
+      $.ajax({
+        url: "https://haskalpha-romefeller.c9users.io/andamento/",
+        method: "POST",
+        data: JSON.stringify(json),
+        success: function(json){
+          salvar();
+        },
+        error: function(){
+          $('#error').modal({show: 'false'});
+        }
+      });
+    }
+    
     $.ajax({
       url: "https://haskalpha-romefeller.c9users.io/servico/"+id,
       method: "GET",
@@ -26,6 +56,7 @@ $(document).ready(function() {
          console.log(serv)
         valueInput(id,"cd");
         valueInput(serv["Servico"]["nome"],"nome");
+        clienteId = serv["Equipamento"]["clienteId"]
         valueInput(serv["Cliente"]["nome"],"cliente");
         valueInput(parseFloat(serv["Servico"]["valor"]).toFixed(2),"vlF");
         valueInput(serv["Equipamento"]["nome"],"equipamento");
@@ -60,7 +91,7 @@ $(document).ready(function() {
             valorestotais += parseFloat(this.innerHTML);
             console.log("valores totais dentro do each", valorestotais);
         });
-        console.log("valores fora do each". valorestotais);
+        console.log("valores fora do each", valorestotais);
         $("#valorTotal").val(valorestotais.toFixed(2));
     }
     
@@ -98,6 +129,36 @@ $(document).ready(function() {
       window.location="../Servico/adicionarAndamento.html";
     });
     
+    function gerarConta(valor){
+      var codigo = ("000000000" + (Math.floor((Math.random() * 999999999)) + 1)).slice(-9);
+      var jsonConta = {
+        "dataEmissao": dataAtual(),
+        "dataVencimento": dataCinco(),
+        "historico": "Conta referente ao serviço de código: " + id,
+        "clienteId": clienteId,
+        "fornecedorId": null,
+        "icPagarReceber": false,
+        "icPago": false,
+        "valor": valor,
+        "codigo": codigo
+      };
+      
+      $.ajax({
+        url: "https://haskalpha-romefeller.c9users.io/conta",
+        method: "POST",
+        data: JSON.stringify(jsonConta),
+        success: function(){
+          console.log("gerou conta!");
+        },
+        
+        error: function(){
+          console.log("Não gerou conta!");
+        }
+      });
+      
+      console.log("jsonConta", jsonConta);
+    }
+    
     
     function salvar(){
       var serv = localStorage.getItem("servico");
@@ -129,7 +190,7 @@ $(document).ready(function() {
           method: "PUT",
           data: JSON.stringify(json),
           success: function(result){
-            $('#success').modal({show: 'true'}); 
+            $(idBotao).modal({show: 'true'}); 
           },
           error: function(result){
             $('#error').modal({show: 'false'});
@@ -138,7 +199,20 @@ $(document).ready(function() {
     }
     
     $("#salvar").click(function() {
+      idBotao="#success";
       salvar();
+    });
+    
+    $("#finalizar").click(function(){
+      $("#dataT").val(dataAtual());
+      idBotao="#impressao";
+      gerarConta(parseFloat($("#valorTotal").val()));
+      gerarAndamento();
+    });
+    
+    $("#imprimir").click(function() {
+      localStorage.setItem("servId", id)
+      window.location="../reciboServico.html";
     });
 
 });

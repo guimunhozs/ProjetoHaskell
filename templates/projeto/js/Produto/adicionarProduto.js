@@ -11,6 +11,35 @@ $(document).ready(function() {
         $("#fornecedor").val(0);
     }});
     
+    function gerarConta(){
+      var codigo = ("000000000" + (Math.floor((Math.random() * 999999999)) + 1)).slice(-9);
+      var jsonConta = {
+        "dataEmissao": dataAtual(),
+        "dataVencimento": dataCinco(),
+        "historico": "Conta referente a compra de " + parseInt($("#qtd").val()) + " itens de " +  $("#nome").val() + " da marca " + $("#marca").val()  ,
+        "clienteId": null,
+        "fornecedorId": parseInt($("#fornecedor").val()),
+        "icPagarReceber": true,
+        "icPago": false,
+        "valor": parseInt($("#qtd").val()) * parseFloat($("#vlC").val()) ,
+        "codigo": codigo
+      };
+      $.ajax({
+        url: "https://haskalpha-romefeller.c9users.io/conta",
+        method: "POST",
+        data: JSON.stringify(jsonConta),
+        success: function(){
+          console.log("gerou conta!");
+        },
+        
+        error: function(){
+          console.log("Não gerou conta!");
+        }
+      });
+      
+      console.log("jsonConta", jsonConta);
+    }
+    
 
     function salvar(){
      var nome = $("#nome").val();
@@ -38,6 +67,7 @@ $(document).ready(function() {
           method: "POST",
           data: json,
           success: function(result){
+            gerarConta();
             $('#success').modal({show: 'true'}); 
           },
           error: function(result){

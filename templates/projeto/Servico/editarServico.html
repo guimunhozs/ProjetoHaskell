@@ -245,6 +245,24 @@
             </div>
           </div>
           
+          <div class="modal fade" id="impressao" role="dialog">
+            <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header" style="background: #3c8dbc;color: #ffffff;">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  <h4 class="modal-title">Serviço</h4>
+                </div>
+                <div class="modal-body">
+                  <p>Serviço finalizado com sucesso!</p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-default" id="imprimir" data-dismiss="modal">Imprimir</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          
           <div class="modal fade" id="error" role="dialog">
             <div class="modal-dialog">
             <!-- Modal content-->
@@ -334,9 +352,15 @@
                 
               </tbody>
               </table>
-    <div class="form-group col-sm-11 text-right" style="margin-top: 25px">
+    
+    <div class="form-group col-sm-9 text-right" style="margin-top: 25px">
+      <button type="button" id="finalizar" class="btn btn-primary">Finalizar Serviço</button>
+    </div>
+    
+    <div class="form-group col-sm-2 text-right" style="margin-top: 25px">
       <button type="button" id="adcAndamento" class="btn btn-warning">Adicionar andamento</button>
     </div>
+    
     <div class="form-group col-sm-1 text-right" style="margin-top: 25px">
       <input type="button" id="salvar" class="btn btn-success" value="Salvar">
     </div>
@@ -384,6 +408,7 @@
 <script src="../../dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="../../dist/js/demo.js"></script>
+<script type="text/javascript" src="../js/dataAtual.js"></script>
 <!-- Page script -->
 <script>
   $(function () {

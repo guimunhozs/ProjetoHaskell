@@ -270,6 +270,41 @@ input:checked + .slider:before {
           <!--<h3 class="box-title">Select2</h3>-->
         <!-- /.box-header -->
         <div class="box-body">
+          <div class="modal fade" id="success" role="dialog">
+            <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header" style="background: #3c8dbc;color: #ffffff;">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  <h4 class="modal-title">Conta</h4>
+                </div>
+                <div class="modal-body">
+                  <p>Dados salvos com sucesso!</p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="modal fade" id="error" role="dialog">
+            <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header" style="background: #3c8dbc;color: #ffffff;">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  <h4 class="modal-title">Conta</h4>
+                </div>
+                <div class="modal-body">
+                  <p>Erro ao salvar os dados!</p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+                </div>
+              </div>
+            </div>
+          </div>
           <form role="form" data-toggle="validator">
           <div class="row">
             <div class="col-md-12">
@@ -277,16 +312,11 @@ input:checked + .slider:before {
                 <label class="control-label">Código:</label>
                 <input type="text" class="form-control" id="cd" value="" disabled>
               </div>
-              <div class="form-group col-sm-5">
+              <div class="form-group col-sm-10">
                 <label class="control-label">Codigo do documento</label>
                 <input type="text" class="form-control" id="codigoDoc" placeholder="Codigo do documento" required>
               </div>
-              <div class="form-group col-sm-5">
-                <label>Descrição:</label>
-                <input type="text" class="form-control" id="descricao" placeholder="Descrição" required>
-              </div>
-              <!-- /.form-group -->
-              <div class="form-group col-sm-6">
+              <div class="form-group col-sm-4">
                 <label>Valor da Conta:</label>
                 <div class="input-group">
                   <span class="input-group-addon">R$</span>
@@ -294,8 +324,7 @@ input:checked + .slider:before {
                 </div>
               </div>
               
-              <!-- /.form-group -->
-              <div class="form-group col-sm-6">
+              <div class="form-group col-sm-4">
                 <label>Data de emissão:</label>
                 <input type="date" class="form-control" id="dataEmissao" required>
               </div>
@@ -303,6 +332,14 @@ input:checked + .slider:before {
                 <label>Data de vencimento:</label>
                 <input type="date" class="form-control" id="dataVencimento" required>
               </div>
+              
+              <div class="form-group col-sm-4">
+                <label>Descrição:</label>
+                <input type="text" class="form-control" id="descricao" placeholder="Descrição" required>
+              </div>
+              <!-- /.form-group -->
+              
+              <!-- /.form-group -->
               <!-- /.form-group -->
               <div class="form-group col-sm-4">
                 <label id="lblClienteFornecedor"></label>
@@ -311,12 +348,11 @@ input:checked + .slider:before {
                 </select>
               </div>
               
-              <div class="form-group col-sm-4" style="margin-top: 25px;">
+              <div class="form-group col-sm-2" style="margin-top: 25px;">
                 <label style="margin-right: 20px;">Pago: <input type="checkbox" id="toggle-two"></label>
-                <label>Conta: <input type="checkbox" id="toggle-two2"></label>
               </div>
               
-              <div class="form-group col-sm-12 text-right" style="margin-top: 25px">
+              <div class="form-group col-sm-2 text-right" style="margin-top: 25px">
                 <input type="button" id="salvar" class="btn btn-success" value="Salvar">
               </div>
               <!-- /.form-group -->
